@@ -44,6 +44,7 @@
       fira-code
       (nerdfonts.override {fonts = ["FiraCode"];})
       font-awesome
+      dejavu_fonts
     ];
   };
 
