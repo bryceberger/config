@@ -65,13 +65,19 @@
         # instead of downloading the same commit again
         np.flake = nixpkgs;
       };
+      common_flake = {
+        nix = {inherit registry;};
+        nixpkgs.config.allowUnfree = true;
+        environment.systemPackages = [
+          home-manager.packages.${system}.default
+        ];
+      };
     in {
       luna = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {hostname = "luna";};
         modules = [
-          {nix = {inherit registry;};}
-          {nixpkgs.config.allowUnfree = true;}
+          common_flake
           ./system/luna.nix
           ./system/common.nix
         ];
@@ -80,8 +86,7 @@
         inherit system;
         specialArgs = {hostname = "janus";};
         modules = [
-          {nix = {inherit registry;};}
-          {nixpkgs.config.allowUnfree = true;}
+          common_flake
           ./system/janus.nix
           ./system/common.nix
         ];
