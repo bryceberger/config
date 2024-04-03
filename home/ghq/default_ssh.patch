@@ -1,0 +1,26 @@
+diff --git a/cmd_get.go b/cmd_get.go
+index da1bab6..c1193b5 100644
+--- a/cmd_get.go
++++ b/cmd_get.go
+@@ -27,7 +27,7 @@ func doGet(c *cli.Context) error {
+ 	g := &getter{
+ 		update:    c.Bool("update"),
+ 		shallow:   c.Bool("shallow"),
+-		ssh:       c.Bool("p"),
++		ssh:       !c.Bool("p"),
+ 		vcs:       c.String("vcs"),
+ 		silent:    c.Bool("silent"),
+ 		branch:    c.String("branch"),
+diff --git a/commands.go b/commands.go
+index abbd35f..dcc2d20 100644
+--- a/commands.go
++++ b/commands.go
+@@ -27,7 +27,7 @@ var commandGet = &cli.Command{
+ 	Flags: []cli.Flag{
+ 		&cli.BoolFlag{Name: "update", Aliases: []string{"u"},
+ 			Usage: "Update local repository if cloned already"},
+-		&cli.BoolFlag{Name: "p", Usage: "Clone with SSH"},
++		&cli.BoolFlag{Name: "p", Usage: "Clone without SSH"},
+ 		&cli.BoolFlag{Name: "shallow", Usage: "Do a shallow clone"},
+ 		&cli.BoolFlag{Name: "look", Aliases: []string{"l"}, Usage: "Look after get"},
+ 		&cli.StringFlag{Name: "vcs", Usage: "Specify `vcs` backend for cloning"},

@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  ghq_ssh = pkgs.ghq.overrideAttrs (o: {
+    patches =
+      (o.patches or [])
+      ++ [
+        ./ghq/default_ssh.patch
+      ];
+  });
+in {
   imports = [
     ./fish/catppuccin.nix
     ./fish/tide.nix
@@ -11,7 +19,7 @@
     fzf
     (writeShellScriptBin "ghq" ''
       # ghq assumes $USER == github username
-      USER=bryceberger ${ghq}/bin/ghq $@
+      USER=bryceberger ${ghq_ssh}/bin/ghq $@
     '')
     ouch
     lsd
