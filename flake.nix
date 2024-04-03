@@ -114,5 +114,11 @@
         modules = [./home/janus.nix] ++ nix-index;
       };
     };
+
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        just
+      ];
+    };
   };
 }
