@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./kitty.nix
+    ./wezterm.nix
   ];
 
   fonts.fontconfig.enable = true;

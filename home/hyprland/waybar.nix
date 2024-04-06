@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   playerctl_metadata_cmd = "${pkgs.playerctl}/bin/playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"mediaplayer\"}' -F";
   cssColor = vals: pkgs.lib.foldlAttrs (acc: name: value: acc + "@define-color ${name} ${toString value};\n") "" vals;
 
@@ -141,8 +137,8 @@ in {
       @import "themes/mocha.css";
 
       * {
-        font-size: ${toString config.gtk.font.size}px;
-        font-family: ${config.gtk.font.name}, "Font Awesome 6 Free";
+        font-size: 12px;
+        font-family: "Fira Code", "Font Awesome 6 Free";
         font-weight: bold;
         border-radius: 2px;
         border: none;

@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   gtk = {
-    enable = true;
+    # enable = true;
     theme = {
       name = "Catppuccin-Mocha-Standard-Pink-dark";
       package = pkgs.catppuccin-gtk.override {
