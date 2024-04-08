@@ -1,7 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   home.sessionVariables = {
     EDITOR = "hx";
   };
+  home.packages = with pkgs; [
+    nix-output-monitor
+  ];
   xdg.configFile = {
     "user-dirs.conf" = {
       enable = true;
