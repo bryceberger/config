@@ -29,6 +29,9 @@
   };
 in {
   inherit gtk;
+  home.packages = [
+    gtk.cursorTheme.package
+  ];
   home.file = {
     ".icons/default/index.theme".text = ''
       [Icon Theme]

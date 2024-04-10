@@ -9,6 +9,13 @@
     ./hyprland/waybar.nix
   ];
 
+  home.sessionVariables = let
+    cursor_size = 24;
+  in {
+    HYPRCURSOR_SIZE = cursor_size;
+    XCURSOR_SIZE = cursor_size;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -37,6 +44,7 @@
         ${hyprpaper}/bin/hyprpaper &
         ${swayidle}/bin/swayidle &
       ''}/bin/hyprland-autostart
+      exec-once = hyprctl setcursor ${config.gtk.cursorTheme.name} 24
 
       bind   = CTRLSHIFT, escape, submap, clear
       submap = clear
@@ -57,15 +65,15 @@
 
   home.packages = with pkgs; [
     hyprpaper
+    hyprcursor
     (writeShellScriptBin "whl" ''
-      exec ${pkgs.hyprland}/bin/.Hyprland-wrapped $argv
+      exec ${hyprland}/bin/.Hyprland-wrapped $argv
     '')
     (writeShellScriptBin "screenshot" ''
-      ${grim}/bin/grim -g "$(${slurp}/bin/slurp)" - | ${wl-clipboard}/bin/wl-copy
+      ${hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png
     '')
     (writeShellScriptBin "screenshot-window" ''
-      set -e
-      grim -g "$(hyprctl clients -j | jq -r '.[] | select(.hidden == false) | {pos: .at, size, title} | "\(.pos[0]?),\(.pos[1]?) \(.size[0]?)x\(.size[1]?) \(.title)"' | slurp)" - | wl-copy
+      ${hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png
     '')
   ];
 }

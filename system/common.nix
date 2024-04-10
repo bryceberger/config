@@ -42,7 +42,7 @@
     fontDir.enable = true;
     packages = with pkgs; [
       fira-code
-      (nerdfonts.override {fonts = ["FiraCode"];})
+      nerdfonts
       font-awesome
       dejavu_fonts
     ];
