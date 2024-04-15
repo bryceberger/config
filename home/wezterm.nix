@@ -12,10 +12,13 @@ in {
         default_prog = ["fish"];
         enable_tab_bar = false;
         color_scheme = "Catppuccin Mocha";
-        font = lua.call "wezterm.font" {
-          family = "FiraCode Nerd Font";
-          harfbuzz_features = ["clig=1"];
-        };
+        font = lua.call "wezterm.font_with_fallback" [
+          {
+            family = "FiraCode Nerd Font";
+            harfbuzz_features = ["clig=1"];
+          }
+          "JetBrainsMono Nerd Font"
+        ];
         keys = [
           {
             key = "F3";
