@@ -40,6 +40,7 @@
         "plugdev"
         "video"
         "wheel"
+        "media"
       ];
       openssh.authorizedKeys.keys = [
         # luna
@@ -60,6 +61,10 @@
         # janus
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgTjWmuWkpxIl8OhxuPKH5IP72k8apa7M8JfFdwMwLe bryce.z.berger@gmail.com"
       ];
+    };
+
+    users.plex = {
+      extraGroups = ["media"];
     };
   };
 
@@ -92,6 +97,11 @@
         X11Forwarding = true;
         PasswordAuthentication = false;
       };
+    };
+
+    plex = {
+      enable = true;
+      openFirewall = true;
     };
   };
 

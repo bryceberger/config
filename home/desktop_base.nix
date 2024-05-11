@@ -15,6 +15,7 @@
     thunderbird
     zathura
     slack
+    mpv
 
     # sound
     pavucontrol
