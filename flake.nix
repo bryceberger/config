@@ -115,10 +115,13 @@
       };
     };
 
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        just
-      ];
-    };
+    devShells.${system}.default =
+      pkgs.mkShell.override {
+        stdenv = pkgs.stdenvNoCC;
+      } {
+        packages = with pkgs; [
+          just
+        ];
+      };
   };
 }
