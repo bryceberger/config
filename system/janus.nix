@@ -27,6 +27,7 @@
     groups = {
       plugdev = {};
       dialout = {};
+      media = {};
     };
     users.bryce = {
       isNormalUser = true;
@@ -47,7 +48,22 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgTjWmuWkpxIl8OhxuPKH5IP72k8apa7M8JfFdwMwLe bryce.z.berger@gmail.com"
       ];
     };
+
+    users.media = {
+      isNormalUser = true;
+      group = "media";
+      openssh.authorizedKeys.keys = [
+        # glenn macbook
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDv0aqKzA7axNXTCIYsc5QvcL0Mz5ohd6qog+u3Uno90 glenn@glenns-air.lan"
+        # luna
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEJQmROnDI1j/JpJeNtB7/F8MIMPLIBsJBd4E80ysEwa bryce.z.berger@gmail.com"
+        # janus
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgTjWmuWkpxIl8OhxuPKH5IP72k8apa7M8JfFdwMwLe bryce.z.berger@gmail.com"
+      ];
+    };
   };
+
+  programs.steam.enable = true;
 
   xdg.portal = {
     enable = true;
