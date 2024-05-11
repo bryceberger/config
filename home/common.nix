@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.sessionVariables = {
     EDITOR = "hx";
+    PAGER = "less -FRX";
   };
   home.packages = with pkgs; [
     nix-output-monitor

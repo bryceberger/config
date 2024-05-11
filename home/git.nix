@@ -23,7 +23,6 @@ in {
         "log"
         "-T"
         ''separate(" ", change_id.shortest(8), commit_id.shortest(8), branches, description.first_line())''
-        "--no-pager"
       ];
     };
     signing = {
