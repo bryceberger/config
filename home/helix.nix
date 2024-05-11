@@ -68,6 +68,10 @@ in {
           };
           language-servers = ["veryl-ls"];
         }
+        {
+          name = "git-commit";
+          file-types = [{glob = "COMMIT_EDITMSG";} "jjdescription"];
+        }
       ];
 
       language-server = {
