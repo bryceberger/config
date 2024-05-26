@@ -6,6 +6,17 @@
 
   fonts.fontconfig.enable = true;
 
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      autoload
+      sponsorblock
+      thumbfast
+      uosc
+      youtube-upnext
+    ];
+  };
+
   home.packages = with pkgs; [
     fira-code
     (nerdfonts.override {fonts = ["FiraCode"];})
@@ -15,7 +26,6 @@
     thunderbird
     zathura
     slack
-    mpv
 
     # sound
     pavucontrol

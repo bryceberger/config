@@ -59,7 +59,7 @@ in {
         }
         {
           name = "veryl";
-          file-types = ["vl"];
+          file-types = ["veryl" "vl"];
           scope = "source.veryl";
           comment-token = "//";
           indent = {
