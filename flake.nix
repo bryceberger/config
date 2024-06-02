@@ -2,6 +2,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +47,7 @@
 
   outputs = {
     nixpkgs,
+    lix-module,
     home-manager,
     ...
   } @ inputs: let
@@ -78,6 +87,7 @@
         specialArgs = {hostname = "luna";};
         modules = [
           common_flake
+          lix-module.nixosModules.default
           ./system/luna.nix
           ./system/common.nix
         ];
@@ -87,6 +97,7 @@
         specialArgs = {hostname = "janus";};
         modules = [
           common_flake
+          lix-module.nixosModules.default
           ./system/janus.nix
           ./system/common.nix
         ];

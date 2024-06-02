@@ -13,7 +13,6 @@
       sponsorblock
       thumbfast
       uosc
-      youtube-upnext
     ];
   };
 
