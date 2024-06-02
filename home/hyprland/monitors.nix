@@ -2,8 +2,9 @@
   monitor =
     if hostname == "janus"
     then [
-      "DP-1, preferred, 1440x900, 1"
-      "DP-2, preferred, 0x0, 1, transform, 1"
+      "DP-1    , preferred, 1440x900, 1"
+      "DP-2    , preferred, 0x0     , 1, transform,1"
+      "HDMI-A-1, disable"
     ]
     else if hostname == "luna"
     then [

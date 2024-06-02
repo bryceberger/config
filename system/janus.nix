@@ -11,16 +11,16 @@
   services.xserver = {
     # ugh vr no work nice on wayland -_-
     # doesn't work too well on X either lol
-    enable = true;
+    # enable = true;
     # would really like to just use startx instead
     # display managers are annoying
     # crashes whenever I quit then switch to a different tty?
     # also *REALLY* high cpu usage after going to sleep
-    displayManager.gdm.enable = true;
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [dmenu i3status i3lock];
-    };
+    # displayManager.gdm.enable = true;
+    # windowManager.i3 = {
+    #   enable = true;
+    #   extraPackages = with pkgs; [dmenu i3status i3lock];
+    # };
   };
 
   users = {
@@ -69,6 +69,7 @@
   };
 
   programs.steam.enable = true;
+  hardware.xpadneo.enable = true;
 
   xdg.portal = {
     enable = true;

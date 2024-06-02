@@ -41,10 +41,6 @@ in {
   };
 
   xdg.configFile = {
-    "fish/conf.d/done.fish" = {
-      enable = true;
-      source = ./fish/done.fish;
-    };
     "fish/conf.d/00-home-manager-vars.fish" = {
       enable = true;
       text = ''

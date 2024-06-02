@@ -63,17 +63,26 @@
     '';
   };
 
-  home.packages = with pkgs; [
-    hyprpaper
-    hyprcursor
-    (writeShellScriptBin "whl" ''
-      exec ${hyprland}/bin/.Hyprland-wrapped $argv
-    '')
-    (writeShellScriptBin "screenshot" ''
-      ${hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png
-    '')
-    (writeShellScriptBin "screenshot-window" ''
-      ${hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png
-    '')
-  ];
+  home.packages = with pkgs;
+    [
+      hyprpaper
+      hyprcursor
+      (writeShellScriptBin "whl" ''
+        exec ${hyprland}/bin/.Hyprland-wrapped $argv
+      '')
+      (writeShellScriptBin "screenshot" ''
+        ${hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png
+      '')
+      (writeShellScriptBin "screenshot-window" ''
+        ${hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png
+      '')
+    ]
+    ++ (
+      if hostname == "janus"
+      then [
+        (pkgs.writeShellScriptBin "tv_off" "hyprctl keyword monitor HDMI-A-1,disable")
+        (pkgs.writeShellScriptBin "tv_on" "hyprctl keyword monitor HDMI-A-1,4096x2160@60Hz,auto,1")
+      ]
+      else []
+    );
 }
