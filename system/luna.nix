@@ -15,7 +15,9 @@
 
   networking.networkmanager.enable = true;
 
+  programs.fish.enable = true;
   users = {
+    defaultUserShell = pkgs.fish;
     groups = {
       plugdev = {};
       dialout = {};

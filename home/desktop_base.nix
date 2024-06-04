@@ -18,7 +18,7 @@
 
   home.packages = with pkgs; [
     fira-code
-    (nerdfonts.override {fonts = ["FiraCode"];})
+    nerdfonts
 
     # standalone
     firefox

@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  ups-apply,
+  ...
+}: {
   imports = [
     ./common.nix
     ./devel.nix
@@ -32,5 +36,6 @@
     libnotify
     waypipe
     retroarchFull
+    ups-apply
   ];
 }

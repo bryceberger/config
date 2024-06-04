@@ -43,6 +43,14 @@
         utils.follows = "flake-utils";
       };
     };
+
+    ups-apply = {
+      url = "github:bryceberger/ups";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs = {
@@ -107,7 +115,7 @@
     homeConfigurations = let
       extraModules = {
         inherit system;
-        inherit (inputs) nix-std helix power-graphing;
+        inherit (inputs) nix-std helix power-graphing ups-apply;
       };
       nix-index = [
         inputs.nix-index-database.hmModules.nix-index

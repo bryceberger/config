@@ -25,6 +25,7 @@ in {
         ''separate(" ", change_id.shortest(8), commit_id.shortest(8), branches, description.first_line())''
       ];
     };
+    merge-tools.difft.diff-args = ["--color=always" "$left" "$right"];
     signing = {
       sign-all = true;
       backend = "gpg";

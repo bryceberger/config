@@ -42,12 +42,7 @@
     fontDir.enable = true;
     packages = with pkgs; [
       fira-code
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-        ];
-      })
+      nerdfonts
       font-awesome
       dejavu_fonts
     ];
