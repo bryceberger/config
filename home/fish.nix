@@ -6,13 +6,6 @@
         ./ghq/default_ssh.patch
       ];
   });
-  any-nix-shell = pkgs.any-nix-shell.overrideAttrs (final: prev: {
-    patches =
-      (prev.patches or [])
-      ++ [
-        ./fish/fix_any_nix_fish.patch
-      ];
-  });
 in {
   imports = [
     ./fish/catppuccin.nix
@@ -96,7 +89,7 @@ in {
     interactiveShellInit = ''
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
-      ${any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
     '';
 
     plugins = with pkgs.fishPlugins; [

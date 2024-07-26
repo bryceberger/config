@@ -24,7 +24,6 @@
     firefox
     thunderbird
     zathura
-    slack
 
     # sound
     pavucontrol
