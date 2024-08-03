@@ -9,7 +9,7 @@
 in {
   home.packages = with pkgs; [
     # extra lanugage servers
-    nil
+    nixd
     alejandra
   ];
 
@@ -52,6 +52,7 @@ in {
         }
         {
           name = "nix";
+          language-servers = ["nixd"];
           formatter = {
             command = "alejandra";
             args = ["-q"];
@@ -86,6 +87,7 @@ in {
         veryl-ls = {
           command = "veryl-ls";
         };
+        nixd.command = "nixd";
       };
     };
     "helix/config.toml".text = std.serde.toTOML {
