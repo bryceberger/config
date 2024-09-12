@@ -1,7 +1,15 @@
 {pkgs, ...}: let
   browser = "${pkgs.firefox}/bin/firefox";
+  terminal = "${pkgs.kitty}/bin/kitty";
+  menu = "${pkgs.fuzzel}/bin/fuzzel";
+
   resize_step = "20px";
+
   super = "Mod4";
+  left = "h";
+  down = "j";
+  up = "k";
+  right = "l";
 in {
   imports = [
     ./wayland_base.nix
@@ -14,11 +22,7 @@ in {
   wayland.windowManager.sway = {
     enable = true;
 
-    config = rec {
-      modifier = "Control";
-      terminal = "${pkgs.kitty}/bin/kitty";
-      menu = "${pkgs.fuzzel}/bin/fuzzel";
-
+    config = {
       input = {
         "*" = {
           xkb_layout = "us";
@@ -31,36 +35,43 @@ in {
         };
       };
 
-      # floating.modifier = modifier + "+Shift";
+      output = {
+        "DP-2" = {
+          pos = "0 0";
+          transform = "270";
+        };
+        "DP-1" = {pos = "1440 900";};
+        "HDMI-A-1" = {disable = "";};
+      };
 
-      left = "h";
-      down = "j";
-      up = "k";
-      right = "l";
+      floating.modifier = super;
 
       keybindings =
         {
-          "${modifier}+Shift+${left}" = "focus left";
-          "${modifier}+Shift+${down}" = "focus down";
-          "${modifier}+Shift+${up}" = "focus up";
-          "${modifier}+Shift+${right}" = "focus right";
-          "${modifier}+Alt+${left}" = "move left";
-          "${modifier}+Alt+${down}" = "move down";
-          "${modifier}+Alt+${up}" = "move up";
-          "${modifier}+Alt+${right}" = "move right";
-          "${modifier}+${super}+${left}" = "resize shrink width " + resize_step;
-          "${modifier}+${super}+${down}" = "resize grow height " + resize_step;
-          "${modifier}+${super}+${up}" = "resize shrink height " + resize_step;
-          "${modifier}+${super}+${right}" = "resize grow width " + resize_step;
+          "${super}+${left}" = "focus left";
+          "${super}+${down}" = "focus down";
+          "${super}+${up}" = "focus up";
+          "${super}+${right}" = "focus right";
+          "${super}+Alt+${left}" = "move left";
+          "${super}+Alt+${down}" = "move down";
+          "${super}+Alt+${up}" = "move up";
+          "${super}+Alt+${right}" = "move right";
+          "Control+Shift+${left}" = "resize shrink width " + resize_step;
+          "Control+Shift+${down}" = "resize grow height " + resize_step;
+          "Control+Shift+${up}" = "resize shrink height " + resize_step;
+          "Control+Shift+${right}" = "resize grow width " + resize_step;
 
-          "${modifier}+q" = "kill";
+          "Control+q" = "kill";
 
-          "${modifier}+Return" = "exec ${terminal}";
-          "${modifier}+Shift+Return" = "exec ${terminal} --class floating_term";
+          "Control+Return" = "exec ${terminal}";
+          "Control+Shift+Return" = "exec ${terminal} --class floating_term";
           "${super}+w" = "exec ${browser}";
           "Alt+space" = "exec ${menu}";
 
-          "${modifier}+Shift+space" = "floating toggle";
+          "Control+Shift+space" = "floating toggle";
+
+          "F11" = "fullscreen";
+          "${super}+f" = "fullscreen";
 
           "F2" = "move scratchpad";
           "F1" = "scratchpad show";
@@ -69,11 +80,11 @@ in {
           (
             x: [
               {
-                name = "${modifier}+" + x;
+                name = "Control+" + x;
                 value = "workspace " + x;
               }
               {
-                name = "${modifier}+Shift+" + x;
+                name = "Control+Shift+" + x;
                 value = "move container to workspace " + x;
               }
             ]

@@ -37,5 +37,6 @@
     waypipe
     retroarchFull
     ups-apply
+    plex-media-player
   ];
 }
