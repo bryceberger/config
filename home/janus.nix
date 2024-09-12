@@ -35,7 +35,7 @@
     calibre
     libnotify
     waypipe
-    retroarchFull
+    # retroarchFull
     ups-apply
     plex-media-player
   ];

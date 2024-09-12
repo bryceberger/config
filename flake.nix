@@ -70,9 +70,9 @@
     };
   in {
     nixosConfigurations = let
-      registry = {
+      common_flake = {
         # useful to use "nixpkgs" in a flake and have it specify a revision
-        nixpkgs.to = {
+        nix.registry.nixpkgs.to = {
           type = "github";
           owner = "NixOS";
           repo = "nixpkgs";
@@ -80,67 +80,58 @@
         };
         # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
         # instead of downloading the same commit again
-        np.flake = nixpkgs;
-      };
-      common_flake = {
-        nix = {inherit registry;};
+        nix.registry.np.flake = nixpkgs;
         nixpkgs.config.allowUnfree = true;
         environment.systemPackages = [
           home-manager.packages.${system}.default
         ];
       };
-    in {
-      luna = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {hostname = "luna";};
-        modules = [
-          common_flake
-          lix-module.nixosModules.default
-          ./system/luna.nix
-          ./system/common.nix
-        ];
-      };
-      janus = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {hostname = "janus";};
-        modules = [
-          common_flake
-          lix-module.nixosModules.default
-          ./system/janus.nix
-          ./system/common.nix
-        ];
-      };
-    };
+
+      make = names:
+        builtins.listToAttrs (map (name: {
+            inherit name;
+            value = nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = {hostname = name;};
+              modules = [
+                common_flake
+                lix-module.nixosModules.default
+                ./system/common.nix
+                ./system/${name}.nix
+              ];
+            };
+          })
+          names);
+    in
+      make ["luna" "janus"];
 
     homeConfigurations = let
-      extraModules = {
-        inherit system;
-        inherit (inputs) nix-std helix power-graphing ups-apply;
-      };
-      nix-index = [
-        inputs.nix-index-database.hmModules.nix-index
-        {programs.nix-index-database.comma.enable = true;}
-      ];
-    in {
-      "${username}@luna" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = extraModules // {hostname = "luna";};
-        modules = [./home/luna.nix] ++ nix-index;
-      };
-      "${username}@janus" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = extraModules // {hostname = "janus";};
-        modules = [./home/janus.nix] ++ nix-index;
-      };
-    };
+      make = names:
+        builtins.listToAttrs (map (name: {
+            name = "${username}@${name}";
+            value = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit system;
+                inherit (inputs) nix-std helix power-graphing ups-apply;
+                hostname = name;
+              };
+              modules = [
+                ./home/${name}.nix
+                inputs.nix-index-database.hmModules.nix-index
+                {programs.nix-index-database.comma.enable = true;}
+              ];
+            };
+          })
+          names);
+    in
+      make ["luna" "janus"];
 
     devShells.${system}.default =
       pkgs.mkShell.override {
         stdenv = pkgs.stdenvNoCC;
       } {
-        packages = with pkgs; [
-          just
-        ];
+        packages = [pkgs.just];
       };
   };
 }
