@@ -103,7 +103,7 @@
           })
           names);
     in
-      make ["luna" "janus"];
+      make ["luna" "janus" "encaladus"];
 
     homeConfigurations = let
       make = names:
