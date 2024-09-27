@@ -4,8 +4,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;
-
   programs.fish.enable = true;
   users = {
     defaultUserShell = pkgs.fish;
@@ -51,6 +49,7 @@
     users.plex.extraGroups = ["media"];
   };
 
+  nixpkgs.config.allowUnfree = true;
   services.plex = {
     enable = true;
     openFirewall = true;
@@ -60,4 +59,28 @@
     enable = true;
     settings.PasswordAuthentication = false;
   };
+
+  nix.settings = {
+    substituters = [
+      "https://cache.nixos.org"
+      # "ssh-ng://janus?priority=30"
+    ];
+    trusted-public-keys = [
+      "janus:nQWcqncr+jWA5+fmv+NWtiySKCyuf6OiFDSJgWji+00="
+    ];
+    builders-use-substitutes = true;
+    connect-timeout = 1;
+  };
+
+  nix.buildMachines = [
+    {
+      hostName = "janus";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 16;
+      speedFactor = 2;
+    }
+  ];
+
+  system.stateVersion = "24.05";
 }
