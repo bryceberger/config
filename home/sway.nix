@@ -64,6 +64,8 @@ in {
           "Control+Shift+${up}" = "resize shrink height " + resize_step;
           "Control+Shift+${right}" = "resize grow width " + resize_step;
 
+          "${super}+Escape" = "exec lock";
+
           "Control+q" = "kill";
 
           "Control+Return" = "exec ${terminal}";
