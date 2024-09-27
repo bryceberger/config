@@ -3,6 +3,9 @@
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.fuzzel}/bin/fuzzel";
 
+  volume = "${pkgs.wireplumber}/bin/wpctl";
+  media = "${pkgs.playerctl}/bin/playerctl";
+
   resize_step = "20px";
 
   super = "Mod4";
@@ -75,6 +78,14 @@ in {
 
           "F2" = "move scratchpad";
           "F1" = "scratchpad show";
+
+          "XF86AudioRaiseVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%+";
+          "XF86AudioLowerVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%-";
+          "XF86AudioMute" = "exec ${volume} set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioPlay" = "exec ${media} play-pause";
+          "XF86AudioPause" = "exec ${media} play-pause";
+          "XF86AudioNext" = "exec ${media} next";
+          "XF86AudioPrev" = "exec ${media} previous";
         }
         // builtins.listToAttrs (builtins.concatLists (map
           (
