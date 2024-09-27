@@ -29,8 +29,6 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     calibre
     libnotify

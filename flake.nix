@@ -127,7 +127,7 @@
           })
           names);
     in
-      make ["luna" "janus"];
+      make ["luna" "janus" "encaladus"];
 
     packages.${system}.home-manager = home-manager.packages.${system}.default;
   };
