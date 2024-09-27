@@ -68,38 +68,39 @@
         inputs.extest.overlays.default
       ];
     };
+
+    registry = {
+      # useful to use "nixpkgs" in a flake and have it specify a revision
+      nix.registry.nixpkgs.to = {
+        type = "github";
+        owner = "NixOS";
+        repo = "nixpkgs";
+        rev = nixpkgs.rev;
+      };
+      # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
+      # instead of downloading the same commit again
+      nix.registry.np.flake = nixpkgs;
+      nixpkgs.config.allowUnfree = true;
+      home.packages = [
+        home-manager.packages.${system}.default
+      ];
+    };
   in {
     nixosConfigurations = let
-      common_flake = {
-        # useful to use "nixpkgs" in a flake and have it specify a revision
-        nix.registry.nixpkgs.to = {
-          type = "github";
-          owner = "NixOS";
-          repo = "nixpkgs";
-          rev = nixpkgs.rev;
+      make_system = name:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs.hostname = name;
+          modules = [
+            lix-module.nixosModules.default
+            ./system/common.nix
+            ./system/${name}.nix
+          ];
         };
-        # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
-        # instead of downloading the same commit again
-        nix.registry.np.flake = nixpkgs;
-        nixpkgs.config.allowUnfree = true;
-        environment.systemPackages = [
-          home-manager.packages.${system}.default
-        ];
-      };
-
       make = names:
         builtins.listToAttrs (map (name: {
             inherit name;
-            value = nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = {hostname = name;};
-              modules = [
-                common_flake
-                lix-module.nixosModules.default
-                ./system/common.nix
-                ./system/${name}.nix
-              ];
-            };
+            value = make_system name;
           })
           names);
     in
@@ -118,6 +119,7 @@
               };
               modules = [
                 ./home/${name}.nix
+                registry
                 inputs.nix-index-database.hmModules.nix-index
                 {programs.nix-index-database.comma.enable = true;}
               ];
@@ -127,11 +129,6 @@
     in
       make ["luna" "janus"];
 
-    devShells.${system}.default =
-      pkgs.mkShell.override {
-        stdenv = pkgs.stdenvNoCC;
-      } {
-        packages = [pkgs.just];
-      };
+    packages.${system}.home-manager = home-manager.packages.${system}.default;
   };
 }
