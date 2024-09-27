@@ -16,7 +16,7 @@
       "ctrl+alt+plus" = "change_font_size current 12.0";
     };
 
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
   };
 
   xdg.configFile = {
