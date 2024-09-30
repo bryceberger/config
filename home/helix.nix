@@ -11,6 +11,8 @@ in {
     # extra lanugage servers
     nil
     alejandra
+    bash-language-server
+    shellcheck
   ];
 
   programs.helix = {
@@ -80,8 +82,8 @@ in {
           config.exportPdf = "never";
         };
         svls.command = "svls";
-        rust-analyzer.config = {
-          check.allTargets = false;
+        rust-analyzer.config.check = {
+          command = "clippy";
         };
         veryl-ls = {
           command = "veryl-ls";
