@@ -74,13 +74,15 @@ in {
           name = "git-commit";
           file-types = [{glob = "COMMIT_EDITMSG";} "jjdescription"];
         }
+        {
+          name = "typst";
+          formatter = {
+            command = "typstyle";
+          };
+        }
       ];
 
       language-server = {
-        typst-lsp = {
-          command = "typst-lsp";
-          config.exportPdf = "never";
-        };
         svls.command = "svls";
         rust-analyzer.config.check = {
           command = "clippy";
@@ -117,6 +119,10 @@ in {
             "position-percentage"
             "file-encoding"
           ];
+        };
+        inline-diagnostics = {
+          cursor-line = "hint";
+          other-lines = "error";
         };
       };
 
