@@ -5,7 +5,9 @@
   };
   home.packages = with pkgs; [
     nix-output-monitor
+    nvd
   ];
+  programs.nh.enable = true;
   xdg.configFile = {
     "user-dirs.conf" = {
       enable = true;
