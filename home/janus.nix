@@ -34,7 +34,7 @@
     libnotify
     waypipe
     # retroarchFull
-    ups-apply
+    ups-apply.packages.${system}.default
     plex-media-player
   ];
 }

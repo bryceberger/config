@@ -2,6 +2,7 @@
   pkgs,
   power-graphing,
   system,
+  ups-apply,
   ...
 }: {
   imports = [
@@ -31,10 +32,8 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    calibre
-    eternal-terminal
-    libnotify
-    yt-dlp
+    retroarch
+    ups-apply.packages.${system}.default
     power-graphing.packages.${system}.default
     (writeShellScriptBin "nix_remote" ''
       remote=ssh-ng://janus

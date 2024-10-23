@@ -9,7 +9,7 @@
 in {
   home.packages = with pkgs; [
     # extra lanugage servers
-    nixd
+    nil
     alejandra
   ];
 
@@ -52,7 +52,6 @@ in {
         }
         {
           name = "nix";
-          language-servers = ["nixd"];
           formatter = {
             command = "alejandra";
             args = ["-q"];
