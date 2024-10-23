@@ -22,7 +22,7 @@ in {
       default-command = [
         "log"
         "-T"
-        ''separate(" ", change_id.shortest(8), commit_id.shortest(8), branches, description.first_line())''
+        ''separate(" ", change_id.shortest(8), commit_id.shortest(8), bookmarks, description.first_line())''
       ];
     };
     merge-tools.difft.diff-args = ["--color=always" "$left" "$right"];
