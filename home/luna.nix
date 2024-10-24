@@ -14,6 +14,7 @@
     ./helix.nix
     ./hyprland.nix
     ./kitty.nix
+    ./retroarch.nix
     ./scripts.nix
     ./sway.nix
     ./utils.nix
@@ -32,7 +33,6 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    retroarch
     ups-apply.packages.${system}.default
     power-graphing.packages.${system}.default
     (writeShellScriptBin "nix_remote" ''

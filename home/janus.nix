@@ -12,8 +12,9 @@
     ./helix.nix
     ./hyprland.nix
     ./kitty.nix
-    ./sway.nix
+    ./retroarch.nix
     ./scripts.nix
+    ./sway.nix
     ./utils.nix
   ];
 
@@ -33,7 +34,6 @@
     calibre
     libnotify
     waypipe
-    # retroarchFull
     ups-apply.packages.${system}.default
     plex-media-player
   ];
