@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [./hardware/luna.nix];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = [pkgs.mesa.drivers];
   };

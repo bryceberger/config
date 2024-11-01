@@ -36,21 +36,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    power-graphing = {
-      url = "github:bryceberger/power-graphing";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
-    };
-
-    ups-apply = {
-      url = "github:bryceberger/ups";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    power-graphing.url = "github:bryceberger/power-graphing";
+    ups-apply.url = "github:bryceberger/ups";
   };
 
   outputs = {
