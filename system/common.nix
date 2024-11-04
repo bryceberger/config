@@ -37,17 +37,6 @@
     vim
   ];
 
-  # fonts
-  fonts = {
-    fontDir.enable = true;
-    packages = with pkgs; [
-      fira-code
-      nerdfonts
-      font-awesome
-      dejavu_fonts
-    ];
-  };
-
   # services
   programs = {
     gnupg.agent = {

@@ -19,6 +19,8 @@
   home.packages = with pkgs; [
     fira-code
     nerdfonts
+    font-awesome
+    dejavu_fonts
 
     # standalone
     firefox
