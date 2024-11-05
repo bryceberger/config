@@ -84,8 +84,6 @@
     '')
   ];
 
-  services.swayidle.enable = true;
-
   xdg.configFile = {
     "swayidle/config".text = ''
       timeout 600 'systemctl suspend'

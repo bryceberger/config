@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  hostname,
+  ...
+}: let
   browser = "${pkgs.firefox}/bin/firefox";
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.fuzzel}/bin/fuzzel";
@@ -18,14 +22,12 @@ in {
     ./wayland_base.nix
   ];
 
-  home.packages = with pkgs; [
-    sway
-  ];
-
   wayland.windowManager.sway = {
     enable = true;
 
     config = {
+      window.titlebar = false;
+
       input = {
         "*" = {
           xkb_layout = "us";
@@ -38,14 +40,27 @@ in {
         };
       };
 
-      output = {
-        "DP-2" = {
-          pos = "0 0";
-          transform = "270";
-        };
-        "DP-1" = {pos = "1440 900";};
-        "HDMI-A-1" = {disable = "";};
-      };
+      output =
+        if hostname == "janus"
+        then {
+          "DP-2" = {
+            pos = "0 0";
+            transform = "270";
+          };
+          "DP-1" = {pos = "1440 900";};
+          "HDMI-A-1" = {disable = "";};
+        }
+        else if hostname == "luna"
+        then let
+          args = {
+            mode = "2560x1600@60Hz";
+            scale = "1.6";
+          };
+        in {
+          "eDP-1" = args;
+          "eDP-2" = args;
+        }
+        else {};
 
       floating.modifier = super;
 
