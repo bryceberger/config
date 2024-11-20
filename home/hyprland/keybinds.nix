@@ -2,6 +2,7 @@
   pkgs,
   hostname,
 }: let
+  browser = "${pkgs.zen-browser}/bin/zen";
   backlight = "${pkgs.brightnessctl}/bin/brightnessctl";
   volume = "${pkgs.wireplumber}/bin/wpctl";
   media = "${pkgs.playerctl}/bin/playerctl";
@@ -47,7 +48,7 @@ in {
       # common programs
       "CTRL     , Return, exec, ${kitty}/bin/kitty"
       "CTRLSHIFT, Return, exec, ${kitty}/bin/kitty --class floatingkitty"
-      "SUPER    , W     , exec, ${firefox}/bin/firefox"
+      "SUPER    , W     , exec, ${browser}"
       "SUPER    , Z     , exec, ${zathura}/bin/zathura"
       "ALT      , space , exec, ${fuzzel}/bin/fuzzel -f FiraCode"
 

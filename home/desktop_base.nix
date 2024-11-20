@@ -24,6 +24,7 @@
 
     # standalone
     firefox
+    zen-browser
     zathura
 
     # sound

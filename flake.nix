@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    # https://github.com/NixOS/nixpkgs/pull/347222
+    nixpkgs.url = "github:matthewpi/nixpkgs/zen-browser";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";

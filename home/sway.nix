@@ -3,7 +3,7 @@
   hostname,
   ...
 }: let
-  browser = "${pkgs.firefox}/bin/firefox";
+  browser = "${pkgs.zen-browser}/bin/zen";
   terminal = "${pkgs.kitty}/bin/kitty";
   menu = "${pkgs.fuzzel}/bin/fuzzel";
 
