@@ -31,7 +31,7 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    calibre
+    # calibre
     libnotify
     waypipe
     ups-apply.packages.${system}.default
