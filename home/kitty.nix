@@ -16,7 +16,6 @@
       font_size = 12;
       font_family = "FiraCode Nerd Font";
       font_features = "FiraCodeNF-Reg +ss08";
-      shell = "${pkgs.fish}/bin/fish";
     };
 
     keybindings = {

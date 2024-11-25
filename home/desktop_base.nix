@@ -1,34 +1,44 @@
-{pkgs, ...}: {
-  imports = [
-    ./kitty.nix
-    ./wezterm.nix
-  ];
+{
+  pkgs,
+  hostname,
+  ...
+}: let
+  is-not-mimas = hostname != "mimas";
 
-  fonts.fontconfig.enable = true;
-
-  programs.mpv = {
-    enable = true;
-    scripts = with pkgs.mpvScripts; [
-      autoload
-      sponsorblock
-      thumbfast
-      uosc
-    ];
-  };
-
-  home.packages = with pkgs; [
+  always-packages = with pkgs; [
     fira-code
-    nerdfonts
     font-awesome
     dejavu_fonts
-
-    # standalone
-    firefox
-    zen-browser
     zathura
-
-    # sound
-    pavucontrol
-    playerctl
   ];
-}
+in
+  {
+    imports = [./kitty.nix ./wezterm.nix];
+    fonts.fontconfig.enable = true;
+  }
+  // (
+    if is-not-mimas
+    then {
+      programs.mpv = {
+        enable = true;
+        scripts = with pkgs.mpvScripts; [
+          autoload
+          sponsorblock
+          thumbfast
+          uosc
+        ];
+      };
+      home.packages = with pkgs;
+        [
+          nerdfonts
+          firefox
+          zen-browser
+          pavucontrol
+          playerctl
+        ]
+        ++ always-packages;
+    }
+    else {
+      home.packages = always-packages;
+    }
+  )

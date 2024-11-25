@@ -118,8 +118,6 @@ in {
       "gd" = "git difftool --dir-diff";
       "c" = "cargo";
       "j" = "just";
-      "nd" = "nix develop -c fish";
-      "pbuds" = "bluetoothctl connect 24:29:34:9C:5D:8D";
       "nr" = "nix_remote";
       "ns" = "nix shell";
     };

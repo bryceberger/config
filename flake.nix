@@ -49,13 +49,18 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+
+    nixpkgs-config = {
       inherit system;
       config.allowUnfree = true;
-      overlays = [
-        mesa-downgrade
-      ];
     };
+    pkgs = hostname:
+      import nixpkgs (nixpkgs-config
+        // (
+          if hostname == "janus"
+          then {overlays = [mesa-downgrade];}
+          else {}
+        ));
 
     # https://github.com/NixOS/nixpkgs/issues/352725
     mesa-downgrade = final: prev: {
@@ -89,14 +94,15 @@
     };
   in {
     nixosConfigurations = let
-      make_system = name:
+      make_system = hostname:
         nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          specialArgs.hostname = name;
+          inherit system;
+          pkgs = pkgs hostname;
+          specialArgs.hostname = hostname;
           modules = [
             lix-module.nixosModules.default
             ./system/common.nix
-            ./system/${name}.nix
+            ./system/${hostname}.nix
           ];
         };
       make = names:
@@ -115,7 +121,7 @@
         gpg-key,
       }:
         home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = pkgs hostname;
           extraSpecialArgs = {
             inherit system hostname email gpg-key;
             inherit (inputs) nix-std helix power-graphing ups-apply;

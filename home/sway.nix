@@ -102,6 +102,7 @@ in {
           "Control+Shift+${right}" = "resize grow width " + resize_step;
 
           "${super}+Escape" = "exec lock";
+          "${super}+Shift+s" = "exec screenshot";
 
           "Control+q" = "kill";
 
