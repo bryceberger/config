@@ -95,23 +95,25 @@
       make ["luna" "janus" "encaladus"];
 
     homeConfigurations = let
+      make_home = name:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit system;
+            inherit (inputs) nix-std helix power-graphing ups-apply;
+            hostname = name;
+          };
+          modules = [
+            ./home/${name}.nix
+            registry
+            inputs.nix-index-database.hmModules.nix-index
+            {programs.nix-index-database.comma.enable = true;}
+          ];
+        };
       make = names:
         builtins.listToAttrs (map (name: {
             name = "${username}@${name}";
-            value = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit system;
-                inherit (inputs) nix-std helix power-graphing ups-apply;
-                hostname = name;
-              };
-              modules = [
-                ./home/${name}.nix
-                registry
-                inputs.nix-index-database.hmModules.nix-index
-                {programs.nix-index-database.comma.enable = true;}
-              ];
-            };
+            value = make_home name;
           })
           names);
     in
