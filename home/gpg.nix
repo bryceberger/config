@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  gpg-key,
+  ...
+}: let
   pinentry = pkgs.pinentry-tty;
 in {
   home.file = {
@@ -12,7 +16,7 @@ in {
   programs.gpg = {
     enable = true;
     settings = {
-      default-key = "FDBF801F1CE5FB66EC3075C058CA4F9FEF8F4296";
+      default-key = gpg-key;
       use-agent = true;
     };
   };

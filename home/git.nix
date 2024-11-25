@@ -1,10 +1,11 @@
 {
   pkgs,
   nix-std,
+  gpg-key,
+  email,
   ...
 }: let
   std = nix-std.lib;
-  gpg_key = "FDBF801F1CE5FB66EC3075C058CA4F9FEF8F4296";
 in {
   home.packages = with pkgs; [
     difftastic
@@ -15,7 +16,7 @@ in {
   xdg.configFile."jj/config.toml".text = std.serde.toTOML {
     user = {
       name = "Bryce Berger";
-      email = "bryce.z.berger@gmail.com";
+      inherit email;
     };
     ui = {
       diff-editor = ":builtin";
@@ -29,7 +30,7 @@ in {
     signing = {
       sign-all = true;
       backend = "gpg";
-      key = gpg_key;
+      key = gpg-key;
     };
   };
 
@@ -41,10 +42,10 @@ in {
     lfs.enable = true;
 
     # user
-    userEmail = "bryce.z.berger@gmail.com";
+    userEmail = email;
     userName = "Bryce Berger";
     signing = {
-      key = gpg_key;
+      key = gpg-key;
       signByDefault = true;
     };
 

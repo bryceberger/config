@@ -49,7 +49,6 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    username = "bryce";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -110,29 +109,53 @@
       make ["luna" "janus" "encaladus"];
 
     homeConfigurations = let
-      make_home = name:
+      make_home = {
+        hostname,
+        email,
+        gpg-key,
+      }:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit system;
+            inherit system hostname email gpg-key;
             inherit (inputs) nix-std helix power-graphing ups-apply;
-            hostname = name;
           };
           modules = [
-            ./home/${name}.nix
+            ./home/${hostname}.nix
             registry
             inputs.nix-index-database.hmModules.nix-index
             {programs.nix-index-database.comma.enable = true;}
           ];
         };
-      make = names:
-        builtins.listToAttrs (map (name: {
-            name = "${username}@${name}";
-            value = make_home name;
+      make = defaults: names:
+        builtins.listToAttrs (map (n: let
+            hostname = n.hostname or n;
+            username = n.username or defaults.username;
+            home-name = n.home-name or "${username}@${hostname}";
+            email = n.email or defaults.email;
+            gpg-key = n.gpg-key or defaults.gpg-key;
+          in {
+            name = home-name;
+            value = make_home {inherit hostname email gpg-key;};
           })
           names);
     in
-      make ["luna" "janus" "encaladus"];
+      make {
+        username = "bryce";
+        email = "bryce.z.berger@gmail.com";
+        gpg-key = "FDBF801F1CE5FB66EC3075C058CA4F9FEF8F4296";
+      } [
+        "luna"
+        "janus"
+        "encaladus"
+        {
+          hostname = "mimas";
+          username = "bryce.berger.local";
+          home-name = "bryce.berger.local";
+          email = "bryce.z.berger.civ@us.navy.mil";
+          gpg-key = "68DF074C1EA2114F91AD98E3F0353FDEC1417AFA";
+        }
+      ];
 
     packages.${system}.home-manager = home-manager.packages.${system}.default;
   };
