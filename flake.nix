@@ -32,11 +32,6 @@
       };
     };
 
-    extest = {
-      url = "github:chaorace/extest-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     power-graphing.url = "github:bryceberger/power-graphing";
     ups-apply.url = "github:bryceberger/ups";
   };
@@ -53,7 +48,6 @@
       inherit system;
       config.allowUnfree = true;
       overlays = [
-        inputs.extest.overlays.default
         mesa-downgrade
       ];
     };
