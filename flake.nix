@@ -54,7 +54,22 @@
       config.allowUnfree = true;
       overlays = [
         inputs.extest.overlays.default
+        mesa-downgrade
       ];
+    };
+
+    # https://github.com/NixOS/nixpkgs/issues/352725
+    mesa-downgrade = final: prev: {
+      mesa = prev.mesa.overrideAttrs (new: old: {
+        version = "24.2.4";
+        src = prev.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "mesa";
+          repo = "mesa";
+          rev = "mesa-${new.version}";
+          hash = "sha256-pgyvgMHImWO+b4vpCCe4+zOI98XCqcG8NRWpIcImGUk=";
+        };
+      });
     };
 
     registry = {
@@ -77,7 +92,7 @@
     nixosConfigurations = let
       make_system = name:
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
           specialArgs.hostname = name;
           modules = [
             lix-module.nixosModules.default
