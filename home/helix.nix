@@ -13,6 +13,7 @@ in {
     alejandra
     bash-language-server
     shellcheck
+    shfmt
   ];
 
   programs.helix = {
@@ -23,6 +24,14 @@ in {
   xdg.configFile = {
     "helix/languages.toml".text = std.serde.toTOML {
       language = [
+        {
+          name = "bash";
+          formatter.command = "shfmt";
+        }
+        {
+          name = "python";
+          language-servers = ["pyright" "ruff"];
+        }
         {
           name = "cpp";
           indent = {
@@ -91,6 +100,14 @@ in {
           command = "veryl-ls";
         };
         nixd.command = "nixd";
+        pyright = {
+          command = "pyright-langserver";
+          args = ["--stdio"];
+        };
+        ruff = {
+          command = "ruff";
+          args = ["server" "--preview"];
+        };
       };
     };
     "helix/config.toml".text = std.serde.toTOML {
