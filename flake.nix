@@ -32,8 +32,14 @@
       };
     };
 
-    power-graphing.url = "github:bryceberger/power-graphing";
-    ups-apply.url = "github:bryceberger/ups";
+    power-graphing = {
+      url = "github:bryceberger/power-graphing";
+      inputs.utils.follows = "flake-utils";
+    };
+    ups-apply = {
+      url = "github:bryceberger/ups";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = {
