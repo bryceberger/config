@@ -3,9 +3,21 @@
   hostname,
   ...
 }: let
-  browser = "${pkgs.zen-browser}/bin/zen";
-  terminal = "${pkgs.kitty}/bin/kitty";
-  menu = "${pkgs.fuzzel}/bin/fuzzel";
+  # weird semi-nix managed system
+  exes =
+    if hostname == "mimas"
+    then {
+      browser = "/bin/firefox";
+      terminal = "/bin/kitty";
+      menu = "rofi -show run";
+    }
+    else {
+      browser = "${pkgs.zen-browser}/bin/zen";
+      terminal = "${pkgs.kitty}/bin/kitty";
+      menu = "${pkgs.fuzzel}/bin/fuzzel";
+    };
+  inherit (exes) browser terminal menu;
+  pdf-viewer = "${pkgs.zathura}/bin/zathura";
 
   volume = "${pkgs.wireplumber}/bin/wpctl";
   media = "${pkgs.playerctl}/bin/playerctl";
@@ -62,6 +74,16 @@ in {
         }
         else {};
 
+      bars = [
+        {
+          position =
+            if hostname == "janus"
+            then "bottom"
+            else "top";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+        }
+      ];
+
       floating.modifier = super;
 
       keybindings =
@@ -86,6 +108,7 @@ in {
           "Control+Return" = "exec ${terminal}";
           "Control+Shift+Return" = "exec ${terminal} --class floating_term";
           "${super}+w" = "exec ${browser}";
+          "${super}+z" = "exec ${pdf-viewer}";
           "Alt+space" = "exec ${menu}";
 
           "Control+Shift+space" = "floating toggle";
@@ -113,6 +136,10 @@ in {
               }
               {
                 name = "Control+Shift+" + x;
+                value = "move container to workspace " + x;
+              }
+              {
+                name = "Control+Alt+" + x;
                 value = "move container to workspace " + x;
               }
             ]

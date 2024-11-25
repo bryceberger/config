@@ -1,6 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}: {
   programs.kitty = {
     enable = true;
+
+    package =
+      if hostname == "mimas"
+      then pkgs.hello
+      else pkgs.kitty;
 
     settings = {
       window_padding_width = 5;
