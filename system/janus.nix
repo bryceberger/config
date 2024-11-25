@@ -6,8 +6,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  networking.networkmanager.enable = true;
-
   services.xserver = {
     # ugh vr no work nice on wayland -_-
     # doesn't work too well on X either lol
@@ -19,6 +17,7 @@
     #   extraPackages = with pkgs; [dmenu i3status i3lock];
     # };
   };
+  programs.sway.enable = true;
 
   programs.fish.enable = true;
   users = {
