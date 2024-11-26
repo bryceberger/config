@@ -45,7 +45,6 @@
         ${hyprpaper}/bin/hyprpaper &
         ${swayidle}/bin/swayidle &
       ''}/bin/hyprland-autostart
-      exec-once = hyprctl setcursor ${config.gtk.cursorTheme.name} 24
 
       bind   = CTRLSHIFT, escape, submap, clear
       submap = clear
@@ -70,12 +69,6 @@
       hyprcursor
       (writeShellScriptBin "whl" ''
         exec ${hyprland}/bin/.Hyprland-wrapped $argv
-      '')
-      (writeShellScriptBin "screenshot" ''
-        ${hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png
-      '')
-      (writeShellScriptBin "screenshot-window" ''
-        ${hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png
       '')
     ]
     ++ (

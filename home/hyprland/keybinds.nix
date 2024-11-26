@@ -11,8 +11,8 @@ in {
     [
       "SUPER         , M     , exit, "
       "SUPER         , Escape, exec, lock"
-      "SUPERSHIFT    , S     , exec, screenshot"
-      "CTRLSUPERSHIFT, S     , exec, screenshot-window"
+      "SUPERSHIFT    , S     , exec, ${pkgs.hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png"
+      "CTRLSUPERSHIFT, S     , exec, ${pkgs.hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png"
     ]
     # movement
     ++ builtins.concatLists (
