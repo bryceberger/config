@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./common.nix
     ./fish.nix
@@ -13,4 +13,9 @@
   home.homeDirectory = "/home/bryce.berger.local";
 
   home.stateVersion = "23.11";
+
+  home.packages = with pkgs; [
+    brightnessctl
+    patchelf
+  ];
 }
