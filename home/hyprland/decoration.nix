@@ -1,6 +1,5 @@
 {}: {
   decoration = {
-    drop_shadow = false;
     blur = {
       enabled = false;
     };
@@ -21,8 +20,8 @@
     ];
   };
 
+  workspace = "w[t1], gapsin:0, gapsout:0, border:0";
   dwindle = {
-    no_gaps_when_only = true;
     special_scale_factor = 0.8;
   };
   master = {

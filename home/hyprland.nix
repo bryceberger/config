@@ -79,4 +79,12 @@
       ]
       else []
     );
+
+  home.pointerCursor = {
+    name = "capitaine-cursors";
+    package = pkgs.capitaine-cursors;
+    size = 24;
+    x11.enable = true;
+    gtk.enable = true;
+  };
 }
