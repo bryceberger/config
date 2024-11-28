@@ -21,4 +21,8 @@ in {
       AlignOperands = "DontAlign";
     };
   };
+
+  home.packages = with pkgs; [
+    bacon
+  ];
 }
