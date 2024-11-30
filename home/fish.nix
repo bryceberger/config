@@ -90,6 +90,7 @@ in {
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      COMPLETE=fish jj | source
     '';
 
     plugins = with pkgs.fishPlugins; [

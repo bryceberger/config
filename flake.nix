@@ -32,6 +32,16 @@
       };
     };
 
+    # my patches + dynamic completions
+    # when merged (0.24?) remove line in fish.nix as well
+    jj = {
+      url = "github:bryceberger/jj/fileset-alias";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+
     power-graphing = {
       url = "github:bryceberger/power-graphing";
       inputs.utils.follows = "flake-utils";
@@ -54,13 +64,19 @@
       inherit system;
       config.allowUnfree = true;
     };
-    pkgs = hostname:
-      import nixpkgs (nixpkgs-config
-        // (
-          if hostname == "janus"
-          then {overlays = [mesa-downgrade];}
-          else {}
-        ));
+    pkgs = hostname: import nixpkgs (nixpkgs-config // {overlays = overlays hostname;});
+
+    overlays = hostname:
+      [
+        (final: prev: {
+          jujutsu = inputs.jj.packages.${system}.jujutsu;
+        })
+      ]
+      ++ (
+        if hostname == "janus"
+        then [mesa-downgrade]
+        else []
+      );
 
     # https://github.com/NixOS/nixpkgs/issues/352725
     mesa-downgrade = final: prev: {
