@@ -82,6 +82,7 @@
       set base "/sys/class/power_supply/BAT0"
       printf "%s %2.2f" (cat $base/status | head -c 1) (math (cat $base/power_now) / 1000000)
     '')
+    sway-audio-idle-inhibit
   ];
 
   xdg.configFile = {
