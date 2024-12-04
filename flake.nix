@@ -93,13 +93,6 @@
     };
 
     registry = {
-      # useful to use "nixpkgs" in a flake and have it specify a revision
-      nix.registry.nixpkgs.to = {
-        type = "github";
-        owner = "NixOS";
-        repo = "nixpkgs";
-        rev = nixpkgs.rev;
-      };
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
       # instead of downloading the same commit again
       nix.registry.np.flake = nixpkgs;
