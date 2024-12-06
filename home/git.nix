@@ -35,6 +35,7 @@ in {
       backend = "gpg";
       key = gpg-key;
     };
+    git.private-commits = "description(glob:'private:*')";
   };
 
   programs.git = {
