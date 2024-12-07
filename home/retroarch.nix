@@ -3,6 +3,7 @@
   system,
   ...
 }: let
+  inherit (builtins) filter elem attrValues;
   blacklist = [
     # often have to build, don't use
     "mame"
@@ -17,13 +18,12 @@
     "citra"
   ];
 
-  filter = c:
+  f = c:
     (c ? libretroCore)
     && (pkgs.lib.meta.availableOn {inherit system;} c)
-    && !(builtins.elem c.core blacklist);
-
-  cores = builtins.filter filter (builtins.attrValues pkgs.libretro);
-  retroarch = pkgs.retroarch.override {inherit cores;};
+    && !(elem c.core blacklist);
+  cores = cs: filter f (attrValues cs);
+  retroarch = pkgs.retroarch.withCores cores;
 in {
   home.packages = [retroarch];
 }

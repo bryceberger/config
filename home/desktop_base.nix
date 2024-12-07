@@ -3,6 +3,9 @@
   hostname,
   ...
 }: let
+  inherit (builtins) filter attrValues;
+  inherit (pkgs.lib) isDerivation;
+
   is-not-mimas = hostname != "mimas";
 
   always-packages = with pkgs; [
@@ -30,13 +33,13 @@ in
       };
       home.packages = with pkgs;
         [
-          nerdfonts
           firefox
           zen-browser
           pavucontrol
           playerctl
         ]
-        ++ always-packages;
+        ++ always-packages
+        ++ filter isDerivation (attrValues pkgs.nerd-fonts);
     }
     else {
       home.packages = always-packages;
