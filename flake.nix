@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
@@ -59,39 +59,18 @@
   } @ inputs: let
     system = "x86_64-linux";
 
-    nixpkgs-config = {
-      inherit system;
+    pkgs = import nixpkgs {
+      inherit system overlays;
       config.allowUnfree = true;
     };
-    pkgs = hostname: import nixpkgs (nixpkgs-config // {overlays = overlays hostname;});
 
-    overlays = hostname:
-      [
-        (final: prev: {
-          jujutsu = inputs.jj.packages.${system}.jujutsu;
-          zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
-          zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
-        })
-      ]
-      ++ (
-        if hostname == "janus"
-        then [mesa-downgrade]
-        else []
-      );
-
-    # https://github.com/NixOS/nixpkgs/issues/352725
-    mesa-downgrade = final: prev: {
-      mesa = prev.mesa.overrideAttrs (new: old: {
-        version = "24.2.4";
-        src = prev.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "mesa";
-          repo = "mesa";
-          rev = "mesa-${new.version}";
-          hash = "sha256-pgyvgMHImWO+b4vpCCe4+zOI98XCqcG8NRWpIcImGUk=";
-        };
-      });
-    };
+    overlays = [
+      (final: prev: {
+        jujutsu = inputs.jj.packages.${system}.jujutsu;
+        zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
+        zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
+      })
+    ];
 
     registry = {
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
@@ -106,8 +85,7 @@
     nixosConfigurations = let
       make_system = hostname:
         nixpkgs.lib.nixosSystem {
-          inherit system;
-          pkgs = pkgs hostname;
+          inherit system pkgs;
           specialArgs.hostname = hostname;
           modules = [
             lix-module.nixosModules.default
@@ -131,7 +109,7 @@
         gpg-key,
       }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs hostname;
+          inherit pkgs;
           extraSpecialArgs = {
             inherit system hostname email gpg-key;
             inherit (inputs) nix-std helix power-graphing ups-apply;
