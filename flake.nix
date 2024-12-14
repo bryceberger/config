@@ -1,7 +1,6 @@
 {
   inputs = {
-    # https://github.com/NixOS/nixpkgs/pull/347222
-    nixpkgs.url = "github:matthewpi/nixpkgs/zen-browser";
+    nixpkgs.url = "github:nixos/nixpkgs";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
@@ -70,6 +69,8 @@
       [
         (final: prev: {
           jujutsu = inputs.jj.packages.${system}.jujutsu;
+          zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
+          zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
         })
       ]
       ++ (
