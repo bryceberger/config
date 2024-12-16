@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./common.nix
+    ./devel.nix
     ./fish.nix
     ./git.nix
     ./gpg.nix

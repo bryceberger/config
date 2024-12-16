@@ -8,12 +8,15 @@
 
   is-not-mimas = hostname != "mimas";
 
-  always-packages = with pkgs; [
-    fira-code
-    font-awesome
-    dejavu_fonts
-    zathura
-  ];
+  always-packages = with pkgs;
+    [
+      fira-code
+      font-awesome
+      dejavu_fonts
+      zathura
+      pavucontrol
+    ]
+    ++ filter isDerivation (attrValues pkgs.nerd-fonts);
 in
   {
     imports = [./kitty.nix ./wezterm.nix];
@@ -35,11 +38,9 @@ in
         [
           firefox
           zen-browser
-          pavucontrol
           playerctl
         ]
-        ++ always-packages
-        ++ filter isDerivation (attrValues pkgs.nerd-fonts);
+        ++ always-packages;
     }
     else {
       home.packages = always-packages;
