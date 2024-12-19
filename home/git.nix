@@ -26,6 +26,11 @@ in {
         ''separate(" ", change_id.shortest(8), commit_id.shortest(8), working_copies, bookmarks, description.first_line())''
       ];
     };
+
+    aliases = {
+      tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+    };
+
     merge-tools = {
       difft.diff-args = ["--color=always" "$left" "$right"];
       kitty.diff-args = ["+kitten" "diff" "$left" "$right"];
