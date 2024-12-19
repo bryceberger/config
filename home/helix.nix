@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  username,
+  ...
+}: let
   map-languages = langs:
     builtins.map
     (name: {inherit name;} // langs.${name})
@@ -47,7 +51,10 @@
       command = "ruff";
       args = ["server" "--preview"];
     };
-    rust-analyzer.config.check = {command = "clippy";};
+    rust-analyzer.config = {
+      check.command = "clippy";
+      cargo.targetDir = "/home/${username}/.cache/rust-analyzer-target";
+    };
     svls.command = "svls";
     veryl-ls = {command = "veryl-ls";};
   };

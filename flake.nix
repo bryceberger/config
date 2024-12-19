@@ -93,6 +93,7 @@
 
     homeConfigurations = let
       make_home = {
+        username,
         hostname,
         email,
         gpg-key,
@@ -100,7 +101,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit system hostname email gpg-key;
+            inherit system username hostname email gpg-key;
             inherit (inputs) nix-std;
           };
           modules = [
@@ -119,7 +120,7 @@
             gpg-key = n.gpg-key or defaults.gpg-key;
           in {
             name = home-name;
-            value = make_home {inherit hostname email gpg-key;};
+            value = make_home {inherit username hostname email gpg-key;};
           })
           names);
     in
