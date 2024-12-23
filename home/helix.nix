@@ -22,7 +22,6 @@
       tab-width = 4;
       unit = "    ";
     };
-    git-commit.file-types = [{glob = "COMMIT_EDITMSG";} "jjdescription"];
     java.indent = {
       tab-width = 4;
       unit = "    ";

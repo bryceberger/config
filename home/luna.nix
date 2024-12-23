@@ -1,10 +1,4 @@
-{
-  pkgs,
-  power-graphing,
-  system,
-  ups-apply,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./common.nix
     ./devel.nix
@@ -33,8 +27,6 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    ups-apply.packages.${system}.default
-    power-graphing.packages.${system}.default
     (writeShellScriptBin "nix_remote" ''
       remote=ssh-ng://janus
       result=result
