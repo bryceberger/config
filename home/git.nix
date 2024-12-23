@@ -27,8 +27,32 @@ in {
       ];
     };
 
+    template-aliases = {
+      commit_description_verbose = ''
+        concat(
+          description,
+          "\n",
+          "JJ: This commit contains the following changes:\n",
+          indent("JJ:    ", diff.stat(72)),
+          "JJ: ignore-rest\n",
+          diff.git(),
+        )
+      '';
+    };
+    templates = {
+      draft_commit_description = ''
+        concat(
+          description,
+          "\n",
+          "JJ: This commit contains the following changes:\n",
+          indent("JJ:    ", diff.stat(72)),
+        )
+      '';
+    };
+
     aliases = {
       tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+      dv = ["--config=templates.draft_commit_description=commit_description_verbose" "describe"];
     };
 
     merge-tools = {

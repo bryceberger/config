@@ -24,30 +24,19 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/snippet_placeholder";
+      url = "github:helix-editor/helix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
     };
 
-    # my patches + dynamic completions
-    # when merged (0.24?) remove line in fish.nix as well
     jj = {
-      url = "github:bryceberger/jj/fileset-alias";
+      url = "github:jj-vcs/jj";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
-    };
-
-    power-graphing = {
-      url = "github:bryceberger/power-graphing";
-      inputs.utils.follows = "flake-utils";
-    };
-    ups-apply = {
-      url = "github:bryceberger/ups";
-      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
@@ -112,7 +101,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit system hostname email gpg-key;
-            inherit (inputs) nix-std helix power-graphing ups-apply;
+            inherit (inputs) nix-std helix;
           };
           modules = [
             ./home/${hostname}.nix
