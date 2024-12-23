@@ -14,6 +14,7 @@
     settings = {
       window_padding_width = 5;
       font_size = 12;
+      font_family = "Maple Mono";
       # font_family = "FiraCode Nerd Font";
       # font_features = "FiraCodeNF-Reg +ss08";
     };

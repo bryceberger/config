@@ -13,6 +13,7 @@
       fira-code
       font-awesome
       dejavu_fonts
+      maple-mono
       zathura
       pavucontrol
     ]
