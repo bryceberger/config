@@ -15,7 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-std.url = "github:chessai/nix-std";
     flake-utils.url = "github:numtide/flake-utils";
 
     nix-index-database = {
@@ -56,6 +55,7 @@
     overlays = [
       (final: prev: {
         jujutsu = inputs.jj.packages.${system}.jujutsu;
+        helix = inputs.helix.packages.${system}.helix;
         zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
         zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
       })
@@ -101,7 +101,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit system hostname email gpg-key;
-            inherit (inputs) nix-std helix;
+            inherit (inputs) nix-std;
           };
           modules = [
             ./home/${hostname}.nix

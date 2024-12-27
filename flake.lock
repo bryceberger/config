@@ -60,11 +60,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1735147613,
-        "narHash": "sha256-/hPnbJA2KY088J7N7EX7m8OywIGla1CHX4e0ysDH9kA=",
+        "lastModified": 1735311473,
+        "narHash": "sha256-PIAQe6E07XFYYwv0ARV9oqgV/d30etcMKEEBzyyI1NU=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "7b9b9329b9d9567f0c5cfded453b4e8445525774",
+        "rev": "a5a7cff311e909ecab41f840742a5309634aeec3",
         "type": "github"
       },
       "original": {
@@ -80,11 +80,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734093295,
-        "narHash": "sha256-hSwgGpcZtdDsk1dnzA0xj5cNaHgN9A99hRF/mxMtwS4=",
+        "lastModified": 1735343502,
+        "narHash": "sha256-z6bIaVoJu06Ach9QHNIimr0YBpWkLpy/V+i7jNe03uw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "66c5d8b62818ec4c1edb3e941f55ef78df8141a8",
+        "rev": "19398e505a80db1a1c41207ee89e1b1770c5dcf6",
         "type": "github"
       },
       "original": {
@@ -104,11 +104,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1734996715,
-        "narHash": "sha256-ejixmVmsr5f3TbbxS0tpFHhzhP/kgeD+cB2Chd6SYfQ=",
+        "lastModified": 1735330132,
+        "narHash": "sha256-wWUac109k7yB3ftNOaUXBSOCqJ8VlltNbxXY1tMwMDE=",
         "owner": "jj-vcs",
         "repo": "jj",
-        "rev": "1d3c3b8ab207e66c978ed026a7393682989111c5",
+        "rev": "8d560748c7d12b8523382206a6214e186dbb2a79",
         "type": "github"
       },
       "original": {
@@ -174,21 +174,6 @@
         "type": "github"
       }
     },
-    "nix-std": {
-      "locked": {
-        "lastModified": 1710870712,
-        "narHash": "sha256-e+7MJF2gsgTBuOWv4mCimSP0D9+naeFSw9a7N3yEmv4=",
-        "owner": "chessai",
-        "repo": "nix-std",
-        "rev": "31bbc925750cc9d8f828fe55cee1a2bd985e0c00",
-        "type": "github"
-      },
-      "original": {
-        "owner": "chessai",
-        "repo": "nix-std",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733935885,
@@ -213,7 +198,6 @@
         "jj": "jj",
         "lix-module": "lix-module",
         "nix-index-database": "nix-index-database",
-        "nix-std": "nix-std",
         "nixpkgs": "nixpkgs"
       }
     },

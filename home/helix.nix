@@ -1,16 +1,10 @@
-{
-  pkgs,
-  nix-std,
-  helix,
-  system,
-  ...
-}: let
-  std = nix-std.lib;
-
+{pkgs, ...}: let
   map-languages = langs:
     builtins.map
     (name: {inherit name;} // langs.${name})
     (builtins.attrNames langs);
+
+  languages = {inherit language language-server;};
 
   language = map-languages {
     bash.formatter.command = "shfmt";
@@ -40,16 +34,6 @@
         args = ["--indentation_spaces" "4" "-"];
       };
     };
-    veryl = {
-      file-types = ["veryl" "vl"];
-      scope = "source.veryl";
-      comment-token = "//";
-      indent = {
-        tab-width = 4;
-        unit = "    ";
-      };
-      language-servers = ["veryl-ls"];
-    };
   };
 
   language-server = {
@@ -68,7 +52,7 @@
     veryl-ls = {command = "veryl-ls";};
   };
 
-  config = {
+  settings = {
     theme = "catppuccin_mocha";
 
     editor = {
@@ -158,13 +142,7 @@ in {
 
   programs.helix = {
     enable = true;
-    package = helix.packages.${system}.helix;
-  };
-
-  xdg.configFile = {
-    "helix/languages.toml".text = std.serde.toTOML {
-      inherit language language-server;
-    };
-    "helix/config.toml".text = std.serde.toTOML config;
+    defaultEditor = true;
+    inherit settings languages;
   };
 }

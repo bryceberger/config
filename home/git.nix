@@ -1,19 +1,10 @@
 {
   pkgs,
-  nix-std,
   gpg-key,
   email,
   ...
 }: let
-  std = nix-std.lib;
-in {
-  home.packages = with pkgs; [
-    difftastic
-  ];
-  programs.jujutsu = {
-    enable = true;
-  };
-  xdg.configFile."jj/config.toml".text = std.serde.toTOML {
+  jjsettings = {
     user = {
       name = "Bryce Berger";
       inherit email;
@@ -65,6 +56,15 @@ in {
       key = gpg-key;
     };
     git.private-commits = "description(glob:'private:*')";
+  };
+in {
+  home.packages = with pkgs; [
+    difftastic
+  ];
+
+  programs.jujutsu = {
+    enable = true;
+    settings = jjsettings;
   };
 
   programs.git = {
