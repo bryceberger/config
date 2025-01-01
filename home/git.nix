@@ -9,6 +9,17 @@
       name = "Bryce Berger";
       inherit email;
     };
+    signing = {
+      sign-all = true;
+      backend = "gpg";
+      key = gpg-key;
+    };
+
+    git = {
+      push-bookmark-prefix = "bryce/push-";
+      private-commits = "description(glob:'private:*')";
+    };
+
     ui = {
       diff-editor = ":builtin";
       default-command = [
@@ -40,7 +51,6 @@
         )
       '';
     };
-
     aliases = {
       tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
       dv = ["--config=templates.draft_commit_description=commit_description_verbose" "describe"];
@@ -50,12 +60,6 @@
       difft.diff-args = ["--color=always" "$left" "$right"];
       kitty.diff-args = ["+kitten" "diff" "$left" "$right"];
     };
-    signing = {
-      sign-all = true;
-      backend = "gpg";
-      key = gpg-key;
-    };
-    git.private-commits = "description(glob:'private:*')";
   };
 in {
   home.packages = with pkgs; [
