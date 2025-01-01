@@ -1,6 +1,5 @@
 {
   pkgs,
-  ups-apply,
   ...
 }: {
   imports = [
@@ -34,7 +33,6 @@
     # calibre
     libnotify
     waypipe
-    ups-apply.packages.${system}.default
     plex-media-player
   ];
 }
