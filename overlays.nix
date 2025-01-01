@@ -3,11 +3,9 @@
   system,
   inputs,
 }: final: prev: {
-  jujutsu = inputs.jj.packages.${system}.jujutsu;
-  helix = inputs.helix.packages.${system}.helix;
-
-  zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
-  zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
+  jujutsu = inputs.jj.packages.${system}.default;
+  helix = inputs.helix.packages.${system}.default;
+  zen-browser = inputs.zen-browser.packages.${system}.default;
 
   ghq = prev.ghq.overrideAttrs (prev: {patches = prev.patches or [] ++ [./pkgs/ghq/default_ssh.patch];});
   starship = prev.starship.overrideAttrs (prev: let
