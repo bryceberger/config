@@ -9,7 +9,6 @@
     ./git.nix
     ./gpg.nix
     ./helix.nix
-    ./hyprland.nix
     ./kitty.nix
     ./retroarch.nix
     ./scripts.nix
@@ -30,7 +29,7 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    # calibre
+    calibre
     libnotify
     waypipe
     plex-media-player
