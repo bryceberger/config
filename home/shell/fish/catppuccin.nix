@@ -1,8 +1,12 @@
 {pkgs, ...}: let
-  fish = import ./mod.nix {inherit pkgs;};
+  setVars = vals:
+    pkgs.lib.foldlAttrs
+    (acc: name: value: acc + "set -g ${name} ${toString value}\n")
+    ""
+    vals;
 in {
   xdg.configFile = {
-    "fish/conf.d/00-colors.fish".text = fish.setVars {
+    "fish/conf.d/00-colors.fish".text = setVars {
       # Catppuccin color palette
       text = "";
 
@@ -23,7 +27,7 @@ in {
       gray = "6c7086";
     };
 
-    "fish/conf.d/01-theme.fish".text = fish.setVars {
+    "fish/conf.d/01-theme.fish".text = setVars {
       # Syntax Highlighting
       fish_color_normal = "$foreground";
       fish_color_command = "$blue";

@@ -1,43 +1,7 @@
-{pkgs, ...}: let
-  ghq_ssh = pkgs.ghq.overrideAttrs (o: {
-    patches =
-      (o.patches or [])
-      ++ [
-        ./ghq/default_ssh.patch
-      ];
-  });
-in {
+{pkgs, ...}: {
   imports = [
     ./fish/catppuccin.nix
-    ./fish/tide.nix
   ];
-
-  home.packages = with pkgs; [
-    grc # colors
-    rm-improved
-    zoxide
-    fzf
-    (writeShellScriptBin "ghq" ''
-      # ghq assumes $USER == github username
-      USER=bryceberger ${ghq_ssh}/bin/ghq $@
-    '')
-    ouch
-    lsd
-    ripgrep
-    fend
-    fd
-
-    any-nix-shell
-  ];
-
-  programs.zoxide = {
-    enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
 
   xdg.configFile = {
     "fish/conf.d/00-home-manager-vars.fish" = {
@@ -89,22 +53,12 @@ in {
     interactiveShellInit = ''
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-      COMPLETE=fish jj | source
     '';
 
     plugins = with pkgs.fishPlugins; [
       {
-        name = "grc";
-        src = grc.src;
-      }
-      {
         name = "autopair";
         src = autopair.src;
-      }
-      {
-        name = "tide";
-        src = tide.src;
       }
       {
         name = "git";

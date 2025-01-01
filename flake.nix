@@ -52,14 +52,7 @@
       config.allowUnfree = true;
     };
 
-    overlays = [
-      (final: prev: {
-        jujutsu = inputs.jj.packages.${system}.jujutsu;
-        helix = inputs.helix.packages.${system}.helix;
-        zen-browser-unwrapped = prev.callPackage ./pkgs/zen-browser-unwrapped/package.nix {};
-        zen-browser = final.callPackage ./pkgs/zen-browser/package.nix {};
-      })
-    ];
+    overlays = [(import ./overlays.nix {inherit pkgs system inputs;})];
 
     registry = {
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
