@@ -15,6 +15,8 @@
       key = gpg-key;
     };
 
+    core.fsmonitor = "watchman";
+
     git = {
       push-bookmark-prefix = "bryce/push-";
       private-commits = "description(glob:'private:*')";
@@ -54,6 +56,7 @@
     aliases = {
       tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
       dv = ["--config=templates.draft_commit_description=commit_description_verbose" "describe"];
+      k = ["diff" "--tool" "kitty"];
     };
 
     merge-tools = {
@@ -64,6 +67,7 @@
 in {
   home.packages = with pkgs; [
     difftastic
+    watchman
   ];
 
   programs.jujutsu = {

@@ -2,14 +2,10 @@
 
 add_newline = true
 
-format = """($directory$nix_shell$jujutsu$fill$git_metrics\n)\
-$hostname\
-$localip\
-$jobs\
-$username\
-$character"""
+command_timeout = 250
 
-right_format = """
+format = """\
+($directory$nix_shell$jujutsu_diff$jujutsu$fill\
 $singularity\
 $kubernetes\
 $docker_context\
@@ -70,7 +66,13 @@ $custom\
 $status\
 $os\
 $battery\
-$time"""
+$time\
+\n)\
+$hostname\
+$localip\
+$jobs\
+$username\
+$character"""
 
 [fill]
 symbol = ' '
@@ -161,12 +163,11 @@ separate(" ",
 )
 '''
 
-[git_metrics]
-format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
+[jujutsu_diff]
+format = ' ([▴$added]($added_style))([▿$deleted]($deleted_style))'
 added_style = 'dimmed green'
 deleted_style = 'dimmed red'
-ignore_submodules = true
-disabled = false
+only_nonzero_diffs = false
 
 [deno]
 format = " [deno](italic) [∫ $version](green bold)"
@@ -187,7 +188,7 @@ detect_extensions = []
 
 [python]
 format = " [py](italic) [${symbol}${version}]($style)"
-symbol = "[⌉](bold bright-blue)⌊ "
+symbol = "[⌉](bold bright-blue)⌊"
 version_format = "${raw}"
 style = "bold bright-yellow"
 
