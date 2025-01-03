@@ -140,15 +140,15 @@ empty_symbol = "▃"
 
 [[battery.display]]
 threshold = 20
-style = "italic bold red"
+style = "bold red"
 
 [[battery.display]]
 threshold = 60
-style = "italic dimmed bright-purple"
+style = "dimmed bright-purple"
 
 [[battery.display]]
 threshold = 70
-style = "italic dimmed yellow"
+style = "dimmed yellow"
 
 [jujutsu]
 symbol = ""
