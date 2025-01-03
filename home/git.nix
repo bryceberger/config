@@ -15,7 +15,10 @@
       key = gpg-key;
     };
 
-    core.fsmonitor = "watchman";
+    core = {
+      fsmonitor = "watchman";
+      watchman.register_snapshot_trigger = true;
+    };
 
     git = {
       push-bookmark-prefix = "bryce/push-";

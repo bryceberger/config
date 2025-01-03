@@ -11,7 +11,10 @@
   languages = {inherit language language-server;};
 
   language = map-languages {
-    bash.formatter.command = "shfmt";
+    bash.formatter = {
+      command = "shfmt";
+      args = ["-i" "4"];
+    };
     c.indent = {
       tab-width = 4;
       unit = "    ";
