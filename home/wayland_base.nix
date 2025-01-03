@@ -10,7 +10,6 @@
     swayidle
     wayland
     wl-clipboard
-    swaynotificationcenter
 
     (writeShellScriptBin "lock" ''
       ${pkgs.swaylock}/bin/swaylock -c 1e1e2eff
