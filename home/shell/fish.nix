@@ -70,7 +70,6 @@
     shellAbbrs = {
       "la" = "ls -a";
       "ll" = "ls -l";
-      "gh" = "git log --oneline --graph --all -n 20";
       "gd" = "git difftool --dir-diff";
       "c" = "cargo";
       "j" = "just";

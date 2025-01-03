@@ -68,6 +68,7 @@ in {
   home.packages = with pkgs; [
     difftastic
     watchman
+    gh
   ];
 
   programs.jujutsu = {
