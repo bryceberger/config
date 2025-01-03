@@ -81,6 +81,10 @@ in {
             then "bottom"
             else "top";
           statusCommand = "${pkgs.i3status}/bin/i3status";
+          fonts = {
+            names = ["Maple Mono NF"];
+            size = 8.0;
+          };
         }
       ];
 
