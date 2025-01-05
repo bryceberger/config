@@ -14,7 +14,7 @@
     bash.formatter.command = "shfmt";
     c.indent = {
       tab-width = 4;
-      unit = "\t";
+      unit = "    ";
     };
     cpp.indent = {
       tab-width = 4;

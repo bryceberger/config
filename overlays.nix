@@ -13,7 +13,7 @@
       owner = "bryceberger";
       repo = "starship";
       rev = "personal";
-      hash = "sha256-1uzX3FeNJuBAM3d+mLdJklHIsyXe4LD3Q3NhovVcRKc=";
+      hash = "sha256-bbzepF59X2hgLV6cJgfWQyHZbImFzKYTP+NoU/gBrsQ=";
     };
   in {
     inherit src;

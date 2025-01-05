@@ -60,16 +60,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1735246694,
-        "narHash": "sha256-yPgR462K2UbGyXxR2CqLYQLqQfCYkw5mEehugQogYhw=",
-        "owner": "poliorcetics",
+        "lastModified": 1736064866,
+        "narHash": "sha256-40LZLSb1VJXpr4qdi4rZvNkg8P9nic7+ggP38PE6JX8=",
+        "owner": "bryceberger",
         "repo": "helix",
-        "rev": "c508dd113b39dc7982bad9e5e2070aba0346d01b",
+        "rev": "d4a0e44dc09c2e3dae6ca53799c3182630d2ce2a",
         "type": "github"
       },
       "original": {
-        "owner": "poliorcetics",
-        "ref": "ab/push-rlymwpyuzrrw",
+        "owner": "bryceberger",
+        "ref": "bryce/push-ypuzupmytkpq",
         "repo": "helix",
         "type": "github"
       }

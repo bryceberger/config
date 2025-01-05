@@ -56,6 +56,7 @@
     aliases = {
       tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
       dv = ["--config=templates.draft_commit_description=commit_description_verbose" "describe"];
+      ds = ["diff" "--stat"];
       k = ["diff" "--tool" "kitty"];
     };
 
