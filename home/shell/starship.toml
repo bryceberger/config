@@ -5,7 +5,7 @@ add_newline = true
 command_timeout = 250
 
 format = """\
-($directory$nix_shell$jujutsu_diff$jujutsu$fill\
+($directory$nix_shell$jujutsu_diff$jujutsu_commit$fill\
 $singularity\
 $kubernetes\
 $docker_context\
@@ -150,18 +150,8 @@ style = "dimmed bright-purple"
 threshold = 70
 style = "dimmed yellow"
 
-[jujutsu]
-symbol = ""
-template = '''
-separate(" ",
-  change_id.shortest(6),
-  branches,
-  description.first_line(),
-  if(conflict, "conflict"),
-  if(divergent, "divergent"),
-  if(hidden, "hidden"),
-)
-'''
+[jujutsu_commit]
+format = " [$prefix]($style_prefix)[$rest]($style_rest) [$description]($style_description)"
 
 [jujutsu_diff]
 format = ' ([▴$added]($added_style))([▿$deleted]($deleted_style))'

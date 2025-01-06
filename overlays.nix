@@ -13,14 +13,16 @@
       owner = "bryceberger";
       repo = "starship";
       rev = "personal";
-      hash = "sha256-bbzepF59X2hgLV6cJgfWQyHZbImFzKYTP+NoU/gBrsQ=";
+      hash = "sha256-sChOgWuL0TOw+3zqYeHUnNW4sttjEZ0h+4Chz0dq20o=";
     };
   in {
     inherit src;
     version = "custom";
+    nativeBuildInputs = prev.nativeBuildInputs or [] ++ [pkgs.pkg-config];
+    buildInputs = prev.buildInputs or [] ++ [pkgs.openssl.dev];
     cargoDeps = prev.cargoDeps.overrideAttrs {
       inherit src;
-      outputHash = "sha256-+2MfLce5sY4bJcilFuYX3RdADomDP3eUAAC65/Dfm+0=";
+      outputHash = "sha256-aqIIahx2iaVkhsz6L8W1oxTiWNmv42JAkBzYxaY4m50=";
     };
   });
 }
