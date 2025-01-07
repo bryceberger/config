@@ -1,11 +1,12 @@
 {...}: {
   imports = [
     ./common.nix
-    ./shell.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./jj.nix
     ./kitty.nix
+    ./shell.nix
     ./utils.nix
   ];
 

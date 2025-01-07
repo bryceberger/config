@@ -2,10 +2,11 @@
   imports = [
     ./common.nix
     ./devel.nix
-    ./shell.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./jj.nix
+    ./shell.nix
     ./sway.nix
     ./utils.nix
   ];

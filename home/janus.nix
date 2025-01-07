@@ -1,17 +1,15 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./common.nix
     ./devel.nix
-    ./shell.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./jj.nix
     ./kitty.nix
     ./retroarch.nix
     ./scripts.nix
+    ./shell.nix
     ./sway.nix
     ./utils.nix
   ];

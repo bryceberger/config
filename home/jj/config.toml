@@ -1,0 +1,108 @@
+[ui]
+default-command = "log"
+diff-editor = ":builtin"
+diff.tool = "difft"
+
+[user]
+name = "Bryce Berger"
+email = "@email@"
+
+[signing]
+backend = "gpg"
+key = "@key@"
+sign-all = true
+
+[core]
+fsmonitor = "watchman"
+watchman.register_snapshot_trigger = true
+
+[git]
+private-commits = "blacklist()"
+push-bookmark-prefix = "bryce/push-"
+init-track-local-bookmarks = true
+
+[merge-tools.difft]
+diff-args = ["--color=always", "$left", "$right"]
+
+[merge-tools.kitty]
+diff-args = ["+kitten", "diff", "$left", "$right"]
+
+[colors]
+"node wip" = { fg = "yellow" }
+
+"text link" = { fg = "blue" }
+"text warning" = { bold = true, fg = "red" }
+
+[aliases]
+ds = ["diff", "--stat"]
+dv = ["--config=templates.draft_commit_description=commit_description_verbose(self)", "describe"]
+dk = ["diff", "--tool", "kitty"]
+ll = [ "log", "-T", "builtin_log_detailed" ]
+l = ["log", "-T", "builtin_log_compact"]
+
+tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
+streams = ["log", "--no-graph", "-r", "streams()", "-T", "bookmarks"]
+
+open = ["log", "-r", "open()"]
+opent = ["log", "-r", "ancestors(open() | trunk(), 2)"]
+
+[revset-aliases]
+"wip()" = "description(glob:'wip:*')"
+"private()" = "description(glob:'private:*')"
+"blacklist()" = "wip() | private()"
+
+"stack()" = "ancestors(reachable(@, mutable()), 1)"
+"stack(x)" = "ancestors(reachable(x, mutable()), 1)"
+"stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
+
+"streams()" = "heads(::@ & bookmarks())"
+"streams(x)" = "heads(::x & bookmarks())"
+
+"open()" = "stack(trunk().. & mine(), 1)"
+
+[template-aliases]
+"link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
+"italic(text)" = 'raw_escape_sequence("\x1b[3m") ++ text ++ raw_escape_sequence("\x1b[23m")'
+"dim(text)" = 'raw_escape_sequence("\x1b[2m") ++ text ++ raw_escape_sequence("\x1b[22m")'
+
+"commit_description_verbose(commit)" = '''
+concat(
+  commit_description(commit),
+  "JJ: ignore-rest\n",
+  diff.git(),
+)
+'''
+"commit_description(commit)" = '''
+concat(
+  commit.description(), "\n",
+  "JJ: This commit contains the following changes:\n",
+  indent("JJ:    ", diff.stat(72)),
+)
+'''
+
+[revsets]
+log = "stack()"
+
+[templates]
+draft_commit_description = "commit_description(self)"
+
+log = '''
+separate(" ",
+  change_id.shortest(8),
+  commit_id.shortest(8),
+  working_copies, bookmarks,
+  description.first_line(),
+)
+'''
+log_node = '''
+label("node",
+  coalesce(
+    if(!self, label("elided", "~")),
+    if(current_working_copy, label("working_copy", "@")),
+    if(conflict, label("conflict", "x")),
+    if(immutable, label("immutable", "◆")),
+    if(description.starts_with("wip:"), label("wip", "!")),
+    label("normal", "○")
+  )
+)
+'''
