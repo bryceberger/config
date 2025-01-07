@@ -60,11 +60,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1736064866,
-        "narHash": "sha256-40LZLSb1VJXpr4qdi4rZvNkg8P9nic7+ggP38PE6JX8=",
+        "lastModified": 1736209833,
+        "narHash": "sha256-FyKCialck1J2/TOz5dm0bkiGGbmPsRQFuztcXzkRf/M=",
         "owner": "bryceberger",
         "repo": "helix",
-        "rev": "d4a0e44dc09c2e3dae6ca53799c3182630d2ce2a",
+        "rev": "4c22f7a0ed3513f66abeb6c562f2ea5efb392ae0",
         "type": "github"
       },
       "original": {

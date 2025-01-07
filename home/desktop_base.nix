@@ -27,9 +27,15 @@
     pavucontrol
   ];
 
+  not-mimas-pkgs = with pkgs; [
+    zen-browser
+    playerctl
+    xdg-utils
+  ];
+
   packages =
     always-packages
-    ++ optionals is-not-mimas (with pkgs; [firefox zen-browser playerctl])
+    ++ optionals is-not-mimas not-mimas-pkgs
     ++ optionals is-not-mimas all-nerd-fonts;
 in
   {
@@ -39,6 +45,7 @@ in
   }
   // optionalAttrs is-not-mimas
   {
+    xdg.mimeApps.enable = true;
     programs.mpv = {
       enable = true;
       scripts = with pkgs.mpvScripts; [

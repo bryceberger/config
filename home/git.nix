@@ -58,6 +58,7 @@
     };
     aliases = {
       tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+      cur_bookmark = ["log" "-n1" "--no-graph" "-r" "latest(main..@ & bookmarks())" "-T" "if(bookmarks.len() <= 1, bookmarks, '__err_multiple_bookmarks')"];
       dv = ["--config=templates.draft_commit_description=commit_description_verbose" "describe"];
       ds = ["diff" "--stat"];
       k = ["diff" "--tool" "kitty"];

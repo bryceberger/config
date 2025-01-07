@@ -94,7 +94,7 @@
         other-lines = "error";
       };
 
-      lsp.display-messages = true;
+      lsp.display-progress-messages = true;
     };
 
     keys = {
