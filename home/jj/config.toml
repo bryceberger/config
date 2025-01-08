@@ -91,8 +91,8 @@ draft_commit_description = "commit_description(self)"
 
 log = '''
 separate(" ",
-  change_id.shortest(8),
-  commit_id.shortest(8),
+  format_short_change_id_with_hidden_and_divergent_info(self),
+  format_short_id(commit_id),
   working_copies, bookmarks,
   description.first_line(),
 )
