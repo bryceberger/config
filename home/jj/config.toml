@@ -82,6 +82,7 @@ concat(
 
 [revsets]
 log = "stack()"
+short-prefixes = "open()"
 
 [templates]
 draft_commit_description = "commit_description(self)"
