@@ -13,6 +13,7 @@
 
   xdg.configFile."jj/config.toml".source = pkgs.replaceVars ./jj/config.toml {
     inherit email;
+    name = "Bryce Berger";
     key = gpg-key;
   };
 }

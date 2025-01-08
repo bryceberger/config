@@ -4,7 +4,7 @@ diff-editor = ":builtin"
 diff.tool = "difft"
 
 [user]
-name = "Bryce Berger"
+name = "@name@"
 email = "@email@"
 
 [signing]
@@ -47,6 +47,8 @@ open = ["log", "-r", "open()"]
 opent = ["log", "-r", "ancestors(open() | trunk(), 2)"]
 
 [revset-aliases]
+"mine()" = "author(exact:'@name@') | author(exact:'@email@')"
+
 "wip()" = "description(glob:'wip:*')"
 "private()" = "description(glob:'private:*')"
 "blacklist()" = "wip() | private()"
