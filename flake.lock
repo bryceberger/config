@@ -61,15 +61,15 @@
       },
       "locked": {
         "lastModified": 1736209833,
-        "narHash": "sha256-FyKCialck1J2/TOz5dm0bkiGGbmPsRQFuztcXzkRf/M=",
+        "narHash": "sha256-3RAXdYbq7foz7PqGNxr58E7KVXYWrFGuHqJWTtAQEcY=",
         "owner": "bryceberger",
         "repo": "helix",
-        "rev": "4c22f7a0ed3513f66abeb6c562f2ea5efb392ae0",
+        "rev": "87fb2c32df7b82d54bd10d2a57bbbe712e9f713a",
         "type": "github"
       },
       "original": {
         "owner": "bryceberger",
-        "ref": "jj-shell",
+        "ref": "jj-lib",
         "repo": "helix",
         "type": "github"
       }

@@ -47,6 +47,6 @@ in {
 
   ghq = prev.ghq.overrideAttrs (prev: {patches = prev.patches or [] ++ [./pkgs/ghq/default_ssh.patch];});
 
-  starship = starship-jj-shell;
+  starship = starship-jj-lib;
   inherit starship-jj-lib starship-jj-shell;
 }
