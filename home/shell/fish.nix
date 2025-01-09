@@ -54,6 +54,7 @@
       set fish_greeting # disable greeting
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       export GPG_TTY=$(tty)
+      COMPLETE=fish jj | .
     '';
 
     plugins = with pkgs.fishPlugins; [
