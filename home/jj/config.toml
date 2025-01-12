@@ -1,3 +1,5 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
 [ui]
 default-command = "log"
 diff-editor = ":builtin"
@@ -35,9 +37,12 @@ diff-args = ["+kitten", "diff", "$left", "$right"]
 
 [aliases]
 ds = ["diff", "--stat"]
-dv = ["--config=templates.draft_commit_description=commit_description_verbose(self)", "describe"]
+dv = [
+  "--config=templates.draft_commit_description=commit_description_verbose(self)",
+  "describe",
+]
 dk = ["diff", "--tool", "kitty"]
-ll = [ "log", "-T", "builtin_log_detailed" ]
+ll = ["log", "-T", "builtin_log_detailed"]
 l = ["log", "-T", "builtin_log_compact"]
 
 tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
@@ -45,6 +50,9 @@ streams = ["log", "--no-graph", "-r", "streams()", "-T", "bookmarks"]
 
 open = ["log", "-r", "open()"]
 opent = ["log", "-r", "ancestors(open() | trunk(), 2)"]
+
+manage = ["util", "exec", "--", "jj-manage"]
+man = ["manage"]
 
 [revset-aliases]
 "mine()" = "author(exact:'@name@') | author(exact:'@email@')"

@@ -5,10 +5,6 @@
 
   home.packages = with pkgs; [
     fzf
-    (writeShellScriptBin "ghq" ''
-      # ghq assumes $USER == github username
-      USER=bryceberger ${pkgs.ghq}/bin/ghq $@
-    '')
     ouch
     lsd
     ripgrep

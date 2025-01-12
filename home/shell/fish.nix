@@ -12,18 +12,18 @@
         end
 
         function ri
-          set -l short (ghq list 2>/dev/null | fzf); or return 1
-          set -l full (ghq list --full-path --exact "$short" 2>/dev/null)
-          cd "$full"
+          set -l short (${pkgs.jj-manage}/bin/jj-manage list --short 2>/dev/null | fzf); or return 1
+          set -l base (${pkgs.jj-manage}/bin/jj-manage base)
+          cd "$base/$short"
         end
 
         function r
-          set -l full (ghq list --full-path --exact "$argv")
+          set -l full (${pkgs.jj-manage}/bin/jj-manage list | fzf -f "$argv")
           if [ (count $full) -ne 1 ]; return 1; end
           cd "$full"
         end
         complete -c r -f
-        complete -c r -a "(ghq list)"
+        complete -c r -a "(${pkgs.jj-manage}/bin/jj-manage list)"
 
         function bind_bang
           switch (commandline --current-token)[-1]

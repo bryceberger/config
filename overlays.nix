@@ -40,12 +40,13 @@
     nativeBuildInputs = [pkgs.pkg-config];
     buildInputs = [pkgs.openssl.dev];
   };
-in {
-  jujutsu = inputs.jj.packages.${system}.default;
-  helix = inputs.helix.packages.${system}.default;
-  zen-browser = inputs.zen-browser.packages.${system}.default;
 
-  ghq = prev.ghq.overrideAttrs (prev: {patches = prev.patches or [] ++ [./pkgs/ghq/default_ssh.patch];});
+  getpackage = package: inputs.${package}.packages.${system}.default;
+in {
+  helix = getpackage "helix";
+  jj-manage = getpackage "jj-manage";
+  jujutsu = getpackage "jj";
+  zen-browser = getpackage "zen-browser";
 
   starship = starship-jj-lib;
   inherit starship-jj-lib starship-jj-shell;

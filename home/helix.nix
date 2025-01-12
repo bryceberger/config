@@ -32,7 +32,7 @@
       args = ["-q"];
     };
     python.language-servers = ["pyright" "ruff"];
-    toml.language-servers = ["ctags-lsp"];
+    toml.language-servers = ["taplo"];
     typst.formatter.command = "typstyle";
     verilog = {
       language-servers = ["svls"];
@@ -44,8 +44,11 @@
   };
 
   language-server = {
-    ctags-lsp.command = "ctags-lsp";
     nixd.command = "nixd";
+    taplo = {
+      command = "taplo";
+      args = ["lsp" "stdio"];
+    };
     pyright = {
       command = "pyright-langserver";
       args = ["--stdio"];
@@ -143,11 +146,12 @@
 in {
   home.packages = with pkgs; [
     # extra lanugage servers
-    nil
     alejandra
     bash-language-server
+    nil
     shellcheck
     shfmt
+    taplo
   ];
 
   programs.helix = {

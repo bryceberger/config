@@ -5,10 +5,11 @@
   ...
 }: {
   home.packages = with pkgs; [
-    jujutsu
     difftastic
-    watchman
     gh
+    jj-manage
+    jujutsu
+    watchman
   ];
 
   xdg.configFile."jj/config.toml".source = pkgs.replaceVars ./jj/config.toml {
