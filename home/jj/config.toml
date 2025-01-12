@@ -49,7 +49,6 @@ tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
 streams = ["log", "--no-graph", "-r", "streams()", "-T", "bookmarks"]
 
 open = ["log", "-r", "open()"]
-opent = ["log", "-r", "ancestors(open() | trunk(), 2)"]
 
 manage = ["util", "exec", "--", "jj-manage"]
 man = ["manage"]
@@ -61,14 +60,15 @@ man = ["manage"]
 "private()" = "description(glob:'private:*')"
 "blacklist()" = "wip() | private()"
 
-"stack()" = "ancestors(reachable(@, mutable()), 1)"
-"stack(x)" = "ancestors(reachable(x, mutable()), 1)"
+"stack()" = "ancestors(reachable(@, mutable()), 2)"
+"stack(x)" = "ancestors(reachable(x, mutable()), 2)"
 "stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
 
 "streams()" = "heads(::@ & bookmarks())"
 "streams(x)" = "heads(::x & bookmarks())"
 
-"open()" = "stack(trunk().. & mine(), 1)"
+"open()" = "stack(trunk().. & mine(), 2)"
+"open(n)" = "stack(trunk().. & mine(), n)"
 
 [template-aliases]
 "link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
