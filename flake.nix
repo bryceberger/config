@@ -2,48 +2,34 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    lix-module.inputs.flake-utils.follows = "flake-utils";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
-    helix = {
-      url = "github:bryceberger/helix/jj-lib";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    helix.url = "github:bryceberger/helix/jj-lib";
+    helix.inputs.nixpkgs.follows = "nixpkgs";
+    helix.inputs.flake-utils.follows = "flake-utils";
 
-    jj = {
-      url = "github:jj-vcs/jj";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+    jj.url = "github:jj-vcs/jj";
+    jj.inputs.nixpkgs.follows = "nixpkgs";
+    jj.inputs.flake-utils.follows = "flake-utils";
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    jj-manage.url = "github:bryceberger/jj-manage";
+    jj-manage.inputs.nixpkgs.follows = "nixpkgs";
+    jj-manage.inputs.flake-utils.follows = "flake-utils";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
