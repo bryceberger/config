@@ -4,6 +4,7 @@
 default-command = "log"
 diff-editor = ":builtin"
 diff.tool = "difft"
+show-cryptographic-signatures = true
 
 [user]
 name = "@name@"
@@ -101,6 +102,7 @@ log = '''
 separate(" ",
   format_short_change_id_with_hidden_and_divergent_info(self),
   format_short_id(commit_id),
+  format_short_cryptographic_signature(signature),
   working_copies, bookmarks,
   description.first_line(),
 )
