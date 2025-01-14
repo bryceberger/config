@@ -151,11 +151,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736672287,
-        "narHash": "sha256-DbMHCVTaHOLDLQw8hx2ws8zyVRO4Slx5vLjgnXbrGOQ=",
+        "lastModified": 1737185811,
+        "narHash": "sha256-6Z5Qq8s9QJOaCk7q5xDXx17ttSeHbpozaTYANmHvmIM=",
         "owner": "bryceberger",
         "repo": "jj-manage",
-        "rev": "8e97539735446e2385b56d995b161a05e1b42f92",
+        "rev": "01d791ded200e7151dd47b0ecd7a95409bf282af",
         "type": "github"
       },
       "original": {
@@ -331,11 +331,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736655632,
-        "narHash": "sha256-TeA6G+BUWhOi2ZnewAEfwbsY/ku1H1sdNKfwjvH0wzM=",
+        "lastModified": 1736824652,
+        "narHash": "sha256-8J56ngRvKVvCxdY3iDtol/9UAJfwCh0k96DnyNchUCA=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "32f3692cc4d6a1d1cb8943be7d2e712a63c4b374",
+        "rev": "a17923b5fd758700c67afdaae2a1d3123381f96b",
         "type": "github"
       },
       "original": {

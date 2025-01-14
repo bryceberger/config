@@ -12,14 +12,13 @@
         end
 
         function ri
-          set -l short (${pkgs.jj-manage}/bin/jj-manage list --short 2>/dev/null | fzf); or return 1
+          set -l short (${pkgs.jj-manage}/bin/jj-manage list | fzf); or return 1
           set -l base (${pkgs.jj-manage}/bin/jj-manage base)
           cd "$base/$short"
         end
 
         function r
-          set -l full (${pkgs.jj-manage}/bin/jj-manage list | fzf -f "$argv")
-          if [ (count $full) -ne 1 ]; return 1; end
+          set -l full (${pkgs.jj-manage}/bin/jj-manage resolve --long $argv || return 1)
           cd "$full"
         end
         complete -c r -f
