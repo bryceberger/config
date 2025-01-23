@@ -54,6 +54,34 @@ open = ["log", "-r", "open()"]
 manage = ["util", "exec", "--", "jj-manage"]
 man = ["manage"]
 
+rdiff = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  '''
+  #!/usr/bin/env bash
+  set -eu -o pipefail
+
+  target=$1
+
+  # todo: configurable stream head
+  bookmark_names=$(jj log --no-graph -r 'heads(::@ & bookmarks())' -T 'local_bookmarks.map(|l| l.name()).join(" ")')
+  IFS=" " read -ra bookmarks <<<"$bookmark_names"
+  # todo: error message
+  [ ${#bookmarks[@]} -eq 1 ] || exit 1
+  bookmark=${bookmarks[0]}
+
+  all_refs=$(jj evolog --no-graph -T 'commit_id ++ "|"' -r "$target")
+  # todo: configurable remote
+  remote=$(jj log --no-graph -T 'commit_id' -n 1 -r "($all_refs none()) & ::$bookmark@origin")
+
+  jj diff --from "$remote" --to "$target"
+  ''',
+  "",
+]
+
 [revset-aliases]
 "mine()" = "author(exact:'@name@') | author(exact:'@email@')"
 
