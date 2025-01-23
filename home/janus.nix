@@ -2,6 +2,7 @@
   imports = [
     ./common.nix
     ./devel.nix
+    ./firefox.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix

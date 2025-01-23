@@ -2,6 +2,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
+
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
     lix-module.inputs.flake-utils.follows = "flake-utils";
@@ -30,6 +33,9 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    ff-ultima.url = "github:soulhotel/FF-ULTIMA";
+    ff-ultima.flake = false;
   };
 
   outputs = {
@@ -45,7 +51,10 @@
       config.allowUnfree = true;
     };
 
-    overlays = [(import ./overlays.nix {inherit pkgs system inputs;})];
+    overlays = [
+      (import ./overlays.nix {inherit pkgs system inputs;})
+      inputs.nur.overlays.default
+    ];
 
     registry = {
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
@@ -87,8 +96,7 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit system username hostname email gpg-key;
-            inherit (inputs) nix-std;
+            inherit inputs system username hostname email gpg-key;
           };
           modules = [
             ./home/${hostname}.nix
