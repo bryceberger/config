@@ -29,20 +29,21 @@
 
   starship-jj-shell = make-starship prev {
     rev = "jj-shell";
-    hash = "";
-    cargoHash = "sha256-0n0J9wHzVkyMz8xNBa4vL2YgMBca9Hk5LxmOqhHKR5s=";
+    hash = "sha256-AQynP1HfqWTabX/VDgqeh69bEasRHpDm/50HcTmWhSg=";
+    cargoHash = "sha256-0xq4Ya4KBK4cF+gV6tncHpk2LHVwWc9NN3SM7K/pgVY=";
   };
 
   starship-jj-lib = make-starship prev {
     rev = "jj-lib";
-    hash = "sha256-tfDu0wZIu96HgvTa1/KOvC/CnKRb5EVnMoSQOS6ViIE=";
-    cargoHash = "sha256-c20b/PtbHja+vjLMBl3+eMu/t8hEfrDO/oeZWcaLT1c=";
+    hash = "sha256-NvnW2RyCNTqv0i0LlQckTV4F2sEZ97ova4FMlskyhC0=";
+    cargoHash = "sha256-WmhfD+9Vv2Eh3pETthqMtTZD7ABPbeeK4I46kONVHb8=";
     nativeBuildInputs = [pkgs.pkg-config];
     buildInputs = [pkgs.openssl.dev];
   };
 
   getpackage = package: inputs.${package}.packages.${system}.default;
 in {
+  gh-dash = getpackage "gh-dash";
   helix = getpackage "helix";
   jj-manage = getpackage "jj-manage";
   jujutsu = getpackage "jj";

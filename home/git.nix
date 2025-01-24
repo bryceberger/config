@@ -4,9 +4,9 @@
   email,
   ...
 }: {
+  imports = [./github.nix];
   home.packages = with pkgs; [
     difftastic
-    gh
   ];
 
   programs.git = {

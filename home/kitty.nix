@@ -13,7 +13,7 @@
 
     settings = {
       window_padding_width = 5;
-      font_size = 12;
+      font_size = 10;
       font_family = "Maple Mono NF";
       # "==" and "!=" ligatures
       font_features = "MapleMonoNF-Regular +ss01";

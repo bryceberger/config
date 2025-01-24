@@ -1,21 +1,17 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.inputs.flake-utils.follows = "flake-utils";
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-utils.url = "github:numtide/flake-utils";
-
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    lix-module.inputs.flake-utils.follows = "flake-utils";
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
@@ -36,6 +32,10 @@
 
     ff-ultima.url = "github:soulhotel/FF-ULTIMA";
     ff-ultima.flake = false;
+
+    gh-dash.url = "github:bryceberger/gh-dash/bryce/push-uqqxtyskzpsy";
+    gh-dash.inputs.nixpkgs.follows = "nixpkgs";
+    gh-dash.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = {
@@ -101,8 +101,6 @@
           modules = [
             ./home/${hostname}.nix
             registry
-            inputs.nix-index-database.hmModules.nix-index
-            {programs.nix-index-database.comma.enable = true;}
           ];
         };
       make = defaults: names:
