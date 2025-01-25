@@ -32,6 +32,7 @@ diff-args = ["+kitten", "diff", "$left", "$right"]
 
 [colors]
 "node wip" = { fg = "yellow" }
+"node private" = { fg = "yellow" }
 
 "text link" = { fg = "blue" }
 "text warning" = { bold = true, fg = "red" }
@@ -143,6 +144,7 @@ label("node",
     if(conflict, label("conflict", "x")),
     if(immutable, label("immutable", "◆")),
     if(description.starts_with("wip:"), label("wip", "!")),
+    if(description.starts_with("private:"), label("wip", "⟐")),
     label("normal", "○")
   )
 )
