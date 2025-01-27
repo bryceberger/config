@@ -90,9 +90,9 @@ rdiff = [
 "private()" = "description(glob:'private:*')"
 "blacklist()" = "wip() | private()"
 
-"stack()" = "ancestors(reachable(@, mutable()), 2)"
-"stack(x)" = "ancestors(reachable(x, mutable()), 2)"
-"stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
+"stack()" = "ancestors(mutable() & (..@ | @::), 2)"
+"stack(x)" = "ancestors(mutable() & (..x | x::), 2)"
+"stack(x, n)" = "ancestors(mutable() & (..x | x::), n)"
 
 "streams()" = "heads(::@ & bookmarks())"
 "streams(x)" = "heads(::x & bookmarks())"
