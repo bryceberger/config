@@ -13,7 +13,10 @@
 
     settings = {
       window_padding_width = 5;
-      font_size = 10;
+      font_size =
+        if hostname == "luna"
+        then 10
+        else 12;
       font_family = "Maple Mono NF";
       # "==" and "!=" ligatures
       font_features = "MapleMonoNF-Regular +ss01";

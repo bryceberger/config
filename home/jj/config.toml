@@ -50,6 +50,7 @@ tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
 streams = ["log", "--no-graph", "-r", "streams()", "-T", "bookmarks.map(|b| b ++ ' ')"]
 
 open = ["log", "-r", "open()"]
+stack = ["log", "-r", "stack()"]
 
 manage = ["util", "exec", "--", "jj-manage"]
 man = ["manage"]
@@ -120,8 +121,7 @@ concat(
 '''
 
 [revsets]
-log = "stack()"
-short-prefixes = "open()"
+log = "open()"
 
 [templates]
 draft_commit_description = "commit_description(self)"
