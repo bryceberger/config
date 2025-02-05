@@ -144,7 +144,7 @@ label("node",
     if(conflict, label("conflict", "x")),
     if(immutable, label("immutable", "◆")),
     if(description.starts_with("wip:"), label("wip", "!")),
-    if(description.starts_with("private:"), label("wip", "⟐")),
+    if(description.starts_with("private:"), label("wip", "◇")),
     label("normal", "○")
   )
 )
