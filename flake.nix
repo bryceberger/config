@@ -31,8 +31,8 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    ff-ultima.url = "github:soulhotel/FF-ULTIMA";
-    ff-ultima.flake = false;
+    # ff-ultima.url = "github:soulhotel/FF-ULTIMA";
+    # ff-ultima.flake = false;
 
     gh-dash.url = "github:bryceberger/gh-dash/bryce/push-uqqxtyskzpsy";
     gh-dash.inputs.nixpkgs.follows = "nixpkgs";

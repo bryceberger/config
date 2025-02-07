@@ -37,22 +37,6 @@
         "type": "github"
       }
     },
-    "ff-ultima": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1738360861,
-        "narHash": "sha256-3dnvfHxVrSehaHu+xS9Vta38vlCA65+PLzpTd0JlCNo=",
-        "owner": "soulhotel",
-        "repo": "FF-ULTIMA",
-        "rev": "bb377d44218270496aa328c0c4ff9e1db5c06a21",
-        "type": "github"
-      },
-      "original": {
-        "owner": "soulhotel",
-        "repo": "FF-ULTIMA",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -301,7 +285,6 @@
     },
     "root": {
       "inputs": {
-        "ff-ultima": "ff-ultima",
         "flake-utils": "flake-utils",
         "gh-dash": "gh-dash",
         "helix": "helix",
