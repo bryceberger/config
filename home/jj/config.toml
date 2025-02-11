@@ -132,7 +132,7 @@ separate(" ",
   format_short_change_id_with_hidden_and_divergent_info(self),
   format_short_id(commit_id),
   format_short_cryptographic_signature(signature),
-  working_copies, bookmarks,
+  working_copies, tags, bookmarks,
   description.first_line(),
 )
 '''
