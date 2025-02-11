@@ -37,6 +37,9 @@ diff-args = ["+kitten", "diff", "$left", "$right"]
 "text link" = { fg = "blue" }
 "text warning" = { bold = true, fg = "red" }
 
+"tag" = "yellow"
+"tags" = "yellow"
+
 [aliases]
 ds = ["diff", "--stat"]
 dv = [
@@ -120,9 +123,6 @@ concat(
   indent("JJ:    ", diff.stat(72)),
 )
 '''
-
-[revsets]
-log = "open()"
 
 [templates]
 draft_commit_description = "commit_description(self)"
