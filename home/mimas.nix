@@ -19,6 +19,7 @@
   home.packages = with pkgs; [
     brightnessctl
     patchelf
+    (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
 
   nix = {
