@@ -13,7 +13,7 @@ email = "@email@"
 [signing]
 backend = "gpg"
 key = "@key@"
-sign-all = true
+behavior = "own"
 
 [core]
 fsmonitor = "watchman"
@@ -51,7 +51,14 @@ ll = ["log", "-T", "builtin_log_detailed"]
 l = ["log", "-T", "builtin_log_compact"]
 
 tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
-streams = ["log", "--no-graph", "-r", "streams()", "-T", "bookmarks.map(|b| b ++ ' ')"]
+streams = [
+  "log",
+  "--no-graph",
+  "-r",
+  "streams()",
+  "-T",
+  "bookmarks.map(|b| b ++ ' ')",
+]
 
 open = ["log", "-r", "open()"]
 stack = ["log", "-r", "stack()"]
@@ -137,10 +144,10 @@ if(first_line_in_hunk, surround("\n", "\n", separate("\n",
   commit_timestamp(commit).local().format('%Y-%m-%d %H:%M:%S')
     ++ " "
     ++ commit.author(),
-))) ++ pad_start(4, line_number) ++ ": "
+))) ++ pad_start(4, line_number) ++ ": " ++ content
 '''
 
-# lpksnpzk jelle    2022-02-20 15:30:05    1:
+# 00000000 ........ yyyy-mm-dd HH:MM:SS    1:
 annotate = '''
 if(first_line_in_hunk,
   separate(" ",
@@ -149,15 +156,10 @@ if(first_line_in_hunk,
     commit_timestamp(commit).local().format('%Y-%m-%d %H:%M:%S'),
   ),
   pad_end(37, ""),
-) ++ pad_start(4, line_number) ++ ": "
+) ++ pad_start(4, line_number) ++ ": " ++ content
 '''
 
-[templates]
-draft_commit_description = "commit_description(self)"
-
-file_annotate = "annotate_header"
-
-log = '''
+default_log = '''
 separate(" ",
   format_short_change_id_with_hidden_and_divergent_info(self),
   format_short_id(commit_id),
@@ -166,16 +168,32 @@ separate(" ",
   description.first_line(),
 )
 '''
+
+[templates]
+draft_commit_description = "commit_description(self)"
+
+file_annotate = "annotate_header"
+
+log = "default_log"
 log_node = '''
-label("node",
-  coalesce(
-    if(!self, label("elided", "~")),
-    if(current_working_copy, label("working_copy", "@")),
-    if(conflict, label("conflict", "x")),
-    if(immutable, label("immutable", "◆")),
-    if(description.starts_with("wip:"), label("wip", "!")),
-    if(description.starts_with("private:"), label("wip", "◇")),
-    label("normal", "○")
+label("node", coalesce(
+  if(!self, label("elided", "~")),
+  label(
+    coalesce(
+      if(current_working_copy, "working_copy"),
+      if(conflict, "conflict"),
+      if(immutable, "immutable"),
+      if(description.starts_with("wip:"), "wip"),
+      if(description.starts_with("private:"), "wip"),
+    ),
+    coalesce(
+      if(current_working_copy, "@"),
+      if(conflict, "x"),
+      if(immutable, "◆"),
+      if(description.starts_with("wip:"), "!"),
+      if(description.starts_with("private:"), "◇"),
+      "○",
+    )
   )
-)
+))
 '''

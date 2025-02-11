@@ -278,3 +278,9 @@ unknown_msg = '[◌](bold dimmed yellow)'
 [spack]
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
+
+[cmake]
+format = " [$symbol($version)]($style)"
+
+[zig]
+format = " [$symbol($version)]($style)"
