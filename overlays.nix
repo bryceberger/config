@@ -1,44 +1,33 @@
 {
-  pkgs,
   system,
   inputs,
 }: final: prev: let
-  make-starship = prev: {
-    rev,
-    hash,
-    cargoHash,
-    nativeBuildInputs ? [],
-    buildInputs ? [],
-  }:
-    prev.starship.overrideAttrs (prev: let
-      src = pkgs.fetchFromGitHub {
-        owner = "bryceberger";
-        repo = "starship";
-        inherit rev hash;
-      };
-    in {
-      inherit src;
-      version = "${prev.version}-${rev}";
-      nativeBuildInputs = prev.nativeBuildInputs or [] ++ nativeBuildInputs;
-      buildInputs = prev.buildInputs or [] ++ buildInputs;
-      cargoDeps = prev.cargoDeps.overrideAttrs {
+  make-starship = prev: args: let
+    src = prev.fetchFromGitHub {
+      owner = "bryceberger";
+      repo = "starship";
+      inherit (args) rev hash;
+    };
+  in
+    prev.callPackage ./pkgs/starship.nix ({
         inherit src;
-        outputHash = cargoHash;
-      };
-    });
+        pname = "starship-${args.rev}";
+        version = "1.22.1";
+      }
+      // args);
 
   starship-jj-shell = make-starship prev {
     rev = "jj-shell";
-    hash = "sha256-AQynP1HfqWTabX/VDgqeh69bEasRHpDm/50HcTmWhSg=";
-    cargoHash = "sha256-0xq4Ya4KBK4cF+gV6tncHpk2LHVwWc9NN3SM7K/pgVY=";
+    hash = "sha256-QC5uH94ex+WlB68jbH4W9dmhdM6DVrUSC5NcR+e8efY=";
+    cargoHash = "sha256-x94g8iZtVaeKyZDh+HjNaiLcqg4iMWiDLSou+cyP0w4=";
   };
 
   starship-jj-lib = make-starship prev {
     rev = "jj-lib";
-    hash = "sha256-NvnW2RyCNTqv0i0LlQckTV4F2sEZ97ova4FMlskyhC0=";
-    cargoHash = "sha256-WmhfD+9Vv2Eh3pETthqMtTZD7ABPbeeK4I46kONVHb8=";
-    nativeBuildInputs = [pkgs.pkg-config];
-    buildInputs = [pkgs.openssl.dev];
+    hash = "sha256-XwOoo+K2eeD2bsVOlTd6+mzC02DIgmJjRwDHzELzErE=";
+    cargoHash = "sha256-vaGhBbt78gl0v4xLlaPmuFwJbhLtSRSAn/AsWgtDi+8=";
+    nativeBuildInputs = [prev.pkg-config];
+    buildInputs = [prev.openssl.dev];
   };
 
   getpackage = package: inputs.${package}.packages.${system}.default;

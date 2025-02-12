@@ -53,7 +53,7 @@
     };
 
     overlays = [
-      (import ./overlays.nix {inherit pkgs system inputs;})
+      (import ./overlays.nix {inherit system inputs;})
       inputs.nur.overlays.default
     ];
 

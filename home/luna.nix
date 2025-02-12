@@ -38,9 +38,6 @@
       nix copy --from $remote $store_path
       ln -sfn $store_path $result
     '')
-    (writeShellScriptBin "hist" ''
-      power-graphing $@ && ${inkscape}/bin/inkview /tmp/out.svg 2>/dev/null &
-    '')
     (writeShellScriptBin "kbdbacklighttoggle" ''
       bl=${pkgs.brightnessctl}/bin/brightnessctl
       kb=asus::kbd_backlight
