@@ -22,5 +22,7 @@
     enableFishIntegration = true;
   };
 
+  programs.atuin.enable = true;
+
   xdg.configFile."starship.toml".source = ./shell/starship.toml;
 }
