@@ -124,8 +124,36 @@ concat(
 )
 '''
 
+annotate_header = '''
+if(first_line_in_hunk, surround("\n", "\n", separate("\n",
+  separate(" ",
+    format_short_change_id_with_hidden_and_divergent_info(commit),
+    format_short_id(commit.commit_id()),
+    format_short_cryptographic_signature(commit.signature()),
+    commit.description().first_line(),
+  ),
+  commit_timestamp(commit).local().format('%Y-%m-%d %H:%M:%S')
+    ++ " "
+    ++ commit.author(),
+))) ++ pad_start(4, line_number) ++ ": "
+'''
+
+# lpksnpzk jelle    2022-02-20 15:30:05    1:
+annotate = '''
+if(first_line_in_hunk,
+  separate(" ",
+    format_short_id(commit.change_id()),
+    pad_end(8, truncate_end(8, commit.author().email().local())),
+    commit_timestamp(commit).local().format('%Y-%m-%d %H:%M:%S'),
+  ),
+  pad_end(37, ""),
+) ++ pad_start(4, line_number) ++ ": "
+'''
+
 [templates]
 draft_commit_description = "commit_description(self)"
+
+annotate_commit_summary = "annotate_header"
 
 log = '''
 separate(" ",
