@@ -155,7 +155,7 @@ if(first_line_in_hunk,
 [templates]
 draft_commit_description = "commit_description(self)"
 
-annotate_commit_summary = "annotate_header"
+file_annotate = "annotate_header"
 
 log = '''
 separate(" ",

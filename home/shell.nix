@@ -22,7 +22,11 @@
     enableFishIntegration = true;
   };
 
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    settings. enter_accept = false;
+    flags = ["--disable-up-arrow"];
+  };
 
   xdg.configFile."starship.toml".source = ./shell/starship.toml;
 }

@@ -20,7 +20,7 @@
     helix.inputs.nixpkgs.follows = "nixpkgs";
     helix.inputs.flake-utils.follows = "flake-utils";
 
-    jj.url = "github:bryceberger/jj/enhance-annotate-template";
+    jj.url = "github:bryceberger/jj/mm";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
 
