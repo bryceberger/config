@@ -23,7 +23,7 @@
   ];
 
   nix = {
-    package = pkgs.nix;
+    package = pkgs.lix;
     settings.experimental-features = ["nix-command" "flakes"];
     gc.automatic = true;
   };
