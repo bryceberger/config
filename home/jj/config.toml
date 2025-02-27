@@ -20,7 +20,7 @@ fsmonitor = "watchman"
 watchman.register_snapshot_trigger = true
 
 [git]
-private-commits = "blacklist()"
+private-commits = "private()"
 push-bookmark-prefix = "bryce/push-"
 init-track-local-bookmarks = true
 
@@ -99,7 +99,6 @@ rdiff = [
 
 "wip()" = "description(glob:'wip:*')"
 "private()" = "description(glob:'private:*')"
-"blacklist()" = "wip() | private()"
 
 "stack()" = "ancestors(mutable() & (..@ | @::), 2)"
 "stack(x)" = "ancestors(mutable() & (..x | x::), 2)"

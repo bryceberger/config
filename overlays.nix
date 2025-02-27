@@ -18,14 +18,14 @@
 
   starship-jj-shell = make-starship prev {
     rev = "jj-shell";
-    hash = "sha256-QC5uH94ex+WlB68jbH4W9dmhdM6DVrUSC5NcR+e8efY=";
-    cargoHash = "sha256-x94g8iZtVaeKyZDh+HjNaiLcqg4iMWiDLSou+cyP0w4=";
+    hash = "sha256-km90IKHPHGTlHnhIb9O7K3tZjKf/fS/qJs+CRVOuZ/8=";
+    cargoHash = "sha256-KIgCDmkj6pSTtWOnWWIiYmo2JOq5C9osv+BJDYQ7utY=";
   };
 
   starship-jj-lib = make-starship prev {
     rev = "jj-lib";
-    hash = "sha256-XwOoo+K2eeD2bsVOlTd6+mzC02DIgmJjRwDHzELzErE=";
-    cargoHash = "sha256-vaGhBbt78gl0v4xLlaPmuFwJbhLtSRSAn/AsWgtDi+8=";
+    hash = "sha256-HGeTJzA19xTxN/VAZUcbq6avPVN7m9obGfpJfUvUF38=";
+    cargoHash = "sha256-ZnCG/x9oHOYF8kwv2P10W7dtgZXygeEoYQ57H8YSe5U=";
     nativeBuildInputs = [prev.pkg-config];
     buildInputs = [prev.openssl.dev];
   };
