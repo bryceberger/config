@@ -49,7 +49,6 @@
     users.plex.extraGroups = ["media"];
   };
 
-  nixpkgs.config.allowUnfree = true;
   services.plex = {
     enable = true;
     openFirewall = true;

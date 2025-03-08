@@ -22,10 +22,5 @@
     glab
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
-
-  nix = {
-    package = pkgs.lix;
-    settings.experimental-features = ["nix-command" "flakes"];
-    gc.automatic = true;
-  };
+  nix.gc.automatic = true;
 }
