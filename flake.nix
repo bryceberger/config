@@ -55,7 +55,6 @@
     overlays = [
       (import ./overlays.nix {inherit system inputs;})
       inputs.nur.overlays.default
-      lix-module.overlays.default
     ];
 
     registry = {
