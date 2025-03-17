@@ -62,6 +62,7 @@ streams = [
 
 open = ["log", "-r", "open()"]
 stack = ["log", "-r", "stack()"]
+s = ["stack"]
 
 manage = ["util", "exec", "--", "jj-manage"]
 man = ["manage"]
@@ -111,6 +112,9 @@ rdiff = [
 "open(n)" = "stack(trunk().. & mine(), n)"
 
 'why_immutable(r)' = '(r & immutable()) | roots(r:: & immutable_heads())'
+
+[revsets]
+log = "ancestors(mutable() & ::@, 2) | trunk() | (mutable() & visible_heads()) | bookmarks()"
 
 [template-aliases]
 "link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'

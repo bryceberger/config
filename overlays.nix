@@ -11,21 +11,23 @@
   in
     prev.callPackage ./pkgs/starship.nix ({
         inherit src;
-        pname = "starship-${args.rev}";
+        pname = "starship-${args.name}";
         version = "1.22.1";
       }
       // args);
 
   starship-jj-shell = make-starship prev {
-    rev = "jj-shell";
+    name = "jj-shell";
+    rev = "8192e458499ab3b253e7522addc9523be4e24314";
     hash = "sha256-km90IKHPHGTlHnhIb9O7K3tZjKf/fS/qJs+CRVOuZ/8=";
     cargoHash = "sha256-KIgCDmkj6pSTtWOnWWIiYmo2JOq5C9osv+BJDYQ7utY=";
   };
 
   starship-jj-lib = make-starship prev {
-    rev = "jj-lib";
-    hash = "sha256-HGeTJzA19xTxN/VAZUcbq6avPVN7m9obGfpJfUvUF38=";
-    cargoHash = "sha256-ZnCG/x9oHOYF8kwv2P10W7dtgZXygeEoYQ57H8YSe5U=";
+    name = "jj-lib";
+    rev = "c6d342847af28a5021ad3e083e613365ab54ece3";
+    hash = "sha256-BO3lj8RZeqirMuwkQgP2HsIUmqkzr0J2QTydZQ7UFPE=";
+    cargoHash = "sha256-MOXaGgkttXoBA8+HPPNmhJdSC2bfIsV3e1EVgXDqnrg=";
     nativeBuildInputs = [prev.pkg-config];
     buildInputs = [prev.openssl.dev];
   };
