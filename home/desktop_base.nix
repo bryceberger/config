@@ -11,6 +11,7 @@
     if cond
     then val
     else default;
+  optional = cond: val: option [] cond [val];
   optionals = option [];
   optionalAttrs = option {};
 
@@ -28,7 +29,6 @@
   ];
 
   not-mimas-pkgs = with pkgs; [
-    zen-browser
     playerctl
     xdg-utils
   ];
@@ -39,7 +39,7 @@
     ++ optionals is-not-mimas all-nerd-fonts;
 in
   {
-    imports = [./kitty.nix ./wezterm.nix];
+    imports = [./kitty.nix ./wezterm.nix] ++ optional is-not-mimas ./firefox.nix;
     fonts.fontconfig.enable = true;
     home.packages = packages;
   }

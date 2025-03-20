@@ -2,17 +2,18 @@
   pkgs,
   hostname,
 }: let
-  browser = "${pkgs.zen-browser}/bin/zen";
-  backlight = "${pkgs.brightnessctl}/bin/brightnessctl";
-  volume = "${pkgs.wireplumber}/bin/wpctl";
-  media = "${pkgs.playerctl}/bin/playerctl";
+  inherit (pkgs.lib) getExe getExe';
+  browser = getExe pkgs.firefox;
+  backlight = getExe pkgs.brightnessctl;
+  volume = getExe' pkgs.wireplumber "wpctl";
+  media = getExe pkgs.playerctl;
 in {
-  bind = with pkgs;
+  bind =
     [
       "SUPER         , M     , exit, "
       "SUPER         , Escape, exec, lock"
-      "SUPERSHIFT    , S     , exec, ${pkgs.hyprshot}/bin/hyprshot -m region -o ~/downloads/ -f screenshot.png"
-      "CTRLSUPERSHIFT, S     , exec, ${pkgs.hyprshot}/bin/hyprshot -m window -o ~/downloads/ -f screenshot.png"
+      "SUPERSHIFT    , S     , exec, ${getExe pkgs.hyprshot} -m region -o ~/downloads/ -f screenshot.png"
+      "CTRLSUPERSHIFT, S     , exec, ${getExe pkgs.hyprshot} -m window -o ~/downloads/ -f screenshot.png"
     ]
     # movement
     ++ builtins.concatLists (
@@ -46,11 +47,11 @@ in {
       "         , F11   , fullscreen"
 
       # common programs
-      "CTRL     , Return, exec, ${kitty}/bin/kitty"
-      "CTRLSHIFT, Return, exec, ${kitty}/bin/kitty --class floatingkitty"
+      "CTRL     , Return, exec, ${getExe pkgs.kitty}"
+      "CTRLSHIFT, Return, exec, ${getExe pkgs.kitty} --class floatingkitty"
       "SUPER    , W     , exec, ${browser}"
-      "SUPER    , Z     , exec, ${zathura}/bin/zathura"
-      "ALT      , space , exec, ${fuzzel}/bin/fuzzel -f FiraCode"
+      "SUPER    , Z     , exec, ${getExe pkgs.zathura}"
+      "ALT      , space , exec, ${getExe pkgs.fuzzel} -f FiraCode"
 
       # brightness
       "     , XF86MonBrightnessDown, exec, ${backlight} s 10%-"

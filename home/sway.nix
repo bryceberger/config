@@ -3,6 +3,7 @@
   hostname,
   ...
 }: let
+  inherit (pkgs.lib) getExe getExe';
   # weird semi-nix managed system
   exes =
     if hostname == "mimas"
@@ -12,15 +13,15 @@
       menu = "rofi -show run";
     }
     else {
-      browser = "${pkgs.zen-browser}/bin/zen";
-      terminal = "${pkgs.kitty}/bin/kitty";
-      menu = "${pkgs.fuzzel}/bin/fuzzel";
+      browser = getExe pkgs.firefox;
+      terminal = getExe pkgs.kitty;
+      menu = getExe pkgs.fuzzel;
     };
   inherit (exes) browser terminal menu;
-  pdf-viewer = "${pkgs.zathura}/bin/zathura";
+  pdf-viewer = getExe pkgs.zathura;
 
-  volume = "${pkgs.wireplumber}/bin/wpctl";
-  media = "${pkgs.playerctl}/bin/playerctl";
+  volume = getExe' pkgs.wireplumber "wpctl";
+  media = getExe pkgs.playerctl;
 
   resize_step = "20px";
 
@@ -80,7 +81,7 @@ in {
             if hostname == "janus"
             then "bottom"
             else "top";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
+          statusCommand = getExe pkgs.i3status;
           fonts = {
             names = ["Maple Mono NF"];
             size = 8.0;

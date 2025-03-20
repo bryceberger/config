@@ -32,11 +32,9 @@
 
   getpackage = package: inputs.${package}.packages.${system}.default;
 in {
-  gh-dash = getpackage "gh-dash";
   helix = getpackage "helix";
   jj-manage = getpackage "jj-manage";
   jujutsu = getpackage "jj";
-  zen-browser = getpackage "zen-browser";
 
   starship = starship-jj-lib;
   inherit starship-jj-lib starship-jj-shell;

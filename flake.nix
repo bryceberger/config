@@ -27,16 +27,6 @@
     jj-manage.url = "github:bryceberger/jj-manage";
     jj-manage.inputs.nixpkgs.follows = "nixpkgs";
     jj-manage.inputs.flake-utils.follows = "flake-utils";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-
-    # ff-ultima.url = "github:soulhotel/FF-ULTIMA";
-    # ff-ultima.flake = false;
-
-    gh-dash.url = "github:bryceberger/gh-dash/bryce/push-uqqxtyskzpsy";
-    gh-dash.inputs.nixpkgs.follows = "nixpkgs";
-    gh-dash.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = {
