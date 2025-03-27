@@ -96,9 +96,9 @@ ssh_symbol = ""
 format = "[$ssh_symbol $hostname]($style)"
 
 [username]
-style_user = "bright-yellow bold italic"
-style_root = "purple bold italic"
-format = "[⭘ $user]($style) "
+style_user = "bright-yellow bold"
+style_root = "purple bold"
+format = "[⭘]($style) [$user]($style italic) "
 disabled = false
 show_always = false
 

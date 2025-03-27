@@ -114,7 +114,15 @@ rdiff = [
 'why_immutable(r)' = '(r & immutable()) | roots(r:: & immutable_heads())'
 
 [revsets]
-log = "ancestors(mutable() & ::@, 2) | trunk() | (mutable() & visible_heads()) | bookmarks()"
+log = '''none()
+  | ancestors(mutable() & ::@, 2)
+  | trunk()
+  | bookmarks()
+  | mutable() & visible_heads()
+  | (bookmarks()..(mutable() & visible_heads()))- ~ bookmarks()..(mutable() & visible_heads())
+  | fork_point(mutable() & visible_heads())
+  | (mutable() & merges())-
+'''
 
 [template-aliases]
 "link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
