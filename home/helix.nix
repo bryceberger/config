@@ -59,7 +59,7 @@
     };
     rust-analyzer.config = {
       check.command = "clippy";
-      cargo.targetDir = "/home/${username}/.cache/cargo-target/rust-analyzer";
+      cargo.targetDir = "/tmp/rust-analyzer";
     };
     svls.command = "svls";
     veryl-ls = {command = "veryl-ls";};

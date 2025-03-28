@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: let
+{pkgs, ...}: let
   clang-format-text = args:
     pkgs.lib.foldlAttrs
     (acc: name: value: acc + "${name}: ${toString value}\n")
@@ -27,7 +23,7 @@ in {
 
     ".cargo/config.toml".text = ''
       [build]
-      target-dir = "/home/${username}/.cache/cargo-target"
+      target-dir = "/tmp/cargo"
     '';
   };
 
