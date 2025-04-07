@@ -115,11 +115,10 @@ rdiff = [
 
 [revsets]
 log = '''none()
-  | ancestors(mutable() & ::@, 2)
+  | heads(streams(streams()-) | immutable() & ::@)::@
   | trunk()
   | bookmarks()
   | mutable() & visible_heads()
-  | (bookmarks()..(mutable() & visible_heads()))- ~ bookmarks()..(mutable() & visible_heads())
   | fork_point(mutable() & visible_heads())
   | (mutable() & merges())-
 '''
