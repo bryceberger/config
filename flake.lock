@@ -156,11 +156,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739976549,
-        "narHash": "sha256-IukK7stONMoUu8Y5CBZpbm01SMczK3SzqYU5TRyeVJA=",
+        "lastModified": 1744383846,
+        "narHash": "sha256-tnv6pGlOZr2eqXo37sl6vQUCJTSaD1Tm40UaTlS/d1c=",
         "owner": "bryceberger",
         "repo": "jj-manage",
-        "rev": "3f9e5e036d0f20f07f989f7b1d4e4ca872816cff",
+        "rev": "d57271a1607ee24c46156a5052a2b899a82892dc",
         "type": "github"
       },
       "original": {

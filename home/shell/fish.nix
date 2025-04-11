@@ -1,49 +1,62 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  inherit (pkgs.lib) getExe;
+  inherit (pkgs) jj-manage;
+  functions = ''
+    function s --wraps "rg --json"
+      rg --json $argv | delta --tabs 1
+    end
+
+    function ri
+      set -l short (${getExe jj-manage} list | fzf); or return 1
+      set -l base (${getExe jj-manage} base)
+      cd "$base/$short"
+    end
+
+    function r
+      set -l full (${getExe jj-manage} resolve --long $argv || return 1)
+      cd "$full"
+    end
+    complete -c r -f
+    complete -c r -a "(${getExe jj-manage} list)"
+
+    function bind_bang
+      switch (commandline --current-token)[-1]
+        case "!"
+          commandline --current-token -- $history[1]
+        case "*"
+          commandline --insert !
+      end
+    end
+    bind ! bind_bang
+
+    function bind_question
+      switch (commandline --current-token)[-1]
+        case "\$"
+          commandline --current-token -- "\$status"
+        case "*"
+          commandline --insert \?
+      end
+    end
+    bind \? bind_question
+
+    function tmp
+      set -l tmpdir (mktemp -d)
+      cd $tmpdir
+      fish $argv
+      set -l ret $status
+      cd $dirprev[-1]
+      return $ret
+    end
+  '';
+in {
   imports = [
     ./fish/catppuccin.nix
   ];
 
   xdg.configFile = {
-    "fish/conf.d/00-home-manager-vars.fish" = {
+    "fish/conf.d/00-functions.fish" = {
       enable = true;
-      text = ''
-        function s --wraps "rg --json"
-          rg --json $argv | delta --tabs 1
-        end
-
-        function ri
-          set -l short (${pkgs.jj-manage}/bin/jj-manage list | fzf); or return 1
-          set -l base (${pkgs.jj-manage}/bin/jj-manage base)
-          cd "$base/$short"
-        end
-
-        function r
-          set -l full (${pkgs.jj-manage}/bin/jj-manage resolve --long $argv || return 1)
-          cd "$full"
-        end
-        complete -c r -f
-        complete -c r -a "(${pkgs.jj-manage}/bin/jj-manage list)"
-
-        function bind_bang
-          switch (commandline --current-token)[-1]
-            case "!"
-              commandline --current-token -- $history[1]
-            case "*"
-              commandline --insert !
-          end
-        end
-        bind ! bind_bang
-
-        function bind_question
-          switch (commandline --current-token)[-1]
-            case "\$"
-              commandline --current-token -- "\$status"
-            case "*"
-              commandline --insert \?
-          end
-        end
-        bind \? bind_question
-      '';
+      text = functions;
     };
   };
 
@@ -52,28 +65,24 @@
     interactiveShellInit = ''
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
-      COMPLETE=fish jj | .
     '';
 
-    plugins = with pkgs.fishPlugins; [
-      {
-        name = "autopair";
-        src = autopair.src;
-      }
-      {
-        name = "git";
-        src = plugin-git.src;
-      }
-    ];
+    plugins = let
+      plugins = builtins.map (x: {
+        name = x;
+        src = pkgs.fishPlugins."${x}".src;
+      });
+    in
+      plugins [
+        "autopair"
+        "plugin-git"
+      ];
 
     shellAbbrs = {
       "la" = "ls -a";
       "ll" = "ls -l";
-      "gd" = "git difftool --dir-diff";
       "c" = "cargo";
       "j" = "just";
-      "nr" = "nix_remote";
-      "ns" = "nix shell";
     };
 
     shellAliases = {
