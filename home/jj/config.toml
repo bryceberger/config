@@ -107,6 +107,7 @@ rdiff = [
 
 "streams()" = "heads(::@ & bookmarks())"
 "streams(x)" = "heads(::x & bookmarks())"
+'base_point(x)' = "heads(immutable_heads() & ::x)"
 
 "open()" = "stack(trunk().. & mine(), 2)"
 "open(n)" = "stack(trunk().. & mine(), n)"
@@ -115,13 +116,15 @@ rdiff = [
 
 [revsets]
 log = '''none()
-  | heads(streams(streams()-) | immutable() & ::@)::@
+  | base_point(@)
+  | ancestors(@, 10) & trunk()..@
   | trunk()
   | bookmarks()
   | mutable() & visible_heads()
   | fork_point(mutable() & visible_heads())
   | (mutable() & merges())-
 '''
+short-prefixes = "stack(@)"
 
 [template-aliases]
 "link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
