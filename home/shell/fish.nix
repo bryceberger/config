@@ -65,7 +65,6 @@ in {
     interactiveShellInit = ''
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
-      # export NINJA_STATUS="[%r/%u/%t] %w (%W) > "
     '';
 
     plugins = let

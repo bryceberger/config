@@ -119,7 +119,6 @@
           hostname = "mimas";
           username = "bryce.berger.local";
           home-name = "bryce.berger.local";
-          email = "bryce.z.berger.civ@us.navy.mil";
           gpg-key = "68DF074C1EA2114F91AD98E3F0353FDEC1417AFA";
         }
       ];

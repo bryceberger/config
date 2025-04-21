@@ -2,6 +2,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     PAGER = "less -FRX";
+    NINJA_STATUS = "[%r/%u/%t] %w (%W) > ";
   };
   home.packages = with pkgs; [
     nix-output-monitor
