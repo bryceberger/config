@@ -76,6 +76,7 @@ in {
       plugins [
         "autopair"
         "plugin-git"
+        "nvm"
       ];
 
     shellAbbrs = {
