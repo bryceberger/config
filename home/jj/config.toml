@@ -5,6 +5,7 @@ default-command = "log"
 diff-editor = ":builtin"
 diff.tool = "difft"
 show-cryptographic-signatures = true
+pager = ":builtin"
 
 [user]
 name = "@name@"
@@ -21,7 +22,7 @@ watchman.register-snapshot-trigger = true
 [git]
 private-commits = "private()"
 push-bookmark-prefix = "bryce/push-"
-init-track-local-bookmarks = true
+write-change-id-header = true
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
