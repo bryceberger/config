@@ -25,9 +25,9 @@
 
   starship-jj-lib = make-starship prev {
     name = "jj-lib";
-    rev = "4f104b203349ee73a759b2519f283ad1ab47ec51";
-    hash = "sha256-3HS0ofgXrOjEjOGM9xRWAT1ZiEZWXxpqf9CAyRBWTyw=";
-    cargoHash = "sha256-jh1hLj7UejFm7Z6e9UKTc7ACFni0HdMwky0CYmMBgGU=";
+    rev = "ac39afabae459b833fd32d5ea366184f77fd8aad";
+    hash = "sha256-KsvgLjH1vgValAaPrJo3BMv4AtC4ZZPU7Tq+kVnIvNY=";
+    cargoHash = "sha256-LAUCkoNh+/+1dEG2vBrV0SCcYK4G1yP5+JzAKLgAQW8=";
     nativeBuildInputs = [prev.pkg-config];
     buildInputs = [prev.openssl.dev];
   };
