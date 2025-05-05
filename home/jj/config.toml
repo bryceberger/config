@@ -172,15 +172,31 @@ if(first_line_in_hunk,
 ) ++ pad_start(4, line_number) ++ ": " ++ content
 '''
 
-default_log = '''
-separate(" ",
-  format_short_change_id_with_hidden_and_divergent_info(self),
-  format_short_id(commit_id),
-  format_short_cryptographic_signature(signature),
-  working_copies, tags, bookmarks,
-  description.first_line(),
-)
-'''
+"format_commit_info(commit)" = '''separate(" ",
+  format_short_change_id_with_hidden_and_divergent_info(commit),
+  format_short_id(commit.commit_id()),
+  format_short_cryptographic_signature(commit.signature()),
+)'''
+
+"format_commit_bookmarks(commit)" = '''separate(" ",
+  commit.working_copies(),
+  commit.tags(),
+  commit.bookmarks(),
+)'''
+
+"format_description(commit)" = '''separate(" ",
+  if(empty, label("empty", "(empty)")),
+  if(commit.description(),
+    commit.description().first_line(),
+    if(!empty, label("description placeholder", "(no description set)")),
+  ),
+)'''
+
+default_log = '''separate(" ",
+  format_commit_info(self),
+  format_commit_bookmarks(self),
+  format_description(self),
+)'''
 
 [templates]
 draft_commit_description = "commit_description(self)"
@@ -192,7 +208,7 @@ log_node = '''
 label("node", coalesce(
   if(!self, label("elided", "~")),
   label(
-    coalesce(
+    separate(" ",
       if(current_working_copy, "working_copy"),
       if(conflict, "conflict"),
       if(immutable, "immutable"),

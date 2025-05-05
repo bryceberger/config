@@ -131,11 +131,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1746211142,
-        "narHash": "sha256-9KY0lTv+tYzHbIEP7s8q0HPr0NSUibYPVA+IO7gXto4=",
+        "lastModified": 1746467119,
+        "narHash": "sha256-0ZV9G5egkhqv6byOTu3IsA/ru3C1DT/Lwzq6WsUfvak=",
         "owner": "bryceberger",
         "repo": "jj",
-        "rev": "83f71846635621749dd51977ef26746f167eb08a",
+        "rev": "371ee20119cc29223bc14d8a816eae7fcd8fbb44",
         "type": "github"
       },
       "original": {
