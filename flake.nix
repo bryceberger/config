@@ -48,9 +48,11 @@
     ];
 
     registry = {
+      nix.settings.flake-registry = "";
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
       # instead of downloading the same commit again
       nix.registry.np.flake = nixpkgs;
+      nix.registry.nixpkgs.flake = nixpkgs;
       nixpkgs.config.allowUnfree = true;
       home.packages = [
         home-manager.packages.${system}.default
