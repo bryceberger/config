@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: let
+{pkgs, ...}: let
   map-languages = langs:
     builtins.map
     (name: {inherit name;} // langs.${name})

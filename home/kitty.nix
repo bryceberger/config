@@ -18,9 +18,16 @@
         then 10
         else 12;
       font_family = "Maple Mono NF";
-      # "==" and "!=" ligatures
-      font_features = "MapleMonoNF-Regular +ss01";
     };
+
+    # yes "==" and "!=" ligatures
+    # no "<=" and ">=" ligatures
+    extraConfig = ''
+      font_features MapleMono-NF-Regular -ss01 +ss02
+      font_features MapleMono-NF-Italic -ss01 +ss02
+      font_features MapleMono-NF-SemiBold -ss01 +ss02
+      font_features MapleMono-NF-SemiBoldItalic -ss01 +ss02
+    '';
 
     keybindings = {
       "f3" = "launch --cwd=current --type=os-window";
