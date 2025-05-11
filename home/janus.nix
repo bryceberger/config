@@ -31,5 +31,6 @@
     libnotify
     waypipe
     plex-media-player
+    # wlx-overlay-s
   ];
 }

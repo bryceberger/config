@@ -92,6 +92,11 @@
         PasswordAuthentication = false;
       };
     };
+
+    # monado = {
+    #   enable = true;
+    #   defaultRuntime = true;
+    # };
   };
 
   virtualisation = {
