@@ -46,7 +46,7 @@
       args = ["lsp" "stdio"];
     };
     pyright = {
-      command = "pyright-langserver";
+      command = "basedpyright-langserver";
       args = ["--stdio"];
     };
     ruff = {

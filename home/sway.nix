@@ -8,8 +8,8 @@
   exes =
     if hostname == "mimas"
     then {
-      browser = "/bin/firefox";
-      terminal = "/bin/kitty";
+      browser = "firefox";
+      terminal = "~/.local/bin/kitty";
       menu = "rofi -show run";
     }
     else {
