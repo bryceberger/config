@@ -69,7 +69,7 @@
       bufferline = "multiple";
       color-modes = true;
       cursorline = true;
-      file-picker.hidden = true;
+      file-picker.hidden = false;
       gutters = ["diagnostics" "diff" "line-numbers" "spacer"];
       indent-guides.render = true;
       line-number = "relative";
