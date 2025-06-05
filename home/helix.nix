@@ -44,6 +44,7 @@
     taplo = {
       command = "taplo";
       args = ["lsp" "stdio"];
+      config.root_dir = [".git" "*.toml"];
     };
     pyright = {
       command = "basedpyright-langserver";

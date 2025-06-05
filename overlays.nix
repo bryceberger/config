@@ -32,6 +32,21 @@
     buildInputs = [prev.openssl.dev];
   };
 
+  difft = prev.difftastic.overrideAttrs (old: rec {
+    version = "0.64.0";
+    src = prev.fetchFromGitHub {
+      owner = "bryceberger";
+      repo = "difftastic";
+      # https://github.com/Wilfred/difftastic/pull/842
+      rev = "7f7313e66dce19d064a15f178900df049fc6fa76";
+      hash = "sha256-PWcJO9YRaWBCKkd3m6bfzR9Zz8diXOEml6/BCzWSQNA=";
+    };
+    cargoDeps = prev.rustPlatform.fetchCargoVendor {
+      inherit src;
+      hash = "sha256-QWwNU4vOA6jWVb9rHJED/VDhwMFPZCKA4Ajad3W1czw=";
+    };
+  });
+
   getpackage = package: inputs.${package}.packages.${system}.default;
 in {
   helix = getpackage "helix";
@@ -40,4 +55,6 @@ in {
 
   starship = starship-jj-lib;
   inherit starship-jj-lib starship-jj-shell;
+
+  difftastic = difft;
 }
