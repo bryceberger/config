@@ -30,7 +30,9 @@
     calibre
     libnotify
     waypipe
-    plex-media-player
     # wlx-overlay-s
+    bs-manager
+    nexusmods-app-unfree
+    protontricks
   ];
 }

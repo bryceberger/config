@@ -81,6 +81,8 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="5bf0", MODE="0664", GROUP="plugdev"
       # kindle?
       SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="0324", MODE="0664", GROUP="plugdev"
+      # kindle but jessica
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="9981", MODE:="0666"
       # steam vr camera
       # doesn't actually work but this makes me feel like I'm doing my part
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28de", ATTRS{idProduct}=="2400", MODE="0660", TAG+="uaccess"
