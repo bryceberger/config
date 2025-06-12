@@ -1,23 +1,23 @@
 {pkgs, ...}: let
-  inherit (pkgs.lib) getExe;
-  inherit (pkgs) jj-manage;
+  jjm = pkgs.lib.getExe pkgs.jj-manage;
+  fzf = pkgs.lib.getExe pkgs.fzf;
   functions = ''
     function s --wraps "rg --json"
       rg --json $argv | delta --tabs 1
     end
 
     function ri
-      set -l short (${getExe jj-manage} list | fzf); or return 1
-      set -l base (${getExe jj-manage} base)
+      set -l short (${jjm} list | ${fzf}); or return 1
+      set -l base (${jjm} base)
       cd "$base/$short"
     end
 
     function r
-      set -l full (${getExe jj-manage} resolve --long $argv || return 1)
+      set -l full (${jjm} resolve --long $argv || return 1)
       cd "$full"
     end
     complete -c r -f
-    complete -c r -a "(${getExe jj-manage} list)"
+    complete -c r -a "(${jjm} list)"
 
     function bind_bang
       switch (commandline --current-token)[-1]

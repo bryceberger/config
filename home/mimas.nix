@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./common.nix
     ./devel.nix
@@ -22,5 +26,7 @@
     glab
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
+
   nix.gc.automatic = true;
+  nix.channels = {inherit (inputs) nixpkgs;};
 }

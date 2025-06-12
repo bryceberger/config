@@ -42,17 +42,16 @@
   };
 
   difft = prev.difftastic.overrideAttrs rec {
-    version = "0.64.0";
+    version = "0.65.0";
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "difftastic";
-      # https://github.com/Wilfred/difftastic/pull/842
-      rev = "7f7313e66dce19d064a15f178900df049fc6fa76";
-      hash = "sha256-PWcJO9YRaWBCKkd3m6bfzR9Zz8diXOEml6/BCzWSQNA=";
+      rev = "9baa9a149eb2fae63d7d409efb0829e00a738c3f";
+      hash = "sha256-k8g12eFr4cJvW+JtnRVb9ZGg746Znc22lYhMgOY4Z1k=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-QWwNU4vOA6jWVb9rHJED/VDhwMFPZCKA4Ajad3W1czw=";
+      hash = "sha256-wMRRZq9+g8rGJD1kHcL3OdBTTsbGxysbYFQTzhtlbRM=";
     };
   };
 
