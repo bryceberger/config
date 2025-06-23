@@ -156,7 +156,6 @@ log = '''none()
   | (mutable() & merges())-
 '''
 short-prefixes = "stack(@)"
-log-graph-prioritize = "trunk()"
 
 [template-aliases]
 "link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
@@ -285,6 +284,7 @@ this_is_my_log_template = '''label(log_labels_for(self), separate(label("mark", 
   )),
   commit_id.shortest(8),
 ) ++ " " ++ committer.timestamp().ago()
+++ if(!empty && !description, "\n" ++ diff.summary())
 )'''
 
 [templates]
