@@ -46,8 +46,8 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "difftastic";
-      rev = "9baa9a149eb2fae63d7d409efb0829e00a738c3f";
-      hash = "sha256-k8g12eFr4cJvW+JtnRVb9ZGg746Znc22lYhMgOY4Z1k=";
+      rev = "5d1e518212fc3e0d6fc2c1e261b1c800e5032773";
+      hash = "sha256-wOXr/u2ZzLVNT8zjjLUjcf3Dt1HSzX2LUi9by5okIIQ=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
