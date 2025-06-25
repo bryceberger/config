@@ -145,8 +145,7 @@ safe_heads = "remote_bookmarks()"
 left_target = "trunk()"
 right_target = "@"
 
-[revsets]
-log = '''none()
+custom_log = '''none()
   | base_point(@)
   | ancestors(@, 10) & trunk()..@
   | trunk()
@@ -155,6 +154,8 @@ log = '''none()
   | fork_point(mutable() & visible_heads())
   | (mutable() & merges())-
 '''
+
+[revsets]
 short-prefixes = "stack(@)"
 
 [template-aliases]
@@ -264,7 +265,7 @@ truncate_end(description_width(),
       ),
     ),
   label("mark", "·")),
-label("ellipsis", info_of(x))),
+label("mark", "·") ++ label("ellipsis", info_of(x))),
 )'''
 
 this_is_my_log_template = '''label(log_labels_for(self), separate(label("mark", ' '),
