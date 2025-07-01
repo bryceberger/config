@@ -19,7 +19,7 @@
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
-    jj.url = "github:bryceberger/jj/log-width";
+    jj.url = "github:bryceberger/jj/mm";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
 
