@@ -21,7 +21,6 @@ watchman.register-snapshot-trigger = true
 
 [git]
 private-commits = "private()"
-push-bookmark-prefix = "bryce/push-"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
@@ -289,6 +288,7 @@ this_is_my_log_template = '''label(log_labels_for(self), separate(label("mark", 
 )'''
 
 [templates]
+git_push_bookmark = '"bryce/push-" ++ change_id.short()'
 draft_commit_description = "commit_description(self)"
 
 file_annotate = "annotate_header"
