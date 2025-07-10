@@ -283,7 +283,7 @@ this_is_my_log_template = '''label(log_labels_for(self), separate(label("mark", 
     "↔"
   )),
   commit_id.shortest(8),
-) ++ " " ++ committer.timestamp().ago()
+) ++ " " ++ author.timestamp().ago()
 ++ if(!empty && !description, "\n" ++ diff.summary())
 )'''
 
