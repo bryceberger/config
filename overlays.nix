@@ -20,19 +20,33 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "difftastic";
-      rev = "5d1e518212fc3e0d6fc2c1e261b1c800e5032773";
-      hash = "sha256-wOXr/u2ZzLVNT8zjjLUjcf3Dt1HSzX2LUi9by5okIIQ=";
+      rev = "bca3188cb265cf62be914c8c8261a8edb5ee7ad4";
+      hash = "sha256-RWZApCeWm2xEg6fnScMU9PjcoGhO5r1gLXYqGpUJifY=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-wMRRZq9+g8rGJD1kHcL3OdBTTsbGxysbYFQTzhtlbRM=";
+      hash = "sha256-NenCGFTMDlXaXv0gRLA66gGWehFgUGEMBRJvFbjk+NU=";
     };
   };
+
+  jj-manage = prev.rustPlatform.buildRustPackage (finalAttrs: {
+    pname = "jj-manage";
+    version = "0.0.0";
+
+    src = prev.fetchFromGitHub {
+      owner = "bryceberger";
+      repo = "jj-manage";
+      rev = "d57271a1607ee24c46156a5052a2b899a82892dc";
+      hash = "sha256-tnv6pGlOZr2eqXo37sl6vQUCJTSaD1Tm40UaTlS/d1c=";
+    };
+    cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
+
+    meta.mainProgram = "jj-manage";
+  });
 
   getpackage = package: inputs.${package}.packages.${system}.default;
 in {
   helix = getpackage "helix";
-  jj-manage = getpackage "jj-manage";
   jujutsu = getpackage "jj";
-  inherit starship difftastic;
+  inherit starship difftastic jj-manage;
 }

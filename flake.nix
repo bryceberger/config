@@ -21,10 +21,6 @@
     jj.url = "github:bryceberger/jj/mm";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
-
-    jj-manage.url = "github:bryceberger/jj-manage";
-    jj-manage.inputs.nixpkgs.follows = "nixpkgs";
-    jj-manage.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = {
