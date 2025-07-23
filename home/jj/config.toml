@@ -15,8 +15,8 @@ email = "@email@"
 backend = "gpg"
 behavior = "own"
 
-[core]
-fsmonitor = "watchman"
+[fsmonitor]
+backend = "watchman"
 watchman.register-snapshot-trigger = true
 
 [git]
@@ -76,7 +76,7 @@ dk = ["diff", "--tool", "kitty"]
 ll = ["log", "-T", "builtin_log_detailed"]
 l = ["log", "-T", "builtin_log_compact"]
 
-tug = ["bookmark", "move", "--from", "streams()", "--to", "@-"]
+tug = ["bookmark", "move", "--from", "streams()", "--to", "heads(streams()::@- ~ private())"]
 streams = [
   "log",
   "--no-graph",

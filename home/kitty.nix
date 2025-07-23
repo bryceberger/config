@@ -33,6 +33,7 @@
       "f3" = "launch --cwd=current --type=os-window";
       "f4" = "launch --cwd=current --type=os-window --os-window-class=floatingkitty";
       "ctrl+alt+plus" = "change_font_size current 12.0";
+      "ctrl+shift+p>c" = "kitten hints --program - --type regex --regex [zyxwvutsrqponmlk]{8,32}";
     };
 
     themeFile = "Catppuccin-Mocha";
