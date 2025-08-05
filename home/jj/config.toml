@@ -112,11 +112,11 @@ rdiff = [
   [ ${#bookmarks[@]} -eq 1 ] || exit 1
   bookmark=${bookmarks[0]}
 
-  all_refs=$(jj evolog --no-graph -T 'commit_id ++ "|"' -r "$target")
+  all_refs=$(jj evolog --no-graph -T 'commit_id ++ "|"' --operation-template "" -r "$target")
   # todo: configurable remote
   remote=$(jj log --no-graph -T 'commit_id' -n 1 -r "($all_refs none()) & ::$bookmark@origin")
 
-  jj diff --from "$remote" --to "$target"
+  jj diff --from "$remote" --to "$target" "${@:2}"
   ''',
   "",
 ]
