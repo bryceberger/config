@@ -203,6 +203,15 @@ if(first_line_in_hunk,
 ) ++ pad_start(4, line_number) ++ ": " ++ content
 '''
 
+"format_short_change_id_with_hidden_and_divergent_info(commit)" = '''
+label(
+  separate(" ",
+    if(commit.hidden(), "hidden"),
+    if(commit.divergent(), "divergent"),
+  ),
+  format_short_change_id(commit.change_id()),
+)
+'''
 "format_commit_info(commit)" = '''separate(" ",
   format_short_change_id_with_hidden_and_divergent_info(commit),
   format_short_id(commit.commit_id()),
