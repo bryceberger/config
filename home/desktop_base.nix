@@ -19,14 +19,16 @@
 
   all-nerd-fonts = filter isDerivation (attrValues pkgs.nerd-fonts);
 
-  always-packages = with pkgs; [
-    dejavu_fonts
-    fira-code
-    font-awesome
-    maple-mono.NF
-    zathura
-    pavucontrol
-  ];
+  always-packages = with pkgs;
+    [
+      dejavu_fonts
+      fira-code
+      font-awesome
+      maple-mono.NF
+      zathura
+      pavucontrol
+    ]
+    ++ all-nerd-fonts;
 
   not-mimas-pkgs = with pkgs; [
     playerctl
@@ -35,8 +37,7 @@
 
   packages =
     always-packages
-    ++ optionals is-not-mimas not-mimas-pkgs
-    ++ optionals is-not-mimas all-nerd-fonts;
+    ++ optionals is-not-mimas not-mimas-pkgs;
 in
   {
     imports = [./kitty.nix ./wezterm.nix] ++ optional is-not-mimas ./firefox.nix;
