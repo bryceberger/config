@@ -9,9 +9,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+    lix.flake = false;
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
     lix-module.inputs.flake-utils.follows = "flake-utils";
+    lix-module.inputs.lix.follows = "lix";
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
