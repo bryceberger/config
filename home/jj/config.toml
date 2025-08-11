@@ -35,8 +35,6 @@ diff-args = ["+kitten", "diff", "$left", "$right"]
 "conflict change_id".fg = "red"
 "current_working_copy change_id".reverse = true
 "current_working_copy commit_id".reverse = true
-"current_working_copy mark".reverse = true
-"current_working_copy padded_description".reverse = true
 "empty author".fg = "bright black"
 "empty change_id".italic = true
 "empty commit_id".fg = "bright black"
@@ -51,8 +49,6 @@ diff-args = ["+kitten", "diff", "$left", "$right"]
 "immutable timestamp".fg = "default"
 "mark".fg = "bright black"
 "node current_working_copy".reverse = true
-"node is_left_target".underline = true
-"node is_right_target".underline = true
 "node private".fg = "yellow"
 "node unsafe".fg = "yellow"
 "node wip".fg = "yellow"
@@ -141,8 +137,6 @@ rdiff = [
 'why_immutable(r)' = '(r & immutable()) | roots(r:: & immutable_heads())'
 
 safe_heads = "remote_bookmarks()"
-left_target = "trunk()"
-right_target = "@"
 
 custom_log = '''none()
   | base_point(@)
@@ -233,9 +227,9 @@ label(
 )'''
 
 # longest reasonable non-description part:
-# zzzzzzzz ↓ ◼ 00000000  xx minutes ago
+# zzzzzzzz ◼ 00000000  xx minutes ago
 # "minutes" is longest duration specifier, max 2 digits
-"description_width()" = "__width - 37"
+"description_width()" = "__width - 33"
 
 "log_labels_for(x)" = '''separate(' ',
   if(x.current_working_copy(), "current_working_copy"),
@@ -278,19 +272,7 @@ label("mark", "·") ++ label("ellipsis", info_of(x))),
 
 this_is_my_log_template = '''label(log_labels_for(self), separate(label("mark", ' '),
   format_short_change_id_with_hidden_and_divergent_info(self),
-  label("mark", coalesce(
-    if(self.contained_in("left_target"), label("target", "◼")),
-    if(self.contained_in("left_target::"), "↓"),
-    if(self.contained_in("::left_target"), "↑"),
-    "↔"
-  )),
   padded_description(self),
-  label("mark", coalesce(
-    if(self.contained_in("right_target"), label("target", "◼")),
-    if(self.contained_in("right_target::"), "↓"),
-    if(self.contained_in("::right_target"), "↑"),
-    "↔"
-  )),
   commit_id.shortest(8),
 ) ++ " " ++ author.timestamp().ago()
 ++ if(!empty && !description, "\n" ++ diff.summary())
