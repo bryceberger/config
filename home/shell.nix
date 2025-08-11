@@ -4,12 +4,13 @@
   ];
 
   home.packages = with pkgs; [
-    fzf
-    ouch
-    lsd
-    ripgrep
-    fend
     fd
+    fend
+    fzf
+    hyperfine
+    lsd
+    ouch
+    ripgrep
   ];
 
   programs.direnv = {
