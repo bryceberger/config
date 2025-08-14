@@ -40,7 +40,7 @@
     ++ optionals is-not-mimas not-mimas-pkgs;
 in
   {
-    imports = [./kitty.nix ./wezterm.nix] ++ optional is-not-mimas ./firefox.nix;
+    imports = [./kitty.nix] ++ optional is-not-mimas ./firefox.nix;
     fonts.fontconfig.enable = true;
     home.packages = packages;
   }
