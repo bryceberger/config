@@ -1,18 +1,10 @@
 {pkgs, ...}: let
   playerctl_metadata_cmd = "${pkgs.playerctl}/bin/playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"mediaplayer\"}' -F";
   cssColor = vals: pkgs.lib.foldlAttrs (acc: name: value: acc + "@define-color ${name} ${toString value};\n") "" vals;
-
-  waybar-hyprland = pkgs.waybar.overrideAttrs (oldAttrs: {
-    mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    postPatch = ''
-      # use hyprctl to switch workspaces
-      sed -i 's|zext_workspace_handle_v1_activate(workspace_handle_);|const std::string command = "${pkgs.hyprland}/bin/hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());|g' src/modules/wlr/workspace_manager.cpp
-    '';
-  });
 in {
   programs.waybar = {
     enable = true;
-    package = waybar-hyprland;
+    package = pkgs.waybar;
 
     settings = with pkgs; {
       topBar = {
