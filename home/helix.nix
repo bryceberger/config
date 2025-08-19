@@ -93,6 +93,7 @@
         cursor-line = "hint";
         other-lines = "error";
       };
+      end-of-line-diagnostics = "disable";
 
       lsp.display-progress-messages = true;
     };
