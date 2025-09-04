@@ -37,6 +37,7 @@
       "ll" = "ls -l";
       "c" = "cargo";
       "j" = "just";
+      "m" = "mise";
     };
 
     shellAliases = {

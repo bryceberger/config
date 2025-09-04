@@ -11,12 +11,16 @@
     lsd
     ouch
     ripgrep
+    usage
   ];
 
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
+
+  # fish integration doesn't work with starship
+  programs.mise.enable = true;
 
   programs.starship = {
     enable = true;
