@@ -36,8 +36,8 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "jj-manage";
-      rev = "d57271a1607ee24c46156a5052a2b899a82892dc";
-      hash = "sha256-tnv6pGlOZr2eqXo37sl6vQUCJTSaD1Tm40UaTlS/d1c=";
+      rev = "d0d4f94e89f88264e7c8e143e3f4cf87704c3606";
+      hash = "sha256-iOhStnftTUisf5nntGH5AH3Fyo3tRuivcKOXbiEWBHI=";
     };
     cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
 
