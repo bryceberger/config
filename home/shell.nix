@@ -19,8 +19,10 @@
     nix-direnv.enable = true;
   };
 
-  # fish integration doesn't work with starship
-  programs.mise.enable = true;
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = false;
+  };
 
   programs.starship = {
     enable = true;

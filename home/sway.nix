@@ -10,15 +10,14 @@
     then {
       browser = "firefox";
       terminal = "~/.local/bin/kitty";
-      menu = "rofi -show run";
     }
     else {
       browser = getExe pkgs.firefox;
       terminal = getExe pkgs.kitty;
-      menu = getExe pkgs.fuzzel;
     };
-  inherit (exes) browser terminal menu;
+  inherit (exes) browser terminal;
   pdf-viewer = getExe pkgs.zathura;
+  menu = getExe pkgs.fuzzel;
 
   volume = getExe' pkgs.wireplumber "wpctl";
   media = getExe pkgs.playerctl;
