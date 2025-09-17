@@ -22,12 +22,6 @@ watchman.register-snapshot-trigger = true
 [git]
 private-commits = "private()"
 
-[merge-tools.difft]
-diff-args = ["--color=always", "$left", "$right"]
-
-[merge-tools.kitty]
-diff-args = ["+kitten", "diff", "$left", "$right"]
-
 [colors]
 "author".fg = "blue"
 "change_id".fg = "magenta"

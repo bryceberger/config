@@ -20,12 +20,12 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "difftastic";
-      rev = "bca3188cb265cf62be914c8c8261a8edb5ee7ad4";
-      hash = "sha256-RWZApCeWm2xEg6fnScMU9PjcoGhO5r1gLXYqGpUJifY=";
+      rev = "af3899bb76183200e18961e930324d159ed10a80";
+      hash = "sha256-hEWqHmxHM9TVAWrk1HctiwfspesAFK/dvC0c7/31lBY=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-NenCGFTMDlXaXv0gRLA66gGWehFgUGEMBRJvFbjk+NU=";
+      hash = "sha256-0jJ9i4k6BCTATPzedxzoGPl0aII7QcFDmt6qNOLuSSI=";
     };
   };
 
