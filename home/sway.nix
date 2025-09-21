@@ -121,8 +121,9 @@ in {
           "F11" = "fullscreen";
           "${super}+f" = "fullscreen";
 
-          "F2" = "move scratchpad";
           "F1" = "scratchpad show";
+          "Control+F1" = "resize set width 80ppt height 80ppt; move position center";
+          "F2" = "move scratchpad";
 
           "XF86AudioRaiseVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%+";
           "XF86AudioLowerVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%-";
