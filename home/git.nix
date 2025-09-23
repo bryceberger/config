@@ -7,6 +7,7 @@
   imports = [./github.nix];
   home.packages = with pkgs; [
     difftastic
+    gitoxide # for gix clean
   ];
 
   programs.git = {
