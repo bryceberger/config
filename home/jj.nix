@@ -15,5 +15,6 @@
     inherit email;
     name = "Bryce Berger";
     rdiff = ./jj/rdiff.sh;
+    ollama-difftool = ./jj/ollama-difftool.nu;
   };
 }

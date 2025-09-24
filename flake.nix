@@ -37,6 +37,7 @@
     pkgs = import nixpkgs {
       inherit system overlays;
       config.allowUnfree = true;
+      config.rocmSupport = true;
     };
 
     overlays = [

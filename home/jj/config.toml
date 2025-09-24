@@ -19,6 +19,10 @@ behavior = "own"
 backend = "watchman"
 watchman.register-snapshot-trigger = true
 
+[merge-tools.ollama-difftool]
+program = "@ollama-difftool@"
+diff-args = ["$left", "$right"]
+
 [git]
 private-commits = "private()"
 

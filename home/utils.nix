@@ -4,7 +4,7 @@
     bat
     (btop.override {rocmSupport = true;})
     (pkgs.writeShellScriptBin "btop-no-gpu" ''
-      exec -a $0 ${btop}/bin/btop "$@"
+      exec -a $0 ${btop.override {rocmSupport = false;}}/bin/btop "$@"
     '')
     killall
     jq
