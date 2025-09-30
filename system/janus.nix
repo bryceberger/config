@@ -5,6 +5,13 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_16;
+  boot.kernelPatches = [
+    {
+      name = "bits-per-pixel fix + bigscreen EDID quirk";
+      patch = ./bsb-6-15.patch;
+    }
+  ];
 
   services.xserver = {
     # ugh vr no work nice on wayland -_-
