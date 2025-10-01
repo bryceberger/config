@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./common.nix
     ./devel.nix
@@ -26,11 +30,27 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  xdg.configFile."openxr/1/monado_runtime.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
+  xdg.configFile."openvr/openvrpaths.monado.vrpath".text = let
+    steam = "${config.xdg.dataHome}/Steam";
+  in
+    builtins.toJSON {
+      config = ["${steam}/config"];
+      external_drivers = null;
+      jsonid = "vrpathreg";
+      log = ["${steam}/logs"];
+      runtime = [
+        # "${steam}/steamapps/common/SteamVR"
+        "${pkgs.opencomposite}/lib/opencomposite"
+      ];
+      version = 1;
+    };
+
   home.packages = with pkgs; [
     calibre
     libnotify
     waypipe
-    # wlx-overlay-s
+    wlx-overlay-s
     bs-manager
     nexusmods-app-unfree
     protontricks

@@ -13,17 +13,6 @@
     }
   ];
 
-  services.xserver = {
-    # ugh vr no work nice on wayland -_-
-    # doesn't work too well on X either lol
-    # enable = true;
-    # autorun = false;
-    # displayManager.startx.enable = true;
-    # windowManager.i3 = {
-    #   enable = true;
-    #   extraPackages = with pkgs; [dmenu i3status i3lock];
-    # };
-  };
   programs.sway.enable = true;
 
   services.ollama = {
@@ -84,6 +73,7 @@
 
   programs.steam.enable = true;
   hardware.xpadneo.enable = true;
+  programs.nix-ld.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -95,30 +85,33 @@
   };
   security.pam.services.swaylock = {};
 
-  services = {
-    udev.extraRules = ''
-      # fomu
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="5bf0", MODE="0664", GROUP="plugdev"
-      # kindle?
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="0324", MODE="0664", GROUP="plugdev"
-      # kindle but jessica
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="9981", MODE:="0666"
-      # steam vr camera
-      # doesn't actually work but this makes me feel like I'm doing my part
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28de", ATTRS{idProduct}=="2400", MODE="0660", TAG+="uaccess"
-    '';
-    openssh = {
-      enable = true;
-      settings = {
-        X11Forwarding = true;
-        PasswordAuthentication = false;
-      };
+  services.udev.extraRules = ''
+    # fomu
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="5bf0", MODE="0664", GROUP="plugdev"
+    # kindle?
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="0324", MODE="0664", GROUP="plugdev"
+    # kindle but jessica
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1949", ATTRS{idProduct}=="9981", MODE:="0666"
+    # steam vr camera
+    # doesn't actually work but this makes me feel like I'm doing my part
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28de", ATTRS{idProduct}=="2400", MODE="0660", TAG+="uaccess"
+  '';
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = true;
+      PasswordAuthentication = false;
     };
+  };
 
-    # monado = {
-    #   enable = true;
-    #   defaultRuntime = true;
-    # };
+  systemd.user.services.monado.environment = {
+    STEAMVR_LH_ENABLE = "1";
+    XRT_COMPOSITOR_COMPUTE = "1";
+  };
+  services.monado = {
+    enable = true;
+    defaultRuntime = false;
+    highPriority = true;
   };
 
   virtualisation = {
