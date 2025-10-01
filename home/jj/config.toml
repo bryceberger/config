@@ -102,9 +102,9 @@ rdiff = ["util", "exec", "--", "@rdiff@"]
 "wip()" = "description(glob:'wip:*')"
 "private()" = "description(glob:'private:*')"
 
-"stack()" = "ancestors(mutable() & (..@ | @::), 2)"
-"stack(x)" = "ancestors(mutable() & (..x | x::), 2)"
-"stack(x, n)" = "ancestors(mutable() & (..x | x::), n)"
+"stack()" = "stack(@, 2)"
+"stack(x)" = "stack(x, 2)"
+"stack(x, n)" = "ancestors(reachable(x, mutable()), n)"
 
 "streams()" = "heads(::@ & bookmarks())"
 "streams(x)" = "heads(::x & bookmarks())"
