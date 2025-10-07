@@ -16,6 +16,10 @@
 
     # fails to build
     "citra"
+    "dolphin"
+    "pcsx2"
+    "thepowdertoy"
+    "tic80"
   ];
 
   f = c:
