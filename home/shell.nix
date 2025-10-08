@@ -11,6 +11,7 @@
     lsd
     ouch
     ripgrep
+    delta # for `s`
     usage
   ];
 
