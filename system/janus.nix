@@ -16,7 +16,7 @@
   programs.sway.enable = true;
 
   services.ollama = {
-    enable = true;
+    enable = false;
     loadModels = [
       "qwen3:0.6b"
       "qwen3:14b"
