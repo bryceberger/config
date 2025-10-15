@@ -1,7 +1,8 @@
 "$schema" = "https://jj-vcs.github.io/jj/prerelease/config-schema.json"
 
 [ui]
-default-command = "log"
+# watchman snapshotting is enabled
+default-command = ["--ignore-working-copy", "log"]
 diff-editor = ":builtin"
 diff-formatter = "difft"
 show-cryptographic-signatures = true
