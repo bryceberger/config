@@ -9,12 +9,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-    lix.flake = false;
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.inputs.flake-utils.follows = "flake-utils";
-    lix-module.inputs.lix.follows = "lix";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
@@ -28,7 +23,7 @@
 
   outputs = {
     nixpkgs,
-    lix-module,
+    determinate,
     home-manager,
     ...
   } @ inputs: let
@@ -43,11 +38,9 @@
     overlays = [
       (import ./overlays.nix {inherit system inputs;})
       inputs.nur.overlays.default
-      lix-module.overlays.default
     ];
 
     registry = {
-      nix.settings.flake-registry = "";
       # useful to do `nix shell np#hello` and get it from the *local* nixpkgs,
       # instead of downloading the same commit again
       nix.registry.np.flake = nixpkgs;
@@ -64,7 +57,7 @@
           inherit system pkgs;
           specialArgs.hostname = hostname;
           modules = [
-            lix-module.nixosModules.default
+            determinate.nixosModules.default
             ./system/common.nix
             ./system/${hostname}.nix
           ];
