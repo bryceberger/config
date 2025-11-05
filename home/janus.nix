@@ -31,8 +31,8 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  xdg.configFile."openxr/1/monado_runtime.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
-  xdg.configFile."openvr/openvrpaths.monado.vrpath".text = let
+  xdg.configFile."openxr/1/monado.json".source = "${pkgs.monado}/share/openxr/1/openxr_monado.json";
+  xdg.configFile."openvr/monado.vrpath".text = let
     steam = "${config.xdg.dataHome}/Steam";
   in
     builtins.toJSON {
@@ -55,5 +55,6 @@
     bs-manager
     nexusmods-app-unfree
     protontricks
+    (pkgs.writeShellScriptBin "set-vr" (builtins.readFile ./janus/set-vr.sh))
   ];
 }
