@@ -23,6 +23,10 @@
       tab-width = 4;
       unit = "    ";
     };
+    meson.formatter = {
+      command = "meson";
+      args = ["format" "-"];
+    };
     nix.formatter = {
       command = "alejandra";
       args = ["-q"];
