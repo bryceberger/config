@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    du-dust
+    dust
     bat
     (btop.override {rocmSupport = true;})
     (pkgs.writeShellScriptBin "btop-no-gpu" ''
