@@ -1,0 +1,44 @@
+{username, ...}: {
+  home.sessionVariables = let
+    # get infinite recursion when using `config.home.homeDirectory`
+    home = "/home/${username}";
+    cache = "${home}/.config";
+    config = "${home}/.config";
+    data = "${home}/.local/share";
+    state = "${home}/.local/state";
+  in {
+    XDG_CACHE_HOME = cache;
+    XDG_CONFIG_HOME = config;
+    XDG_DATA_HOME = data;
+    XDG_STATE_HOME = state;
+
+    CARGO_HOME = "${data}/cargo";
+    CUDA_CACHE_PATH = "${cache}/nv";
+    DOTNET_CLI_HOME = "${data}/dotnet";
+    DOT_SAGE = "${config}/sage";
+    GHCUP_USE_XDG_DIRS = "true";
+    GOPATH = "${data}/go";
+    GRADLE_USER_HOME = "${data}/gradle";
+    HISTFILE = "${state}/bash/history";
+    LESSHISTFILE = "${state}/lesshst";
+    NPM_CONFIG_CACHE = "${cache}/npm";
+    NPM_CONFIG_INIT_MODULE = "${config}/npm/config/npm-init.js";
+    NPM_CONFIG_TMP = "$XDG_RUNTIME_DIR/npm";
+    PYTHONSTARTUP = "${config}/python/startup.py";
+    RUSTUP_HOME = "${data}/rustup";
+    STACK_ROOT = "${data}/stack";
+    STACK_XDG = 1;
+    WINEPREFIX = "${data}/wine";
+  };
+
+  xdg.configFile = {
+    "python/startup.py".source = ./xdg/startup.py;
+  };
+
+  xdg.dataFile = {
+    "cargo/config.toml".text = ''
+      [build]
+      target-dir = "/tmp/cargo"
+    '';
+  };
+}

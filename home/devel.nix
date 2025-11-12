@@ -20,11 +20,6 @@ in {
       BreakConstructorInitializers = "BeforeComma";
       AlignOperands = "DontAlign";
     };
-
-    ".cargo/config.toml".text = ''
-      [build]
-      target-dir = "/tmp/cargo"
-    '';
   };
 
   home.packages = with pkgs; [

@@ -16,6 +16,7 @@
     ./shell.nix
     ./sway.nix
     ./utils.nix
+    ./xdg.nix
   ];
 
   home.username = "bryce";
