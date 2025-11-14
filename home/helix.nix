@@ -36,6 +36,7 @@
     typst.formatter.command = "typstyle";
     verilog = {
       language-servers = ["svls"];
+      file-types = ["v" "sv" "vh" "svh"];
       formatter = {
         command = "verible-verilog-format";
         args = ["--indentation_spaces" "4" "-"];
