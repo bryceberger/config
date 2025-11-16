@@ -72,6 +72,7 @@
   };
 
   programs.steam.enable = true;
+  programs.steam.extest.enable = true;
   hardware.xpadneo.enable = true;
   programs.nix-ld.enable = true;
 
