@@ -6,12 +6,12 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "starship";
-      rev = "b157f578b1709f0b8b84669da209e44ee23618ae";
-      hash = "sha256-K6YwOpuIQtG2Ezp1JdrRBXQgP8Jn910xHl6z9s+hkrc=";
+      rev = "31f443406d97f1386580bd44a979d003cfc63c74";
+      hash = "sha256-/PND0QsfP/ZRois7tDUo1Ok4B8fUwSiCAhhB4OQyPxI=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-At8SaAgRvx6MssHuXSaZJQg9HAel/SJPJV6UFdRhATg=";
+      hash = "sha256-EaiXpqWpfm0ti/psoZxbP/K46XyJ+DGBfj9Fxoc5qs4=";
     };
   };
 
