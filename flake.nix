@@ -9,7 +9,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    determinate.url = "github:DeterminateSystems/nix-src/v3.13.1";
     determinate.inputs.nixpkgs.follows = "nixpkgs";
 
     # look into un-colocating jj repos when merged:
@@ -24,7 +24,6 @@
 
   outputs = {
     nixpkgs,
-    determinate,
     home-manager,
     ...
   } @ inputs: let
@@ -58,7 +57,11 @@
           inherit system pkgs;
           specialArgs.hostname = hostname;
           modules = [
-            determinate.nixosModules.default
+            {
+              nix.package = inputs.determinate.packages.${system}.default;
+              nix.settings.lazy-trees = true;
+              nix.settings.eval-cores = 0;
+            }
             ./system/common.nix
             ./system/${hostname}.nix
           ];
