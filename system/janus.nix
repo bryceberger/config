@@ -5,13 +5,13 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
   boot.kernelPatches = [
     {
       name = "bits-per-pixel fix + bigscreen EDID quirk";
       patch = builtins.fetchurl {
-        url = "https://gist.githubusercontent.com/galister/08cddf10ac18929647d5fb6308df3e4b/raw/0f6417b6cb069f19d6c28b730499c07de06ec413/combined-bsb-6-10.patch";
-        sha256 = "0nb79iwn8r9pn3jhv7rr1wvwi5a6i7dxbwpxl58h5sbwbvvjy0k4";
+        url = "https://gitlab.com/lvra/lvra.gitlab.io/-/raw/b0dde5a4048bbfa8db39b562ee9b15beacf3cba3/content/docs/other/bigscreen-beyond/bigscreen-beyond-kernel.patch";
+        sha256 = "0j8pp0iz9nnpfavzspjyfbcrbjlhwrv6sfwflc1zzyvr9jwxfzrj";
       };
     }
   ];
