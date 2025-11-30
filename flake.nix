@@ -50,7 +50,6 @@
         home-manager.packages.${system}.default
       ];
     };
-  in {
     nixosConfigurations = let
       make_system = hostname:
         nixpkgs.lib.nixosSystem {
@@ -121,7 +120,17 @@
         }
       ];
 
-    inherit pkgs;
+    both = user: host:
+      pkgs.linkFarm "both" {
+        system = nixosConfigurations.${host}.config.system.build.toplevel;
+        home = homeConfigurations."${user}@${host}".config.home.activationPackage;
+      };
+  in {
+    inherit pkgs nixosConfigurations homeConfigurations;
     packages.${system}.home-manager = home-manager.packages.${system}.default;
+
+    luna = both "bryce" "luna";
+    janus = both "bryce" "janus";
+    encaladus = both "bryce" "encaladus";
   };
 }
