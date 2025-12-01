@@ -2,7 +2,7 @@
   home.sessionVariables = let
     # get infinite recursion when using `config.home.homeDirectory`
     home = "/home/${username}";
-    cache = "${home}/.config";
+    cache = "${home}/.cache";
     config = "${home}/.config";
     data = "${home}/.local/share";
     state = "${home}/.local/state";
