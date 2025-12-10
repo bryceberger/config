@@ -44,7 +44,7 @@
     # open previous tabs
     "browser.startup.page" = 3;
     "browser.toolbars.bookmarks.visibility" = "never";
-    "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":[],"nav-bar":["alltabs-button","firefox-view-button","back-button","forward-button","urlbar-container","vertical-spacer","unified-extensions-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":[],"vertical-tabs":["tabbrowser-tabs"],"PersonalToolbar":["personal-bookmarks"]},"seen":["developer-button"],"dirtyAreaCache":["nav-bar","TabsToolbar","vertical-tabs","toolbar-menubar","PersonalToolbar"],"currentVersion":21,"newElementCount":2}'';
+    "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":[],"nav-bar":["alltabs-button","firefox-view-button","back-button","forward-button","stop-reload-button","urlbar-container","vertical-spacer","unified-extensions-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":[],"vertical-tabs":["tabbrowser-tabs"],"PersonalToolbar":["personal-bookmarks"]},"seen":["developer-button"],"dirtyAreaCache":["nav-bar","TabsToolbar","vertical-tabs","toolbar-menubar","PersonalToolbar"],"currentVersion":21,"newElementCount":2}'';
     "signon.rememberSignons" = false;
 
     "browser.aboutConfig.showWarning" = false;
