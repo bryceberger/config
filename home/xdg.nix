@@ -1,12 +1,12 @@
-{username, ...}: {
-  home.sessionVariables = let
-    # get infinite recursion when using `config.home.homeDirectory`
-    home = "/home/${username}";
-    cache = "${home}/.cache";
-    config = "${home}/.config";
-    data = "${home}/.local/share";
-    state = "${home}/.local/state";
-  in {
+{username, ...}: let
+  # get infinite recursion when using `config.home.homeDirectory`
+  home = "/home/${username}";
+  cache = "${home}/.cache";
+  config = "${home}/.config";
+  data = "${home}/.local/share";
+  state = "${home}/.local/state";
+in {
+  home.sessionVariables = {
     XDG_CACHE_HOME = cache;
     XDG_CONFIG_HOME = config;
     XDG_DATA_HOME = data;
@@ -38,7 +38,7 @@
   xdg.dataFile = {
     "cargo/config.toml".text = ''
       [build]
-      target-dir = "/tmp/cargo"
+      target-dir = "${cache}/cargo"
     '';
   };
 }
