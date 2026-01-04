@@ -48,5 +48,8 @@
 in {
   helix = getpackage "helix";
   jujutsu = getpackage "jj";
+  git-pkgs = prev.callPackage ./vendored/git-pkgs/package.nix {
+    ruby = prev.ruby_4_0;
+  };
   inherit starship difftastic jj-manage;
 }
