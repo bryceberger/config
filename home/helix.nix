@@ -10,23 +10,19 @@
 
   languages = {inherit language language-server;};
 
+  indent = n: {
+    tab-width = n;
+    unit = pkgs.lib.strings.replicate n " ";
+  };
+
   language = map-languages {
     bash.formatter = {
       command = "shfmt";
       args = ["-i" "4"];
     };
-    c.indent = {
-      tab-width = 4;
-      unit = "    ";
-    };
-    cpp.indent = {
-      tab-width = 4;
-      unit = "    ";
-    };
-    java.indent = {
-      tab-width = 4;
-      unit = "    ";
-    };
+    c.indent = indent 4;
+    cpp.indent = indent 4;
+    java.indent = indent 4;
     meson.formatter = {
       command = "meson";
       args = ["format" "-"];
@@ -36,6 +32,10 @@
       args = ["-q"];
     };
     python.language-servers = ["pyright" "ruff"];
+    tcl = {
+      file-types = ["tcl" "xdc"];
+      indent = indent 4;
+    };
     toml.language-servers = ["taplo"];
     typst.formatter.command = "typstyle";
     verilog = {
