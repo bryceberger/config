@@ -23,8 +23,9 @@
 
   home.packages = with pkgs; [
     brightnessctl
-    patchelf
+    dive
     glab
+    patchelf
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
 
