@@ -55,6 +55,7 @@
     bs-manager
     nexusmods-app-unfree
     protontricks
+    xilinx-unified
     (pkgs.writeShellScriptBin "set-vr" (builtins.readFile ./janus/set-vr.sh))
   ];
 }

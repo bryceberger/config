@@ -20,6 +20,8 @@
     jj.url = "github:bryceberger/jj/mm";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
+
+    xilinx-nix-utils.url = "github:bryceberger/xilinx-nix-utils";
   };
 
   outputs = {

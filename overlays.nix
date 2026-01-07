@@ -48,6 +48,7 @@
 in {
   helix = getpackage "helix";
   jujutsu = getpackage "jj";
+  xilinx-unified = inputs.xilinx-nix-utils.packages.${system}.xilinx-unified-versions."2024.2".xilinx-unified;
   git-pkgs = prev.callPackage ./vendored/git-pkgs/package.nix {
     ruby = prev.ruby_4_0;
   };
