@@ -38,6 +38,7 @@ in {
   xdg.dataFile = {
     "cargo/config.toml".text = ''
       [build]
+      build-dir = "${cache}/cargo/{workspace-path-hash}"
       target-dir = "${cache}/cargo"
     '';
   };

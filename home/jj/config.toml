@@ -98,6 +98,7 @@ man = ["manage"]
 rdiff = ["util", "exec", "--", "@rdiff@"]
 
 [revset-aliases]
+"/" = "trunk()"
 "mine()" = "author(exact:'@name@') | author(exact:'@email@')"
 
 "wip()" = "description(glob:'wip:*')"
