@@ -65,7 +65,7 @@
     };
     rust-analyzer.config = {
       check.command = "clippy";
-      cargo.targetDir = "/home/${username}/.cache/cargo/rust-analyzer";
+      cargo.targetDir = "/home/${username}/.cache/rust-analyzer";
       diagnostics.enableExperimental = true;
     };
     svls.command = "svls";
