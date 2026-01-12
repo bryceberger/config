@@ -16,16 +16,16 @@
   };
 
   difftastic = prev.difftastic.overrideAttrs rec {
-    version = "0.66.0";
+    version = "0.68.0";
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "difftastic";
-      rev = "182565be78d5b0b4a114de276948b4b0d77f6ae8";
-      hash = "sha256-8h7EYTGSG0CydAH7+jKgh6ndQ45+Xwb1hybTJyU/p3I=";
+      rev = "16fb3a078b0e893ca94dc4058686ff8eb43bea7d";
+      hash = "sha256-/pY/HiSjvxou2WRcbxDZbI/ASaZgD07ejGde0EQB7X0=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-3r/4C9J6LHEBD0v7iRotEx2RD7lHiCvnxNnaxT1qOjY=";
+      hash = "sha256-mEpdIeAESCRaNZ+zAuKWf/0+4npZU8l8jlQdId9tnkA=";
     };
   };
 
