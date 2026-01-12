@@ -1,3 +1,4 @@
+#:schema https://github.com/bryceberger/starship/blob/632b1c03ea363ae3490e695590f430c87872edb8/.github/config-schema.json
 # modified from jetpack preset
 
 add_newline = true
@@ -5,7 +6,7 @@ add_newline = true
 command_timeout = 250
 
 format = """\
-($directory$nix_shell$jujutsu_diff$jujutsu_commit$fill\
+($directory$nix_shell$vcs$fill\
 $singularity\
 $kubernetes\
 $docker_context\
@@ -150,17 +151,21 @@ style = "dimmed bright-purple"
 threshold = 70
 style = "dimmed yellow"
 
-# [jujutsu]
-# symbol = ""
+[vcs]
+jj_modules = "$jj_operation$jj_metrics$jj_commit"
 
-[jujutsu_commit]
+[jj_commit]
 format = " [$prefix]($style_prefix)[$rest]($style_rest) [$description]($style_description)"
 
-[jujutsu_diff]
+[jj_metrics]
 format = ' ([▴$added]($added_style))([▿$deleted]($deleted_style))'
 added_style = 'dimmed green'
 deleted_style = 'dimmed red'
 only_nonzero_diffs = false
+
+[jj_operation]
+format = " [$operation]($style)"
+style = "cyan"
 
 [deno]
 format = " [deno](italic) [∫ $version](green bold)"
