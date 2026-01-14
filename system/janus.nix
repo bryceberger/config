@@ -9,10 +9,8 @@
   boot.kernelPatches = [
     {
       name = "bits-per-pixel fix + bigscreen EDID quirk";
-      patch = builtins.fetchurl {
-        url = "https://gitlab.com/lvra/lvra.gitlab.io/-/raw/b0dde5a4048bbfa8db39b562ee9b15beacf3cba3/content/docs/other/bigscreen-beyond/bigscreen-beyond-kernel.patch";
-        sha256 = "0j8pp0iz9nnpfavzspjyfbcrbjlhwrv6sfwflc1zzyvr9jwxfzrj";
-      };
+      # https://github.com/ValveSoftware/SteamVR-for-Linux/issues/610#issuecomment-2988830857
+      patch = ./bsb-6-15.patch;
     }
   ];
 
