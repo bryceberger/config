@@ -51,7 +51,7 @@
     calibre
     libnotify
     waypipe
-    wlx-overlay-s
+    wayvr
     bs-manager
     nexusmods-app-unfree
     protontricks

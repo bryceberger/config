@@ -6,8 +6,8 @@
     src = prev.fetchFromGitHub {
       owner = "bryceberger";
       repo = "starship";
-      rev = "992516af97cb924e22fb8cc583adf2208326168d";
-      hash = "sha256-U8jHJk4TozQD3Z0UFVShYGTcD64yAknZU4o16N7K9z0=";
+      rev = "b9a8924d8cf60b6846abf9cdc7dc9bdd518c08b0";
+      hash = "sha256-UsjPTqLASxznlGB/Z95k7r0B+NbxNN/xo9bd0CC0ZyI=";
     };
     cargoDeps = prev.rustPlatform.fetchCargoVendor {
       inherit src;
