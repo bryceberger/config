@@ -6,7 +6,7 @@
     systemd-boot.configurationLimit = 10;
     efi.canTouchEfiVariables = true;
   };
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   boot.kernelPatches = [
     {
       name = "bits-per-pixel fix + bigscreen EDID quirk";
