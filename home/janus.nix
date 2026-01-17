@@ -53,7 +53,6 @@
     waypipe
     wayvr
     bs-manager
-    nexusmods-app-unfree
     protontricks
     (pkgs.writeShellScriptBin "set-vr" (builtins.readFile ./janus/set-vr.sh))
   ];
