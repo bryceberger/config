@@ -36,9 +36,14 @@ in {
   };
 
   xdg.dataFile = {
+    # I would _like_ to set the following:
+    # build-dir = "${cache}/cargo/{workspace-path-hash}"
+    #
+    # However, this causes the cargo process invoked by `rust-analyzer` to
+    # share the same directory. I'm guessing r-a passes `--target-dir`, but that
+    # doesn't affect the `build-dir`. Should search for an issue / open one...
     "cargo/config.toml".text = ''
       [build]
-      build-dir = "${cache}/cargo/{workspace-path-hash}"
       target-dir = "${cache}/cargo"
     '';
   };
