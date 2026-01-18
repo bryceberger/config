@@ -95,6 +95,8 @@ rdiff = ["util", "exec", "--", "@rdiff@"]
 
 [revset-aliases]
 "/" = "trunk()"
+"_" = "fork_point(trunk() | @)"
+"_(x)" = "fork_point(trunk() | x)"
 "mine()" = "author(exact:'@name@') | author(exact:'@email@')"
 
 "wip()" = "description(glob:'wip:*')"
