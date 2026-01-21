@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     brightnessctl
     dive
+    gitlab-ci-local
     glab
     patchelf
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
