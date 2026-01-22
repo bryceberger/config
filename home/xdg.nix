@@ -41,7 +41,9 @@ in {
     #
     # However, this causes the cargo process invoked by `rust-analyzer` to
     # share the same directory. I'm guessing r-a passes `--target-dir`, but that
-    # doesn't affect the `build-dir`. Should search for an issue / open one...
+    # doesn't affect the `build-dir`.
+    #
+    # https://github.com/rust-lang/rust-analyzer/issues/20150
     "cargo/config.toml".text = ''
       [build]
       target-dir = "${cache}/cargo"
