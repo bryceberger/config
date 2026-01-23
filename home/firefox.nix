@@ -44,7 +44,25 @@
     # open previous tabs
     "browser.startup.page" = 3;
     "browser.toolbars.bookmarks.visibility" = "never";
-    "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":[],"nav-bar":["alltabs-button","firefox-view-button","back-button","forward-button","stop-reload-button","urlbar-container","vertical-spacer","unified-extensions-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":[],"vertical-tabs":["tabbrowser-tabs"],"PersonalToolbar":["personal-bookmarks"]},"seen":["developer-button"],"dirtyAreaCache":["nav-bar","TabsToolbar","vertical-tabs","toolbar-menubar","PersonalToolbar"],"currentVersion":21,"newElementCount":2}'';
+    "browser.uiCustomization.state" = builtins.toJSON {
+      "placements" = {
+        "widget-overflow-fixed-list" = [];
+        "unified-extensions-area" = [];
+        "nav-bar" = [
+          "back-button"
+          "forward-button"
+          "stop-reload-button"
+          "urlbar-container"
+          "vertical-spacer"
+          "downloads-button"
+          "unified-extensions-button"
+        ];
+        "toolbar-menubar" = ["menubar-items"];
+        "TabsToolbar" = [];
+        "vertical-tabs" = ["tabbrowser-tabs"];
+        "PersonalToolbar" = ["personal-bookmarks"];
+      };
+    };
     "signon.rememberSignons" = false;
 
     "browser.aboutConfig.showWarning" = false;
@@ -88,9 +106,20 @@
     "extensions.pocket.enabled" = false;
     "datareporting.healthreport.uploadEnabled" = false;
   };
+
+  policies = {
+    FirefoxHome = {
+      SponsoredStories = false;
+      SponsoredTopSites = false;
+      Stories = false;
+    };
+    GenerativeAI.Enabled = false;
+    SearchEngines.Remove = ["Perplexity"];
+  };
 in {
   programs.firefox = {
     enable = true;
+    inherit policies;
     profiles.nix = {
       inherit extensions search;
       settings = settings // suggest-disable;
