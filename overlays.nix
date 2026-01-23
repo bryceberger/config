@@ -29,6 +29,22 @@
     };
   };
 
+  git-pkgs = prev.buildGoModule  {
+    pname = "git-pkgs";
+    version = "v0.10.2";
+
+    src = prev.fetchFromGitHub {
+      owner = "git-pkgs";
+      repo = "git-pkgs";
+      rev = "55278ac68c8e5d3f15bbc7682b60b64e1d183d01";
+      hash = "sha256-mbc3ZDCedbFkOqeclJpZ76OYQYs4XokCZbL/I8Hm4mA=";
+    };
+    vendorHash = "sha256-ak9QSNkUtOZ2H/1nK36aPcsuFN8ENWT3ycba9UvGiRQ=";
+
+    # tries to access internet during tests
+    doCheck = false;
+  };
+
   jj-manage = prev.rustPlatform.buildRustPackage (finalAttrs: {
     pname = "jj-manage";
     version = "0.0.0";
@@ -48,8 +64,10 @@
 in {
   helix = getpackage "helix";
   jujutsu = getpackage "jj";
-  git-pkgs = prev.callPackage ./vendored/git-pkgs/package.nix {
-    ruby = prev.ruby_4_0;
-  };
-  inherit starship difftastic jj-manage;
+  inherit
+    difftastic
+    git-pkgs
+    jj-manage
+    starship
+    ;
 }
