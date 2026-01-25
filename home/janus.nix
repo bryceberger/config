@@ -47,10 +47,15 @@
       version = 1;
     };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "nexusmods-app-unfree-0.21.1"
+  ];
+
   home.packages = with pkgs; [
     # calibre
     libnotify
     waypipe
+    nexusmods-app-unfree
     wayvr
     bs-manager
     protontricks
