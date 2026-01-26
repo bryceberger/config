@@ -6,6 +6,7 @@
   imports = [./github.nix];
   home.packages = with pkgs; [
     difftastic
+    git-pkgs
     jj-manage
     jujutsu
     watchman

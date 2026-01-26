@@ -29,17 +29,21 @@
     };
   };
 
-  git-pkgs = prev.buildGoModule  {
+  git-pkgs = prev.buildGoModule rec {
     pname = "git-pkgs";
-    version = "v0.10.2";
+    version = "0.10.4";
 
     src = prev.fetchFromGitHub {
       owner = "git-pkgs";
       repo = "git-pkgs";
-      rev = "55278ac68c8e5d3f15bbc7682b60b64e1d183d01";
-      hash = "sha256-mbc3ZDCedbFkOqeclJpZ76OYQYs4XokCZbL/I8Hm4mA=";
+      rev = "f49e36a86ea7019e16933c2e4fdc4f8dc7fc7a87";
+      hash = "sha256-RKmhzmBKDaRPbzDV8dAp5gSGLqhzz6Wh4s0F3e+GOig=";
     };
-    vendorHash = "sha256-ak9QSNkUtOZ2H/1nK36aPcsuFN8ENWT3ycba9UvGiRQ=";
+    vendorHash = "sha256-ZSMou+S6pT/xSqnU1CPQcymmeASydpR98ukEKUKX8lw=";
+
+    ldflags = [
+      "-X github.com/git-pkgs/git-pkgs/cmd.version=${version}"
+    ];
 
     # tries to access internet during tests
     doCheck = false;

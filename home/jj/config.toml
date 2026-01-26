@@ -23,6 +23,12 @@ watchman.register-snapshot-trigger = true
 [git]
 private-commits = "private()"
 
+[merge-tools.git-pkgs]
+program = "git-pkgs"
+diff-args = ["diff-file", "--color=always", "$left", "$right"]
+diff-invocation-mode = "file-by-file"
+edit-args = []
+
 [colors]
 "author".fg = "blue"
 "change_id".fg = "magenta"
