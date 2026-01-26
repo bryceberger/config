@@ -17,4 +17,8 @@
     name = "Bryce Berger";
     rdiff = ./jj/rdiff.sh;
   };
+  xdg.configFile."jj/conf.d" = {
+    source = ./jj/conf.d;
+    recursive = true;
+  };
 }
