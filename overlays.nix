@@ -33,9 +33,9 @@ in {
   };
   starship = overrideRust {
     pkg = "starship";
-    rev = "b9a8924d8cf60b6846abf9cdc7dc9bdd518c08b0";
-    hash = "sha256-UsjPTqLASxznlGB/Z95k7r0B+NbxNN/xo9bd0CC0ZyI=";
-    cargoHash = "sha256-Y4DzuCEjfQqy5NhupsV+qNm4ji7SBPc79YWfvCm+Wiw=";
+    rev = "e8a91648f34c0b15cb5d7d634ca8eb600fa7c3e3";
+    hash = "sha256-aaDyO8t+hGmcvFudVntn4MTUm9msS0XB2VjkX5Ku5cU=";
+    cargoHash = "sha256-22UWJ8cwnIkwa1tmvbUvEupIlXGjU81cDy2Ns7kJVqI=";
   };
 
   git-pkgs = final.callPackage ./overlays/git-pkgs.nix {};

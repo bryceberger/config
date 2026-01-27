@@ -9,15 +9,15 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.10.5";
+  version = "0.11.0";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
-    rev = "1a7b7340121d0330fd3fe2d6f1ee9d640a6a75e0";
-    hash = "sha256-tK3OviDAZkoKefC44+VqoBoMceE3qkN5+zxBocxa8Zk=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-XjW3qwybTmzW2CNgu1Edgs5ZZ9xl3+uS4sT8VWD3jyQ=";
   };
-  vendorHash = "sha256-7ZGVYG+dU0L5nI409vK86l2J1v/8G+G+rzr+lkIp+gU=";
+  vendorHash = "sha256-/LJwq17f7SAjSV2ZcLrdaKZYf9RVJ9wtYqEsW0ubT1Q=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"
@@ -38,9 +38,9 @@ buildGoModule (finalAttrs: {
   ];
 
   postInstall = ''
-    mkdir -p $out/share
+    mkdir -p $out/share/man
     $out/bin/scripts
-    mv man $out/share
+    mv man $out/share/man/man1
     rm $out/bin/scripts
 
     installShellCompletion --cmd git-pkgs \
