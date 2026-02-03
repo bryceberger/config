@@ -3,28 +3,25 @@
   hostname,
   ...
 }: let
-  inherit (pkgs.lib) getExe getExe';
   inherit (pkgs.lib.attrsets) optionalAttrs;
 
-  # weird semi-nix managed system
-  exes =
-    if hostname == "mimas"
-    then {
-      browser = "firefox";
-      terminal = "~/.local/bin/kitty";
-    }
-    else {
-      browser = getExe pkgs.firefox;
-      terminal = getExe pkgs.kitty;
-    };
-
-  backlight = getExe pkgs.brightnessctl;
-  browser = exes.browser;
-  media = getExe pkgs.playerctl;
-  menu = getExe pkgs.fuzzel;
-  pdf-viewer = getExe pkgs.zathura;
-  terminal = exes.terminal;
-  volume = getExe' pkgs.wireplumber "wpctl";
+  # mimas: weird semi-nix managed system, have to use external kitty
+  #
+  # firefox: home-manager wraps it, using `getExe firefox` ends up with the
+  # unwrapped version
+  exes = let
+    inherit (pkgs.lib) getExe getExe';
+  in {
+    backlight = getExe pkgs.brightnessctl;
+    browser = "firefox";
+    media = getExe pkgs.playerctl;
+    menu = getExe pkgs.fuzzel;
+    pdf-viewer = getExe pkgs.zathura;
+    terminal.default = getExe pkgs.kitty;
+    terminal.mimas = "~/.local/bin/kitty";
+    volume = getExe' pkgs.wireplumber "wpctl";
+  };
+  x = name: exes.${name}.${hostname} or exes.${name}.default or exes.${name};
 
   resize_step = "20px";
 
@@ -66,11 +63,11 @@
 
     "Control+q" = "kill";
 
-    "Control+Return" = "exec ${terminal}";
-    "Control+Shift+Return" = "exec ${terminal} --class floating_term";
-    "${super}+w" = "exec ${browser}";
-    "${super}+z" = "exec ${pdf-viewer}";
-    "Alt+space" = "exec ${menu}";
+    "Control+Return" = "exec ${x "terminal"}";
+    "Control+Shift+Return" = "exec ${x "terminal"} --class floating_term";
+    "${super}+w" = "exec ${x "browser"}";
+    "${super}+z" = "exec ${x "pdf-viewer"}";
+    "Alt+space" = "exec ${x "menu"}";
 
     "Control+Shift+space" = "floating toggle";
 
@@ -80,16 +77,16 @@
     "Control+F1" = "resize set width 80ppt height 80ppt; move position center";
     "F2" = "move scratchpad";
 
-    "XF86AudioRaiseVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%+";
-    "XF86AudioLowerVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%-";
-    "XF86AudioMute" = "exec ${volume} set-sink-mute @DEFAULT_SINK@ toggle";
-    "XF86AudioPlay" = "exec ${media} play-pause";
-    "XF86AudioPause" = "exec ${media} play-pause";
-    "XF86AudioNext" = "exec ${media} next";
-    "XF86AudioPrev" = "exec ${media} previous";
+    "XF86AudioRaiseVolume" = "exec ${x "volume"} set-volume @DEFAULT_SINK@ 5%+";
+    "XF86AudioLowerVolume" = "exec ${x "volume"} set-volume @DEFAULT_SINK@ 5%-";
+    "XF86AudioMute" = "exec ${x "volume"} set-sink-mute @DEFAULT_SINK@ toggle";
+    "XF86AudioPlay" = "exec ${x "media"} play-pause";
+    "XF86AudioPause" = "exec ${x "media"} play-pause";
+    "XF86AudioNext" = "exec ${x "media"} next";
+    "XF86AudioPrev" = "exec ${x "media"} previous";
 
-    "XF86MonBrightnessDown" = "exec ${backlight} s 10%-";
-    "XF86MonBrightnessUp" = "exec ${backlight} s 10%+";
+    "XF86MonBrightnessDown" = "exec ${x "backlight"} s 10%-";
+    "XF86MonBrightnessUp" = "exec ${x "backlight"} s 10%+";
   };
 
   workspace-keybinds = let
@@ -136,7 +133,7 @@ in {
             if hostname == "janus"
             then "bottom"
             else "top";
-          statusCommand = getExe pkgs.i3status;
+          statusCommand = pkgs.lib.getExe pkgs.i3status;
           fonts = {
             names = ["Maple Mono NF"];
             size = 8.0;
