@@ -33,6 +33,78 @@
   down = "j";
   up = "k";
   right = "l";
+
+  outputs = {
+    janus = {
+      DP-2.pos = "0 0";
+      DP-2.transform = "270";
+      DP-1.pos = "1440 900";
+      HDMI-A-1.disable = "";
+    };
+    luna = {
+      eDP-2.mode = "2560x1600@60Hz";
+      eDP-2.scale = "1.6";
+    };
+  };
+
+  keybindings = {
+    "${super}+${left}" = "focus left";
+    "${super}+${down}" = "focus down";
+    "${super}+${up}" = "focus up";
+    "${super}+${right}" = "focus right";
+    "${super}+Alt+${left}" = "move left";
+    "${super}+Alt+${down}" = "move down";
+    "${super}+Alt+${up}" = "move up";
+    "${super}+Alt+${right}" = "move right";
+    "Control+Shift+${left}" = "resize shrink width " + resize_step;
+    "Control+Shift+${down}" = "resize grow height " + resize_step;
+    "Control+Shift+${up}" = "resize shrink height " + resize_step;
+    "Control+Shift+${right}" = "resize grow width " + resize_step;
+
+    "${super}+Escape" = "exec lock";
+    "${super}+Shift+s" = "exec screenshot";
+
+    "Control+q" = "kill";
+
+    "Control+Return" = "exec ${terminal}";
+    "Control+Shift+Return" = "exec ${terminal} --class floating_term";
+    "${super}+w" = "exec ${browser}";
+    "${super}+z" = "exec ${pdf-viewer}";
+    "Alt+space" = "exec ${menu}";
+
+    "Control+Shift+space" = "floating toggle";
+
+    "F11" = "fullscreen";
+
+    "F1" = "scratchpad show";
+    "Control+F1" = "resize set width 80ppt height 80ppt; move position center";
+    "F2" = "move scratchpad";
+
+    "XF86AudioRaiseVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%+";
+    "XF86AudioLowerVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%-";
+    "XF86AudioMute" = "exec ${volume} set-sink-mute @DEFAULT_SINK@ toggle";
+    "XF86AudioPlay" = "exec ${media} play-pause";
+    "XF86AudioPause" = "exec ${media} play-pause";
+    "XF86AudioNext" = "exec ${media} next";
+    "XF86AudioPrev" = "exec ${media} previous";
+
+    "XF86MonBrightnessDown" = "exec ${backlight} s 10%-";
+    "XF86MonBrightnessUp" = "exec ${backlight} s 10%+";
+  };
+
+  workspace-keybinds = let
+    make-workspace-keybind = x: [
+      {
+        "Control+${x}" = "workspace ${x}";
+        "Control+Shift+${x}" = "move container to workspace " + x;
+        "Control+Alt+${x}" = "move container to workspace " + x;
+      }
+    ];
+    workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
+  in
+    pkgs.lib.attrsets.mergeAttrsList (
+      builtins.concatLists (map make-workspace-keybind workspaces)
+    );
 in {
   imports = [
     ./wayland_base.nix
@@ -56,27 +128,7 @@ in {
         };
       };
 
-      output =
-        if hostname == "janus"
-        then {
-          "DP-2" = {
-            pos = "0 0";
-            transform = "270";
-          };
-          "DP-1" = {pos = "1440 900";};
-          "HDMI-A-1" = {disable = "";};
-        }
-        else if hostname == "luna"
-        then let
-          args = {
-            mode = "2560x1600@60Hz";
-            scale = "1.6";
-          };
-        in {
-          "eDP-1" = args;
-          "eDP-2" = args;
-        }
-        else {};
+      output = outputs.${hostname} or {};
 
       bars = [
         {
@@ -95,68 +147,8 @@ in {
       floating.modifier = super;
 
       keybindings =
-        {
-          "${super}+${left}" = "focus left";
-          "${super}+${down}" = "focus down";
-          "${super}+${up}" = "focus up";
-          "${super}+${right}" = "focus right";
-          "${super}+Alt+${left}" = "move left";
-          "${super}+Alt+${down}" = "move down";
-          "${super}+Alt+${up}" = "move up";
-          "${super}+Alt+${right}" = "move right";
-          "Control+Shift+${left}" = "resize shrink width " + resize_step;
-          "Control+Shift+${down}" = "resize grow height " + resize_step;
-          "Control+Shift+${up}" = "resize shrink height " + resize_step;
-          "Control+Shift+${right}" = "resize grow width " + resize_step;
-
-          "${super}+Escape" = "exec lock";
-          "${super}+Shift+s" = "exec screenshot";
-
-          "Control+q" = "kill";
-
-          "Control+Return" = "exec ${terminal}";
-          "Control+Shift+Return" = "exec ${terminal} --class floating_term";
-          "${super}+w" = "exec ${browser}";
-          "${super}+z" = "exec ${pdf-viewer}";
-          "Alt+space" = "exec ${menu}";
-
-          "Control+Shift+space" = "floating toggle";
-
-          "F11" = "fullscreen";
-          "${super}+f" = "fullscreen";
-
-          "F1" = "scratchpad show";
-          "Control+F1" = "resize set width 80ppt height 80ppt; move position center";
-          "F2" = "move scratchpad";
-
-          "XF86AudioRaiseVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%+";
-          "XF86AudioLowerVolume" = "exec ${volume} set-volume @DEFAULT_SINK@ 5%-";
-          "XF86AudioMute" = "exec ${volume} set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioPlay" = "exec ${media} play-pause";
-          "XF86AudioPause" = "exec ${media} play-pause";
-          "XF86AudioNext" = "exec ${media} next";
-          "XF86AudioPrev" = "exec ${media} previous";
-
-          "XF86MonBrightnessDown" = "exec ${backlight} s 10%-";
-          "XF86MonBrightnessUp" = "exec ${backlight} s 10%+";
-        }
-        // builtins.listToAttrs (builtins.concatLists (map
-          (
-            x: [
-              {
-                name = "Control+" + x;
-                value = "workspace " + x;
-              }
-              {
-                name = "Control+Shift+" + x;
-                value = "move container to workspace " + x;
-              }
-              {
-                name = "Control+Alt+" + x;
-                value = "move container to workspace " + x;
-              }
-            ]
-          ) ["1" "2" "3" "4" "5" "6" "7" "8" "9"]))
+        keybindings
+        // workspace-keybinds
         // optionalAttrs (hostname == "luna") {
           "${super}+space" = "exec kbdbacklighttoggle";
         };
