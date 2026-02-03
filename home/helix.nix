@@ -66,7 +66,6 @@
     rust-analyzer.config = {
       check.command = "clippy";
       cargo.targetDir = "${cargo-cache}/rust-analyzer";
-      diagnostics.enableExperimental = true;
     };
     svls.command = "svls";
     veryl-ls = {command = "veryl-ls";};
