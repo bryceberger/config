@@ -1,6 +1,6 @@
 {
   pkgs,
-  username,
+  cargo-cache,
   ...
 }: let
   map-languages = langs:
@@ -65,7 +65,7 @@
     };
     rust-analyzer.config = {
       check.command = "clippy";
-      cargo.targetDir = "/home/${username}/.cache/cargo/rust-analyzer";
+      cargo.targetDir = "${cargo-cache}/rust-analyzer";
       diagnostics.enableExperimental = true;
     };
     svls.command = "svls";

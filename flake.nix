@@ -85,6 +85,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs system username hostname email gpg-key;
+            cargo-cache = "/tmp/${username}/cargo";
           };
           modules = [
             ./home/${hostname}.nix

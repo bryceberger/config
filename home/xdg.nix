@@ -1,4 +1,8 @@
-{username, ...}: let
+{
+  username,
+  cargo-cache,
+  ...
+}: let
   # get infinite recursion when using `config.home.homeDirectory`
   home = "/home/${username}";
   cache = "${home}/.cache";
@@ -46,7 +50,7 @@ in {
     # https://github.com/rust-lang/rust-analyzer/issues/20150
     "cargo/config.toml".text = ''
       [build]
-      target-dir = "${cache}/cargo"
+      target-dir = "${cargo-cache}"
     '';
   };
 }
