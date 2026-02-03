@@ -11,16 +11,17 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1769632308,
-        "narHash": "sha256-Zoa/PATfYzAOOMfFEgRUcJtJ0+Hez2A4w9DVJXRy1BA=",
-        "owner": "DeterminateSystems",
-        "repo": "nix-src",
-        "rev": "02fcf7b4e8ccb6d87eb9d0898b013c81efea71a7",
+        "lastModified": 1770082405,
+        "narHash": "sha256-AbfQ1VEPw5FBiLgKFoaOB+TB3U09Zhu7drp4FW7cbwQ=",
+        "owner": "bryceberger",
+        "repo": "detnix",
+        "rev": "ef1391ecec69cac138b8202c40c525da3a22cb78",
         "type": "github"
       },
       "original": {
-        "owner": "DeterminateSystems",
-        "repo": "nix-src",
+        "owner": "bryceberger",
+        "ref": "bryce/push-mqwozlylozoq",
+        "repo": "detnix",
         "type": "github"
       }
     },

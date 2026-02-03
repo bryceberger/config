@@ -9,7 +9,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    determinate.url = "github:DeterminateSystems/nix-src";
+    # https://github.com/DeterminateSystems/nix-src/pull/333
+    # determinate.url = "github:DeterminateSystems/nix-src";
+    determinate.url = "github:bryceberger/detnix/bryce/push-mqwozlylozoq";
     determinate.inputs.nixpkgs.follows = "nixpkgs";
 
     # look into un-colocating jj repos when merged:
