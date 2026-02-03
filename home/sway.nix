@@ -152,5 +152,13 @@ in {
     };
   };
 
-  xdg.configFile."i3status-rust/config.toml".source = ./sway/i3status-rust.toml;
+  xdg.configFile."i3status-rust/config.toml".source = let
+    sensors = {
+      mimas = "coretemp-isa-*";
+      default = "k10temp-*";
+    };
+  in
+    pkgs.replaceVars ./sway/i3status-rust.toml {
+      sensors = sensors.${hostname} or sensors.default;
+    };
 }

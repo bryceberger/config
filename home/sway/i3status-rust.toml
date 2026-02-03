@@ -16,7 +16,7 @@ critical_cpu = 90
 [[block]]
 block = "temperature"
 format = " $icon $max "
-chip = "k10temp-*"
+chip = "@sensors@"
 
 [[block]]
 block = "disk_space"
