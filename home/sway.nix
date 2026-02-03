@@ -4,6 +4,8 @@
   ...
 }: let
   inherit (pkgs.lib) getExe getExe';
+  inherit (pkgs.lib.attrsets) optionalAttrs;
+
   # weird semi-nix managed system
   exes =
     if hostname == "mimas"
@@ -15,12 +17,14 @@
       browser = getExe pkgs.firefox;
       terminal = getExe pkgs.kitty;
     };
-  inherit (exes) browser terminal;
-  pdf-viewer = getExe pkgs.zathura;
-  menu = getExe pkgs.fuzzel;
 
-  volume = getExe' pkgs.wireplumber "wpctl";
+  backlight = getExe pkgs.brightnessctl;
+  browser = exes.browser;
   media = getExe pkgs.playerctl;
+  menu = getExe pkgs.fuzzel;
+  pdf-viewer = getExe pkgs.zathura;
+  terminal = exes.terminal;
+  volume = getExe' pkgs.wireplumber "wpctl";
 
   resize_step = "20px";
 
@@ -132,6 +136,9 @@ in {
           "XF86AudioPause" = "exec ${media} play-pause";
           "XF86AudioNext" = "exec ${media} next";
           "XF86AudioPrev" = "exec ${media} previous";
+
+          "XF86MonBrightnessDown" = "exec ${backlight} s 10%-";
+          "XF86MonBrightnessUp" = "exec ${backlight} s 10%+";
         }
         // builtins.listToAttrs (builtins.concatLists (map
           (
@@ -149,7 +156,10 @@ in {
                 value = "move container to workspace " + x;
               }
             ]
-          ) ["1" "2" "3" "4" "5" "6" "7" "8" "9"]));
+          ) ["1" "2" "3" "4" "5" "6" "7" "8" "9"]))
+        // optionalAttrs (hostname == "luna") {
+          "${super}+space" = "exec kbdbacklighttoggle";
+        };
     };
   };
 }
