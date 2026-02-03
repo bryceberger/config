@@ -52,7 +52,6 @@ in {
     ./git.nix
     ./gpg.nix
     ./helix.nix
-    ./hyprland.nix
     ./jj.nix
     ./kitty.nix
     ./retroarch.nix
