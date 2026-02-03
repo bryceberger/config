@@ -1,23 +1,24 @@
 {
   lib,
-  buildGoModule,
+  buildGo126Module,
   fetchFromGitHub,
   installShellFiles,
   git,
   maven,
   yarn,
 }:
-buildGoModule (finalAttrs: {
+# needs go 1.25.6, but nixpkgs master only has 1.25.5
+buildGo126Module (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.11.0";
+  version = "0.11.4";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-XjW3qwybTmzW2CNgu1Edgs5ZZ9xl3+uS4sT8VWD3jyQ=";
+    hash = "sha256-c8p2hivKylvHJwHB4HLR6qZ99yU7HmjN6bgtUiZX1Mo=";
   };
-  vendorHash = "sha256-/LJwq17f7SAjSV2ZcLrdaKZYf9RVJ9wtYqEsW0ubT1Q=";
+  vendorHash = "sha256-34mnsapspvyihonNURVUCTLBiFNK0IqpUU2A/tncP8s=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"
@@ -29,7 +30,7 @@ buildGoModule (finalAttrs: {
 
   checkFlags = [
     # tries to access internet
-    "-skip TestLicensesCommand"
+    "-skip TestLicenses"
   ];
   nativeCheckInputs = [
     git
