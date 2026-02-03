@@ -40,7 +40,7 @@
     };
     luna = {
       eDP-2.mode = "2560x1600@60Hz";
-      eDP-2.scale = "1.6";
+      eDP-2.scale = "1.5";
     };
   };
 
@@ -133,7 +133,7 @@ in {
             if hostname == "janus"
             then "bottom"
             else "top";
-          statusCommand = pkgs.lib.getExe pkgs.i3status;
+          statusCommand = pkgs.lib.getExe pkgs.i3status-rust;
           fonts = {
             names = ["Maple Mono NF"];
             size = 8.0;
@@ -151,4 +151,6 @@ in {
         };
     };
   };
+
+  xdg.configFile."i3status-rust/config.toml".source = ./sway/i3status-rust.toml;
 }
