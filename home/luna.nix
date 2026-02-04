@@ -74,17 +74,20 @@ in {
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
+  home.packages = [
     nix_remote
     kbdbacklighttoggle
     pw
     p
-    sway-audio-idle-inhibit
   ];
 
-  xdg.configFile = {
-    "swayidle/config".text = ''
-      timeout 600 'systemctl suspend'
-    '';
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 600;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
   };
 }
