@@ -3,6 +3,8 @@ invert_scrolling = true
 
 [theme]
 theme = "ctp-mocha"
+[theme.overrides]
+separator = ""
 
 [icons]
 icons = "none"
