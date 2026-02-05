@@ -39,7 +39,7 @@ function rt
 
             printf "$diff$rs$repo$rs%dd %02dh %02dm %02ds ago\n" $days $hours $minutes $seconds
         end
-    end | sort -n | cut -d"$rs" -f"2,3" | column -t -s"$rs"
+    end | sort -n | cut -d"$rs" -f"2,3" | column -t -s"$rs" -R 2
 end
 
 function bind_bang
