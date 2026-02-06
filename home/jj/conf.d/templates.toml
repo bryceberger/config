@@ -1,5 +1,4 @@
 [template-aliases]
-"link(target, text)" = 'raw_escape_sequence("\x1b]8;;" ++ target ++ "\x1b\\") ++ label("text link", text) ++ raw_escape_sequence("\x1b]8;;\x1b\\")'
 "italic(text)" = 'raw_escape_sequence("\x1b[3m") ++ text ++ raw_escape_sequence("\x1b[23m")'
 "dim(text)" = 'raw_escape_sequence("\x1b[2m") ++ text ++ raw_escape_sequence("\x1b[22m")'
 
