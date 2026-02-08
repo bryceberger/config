@@ -20,11 +20,6 @@
     nix-direnv.enable = true;
   };
 
-  programs.mise = {
-    enable = true;
-    enableFishIntegration = false;
-  };
-
   programs.starship = {
     enable = true;
     enableFishIntegration = true;

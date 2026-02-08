@@ -3,13 +3,14 @@
     ./fish/catppuccin.nix
   ];
 
+  home.packages = with pkgs; [
+    jj-manage
+    fzf
+  ];
   xdg.configFile = {
-    "fish/conf.d/00-functions.fish" = {
-      enable = true;
-      source = pkgs.replaceVars ./fish/functions.fish {
-        jjm = pkgs.lib.getExe pkgs.jj-manage;
-        fzf = pkgs.lib.getExe pkgs.fzf;
-      };
+    "fish/conf.d" = {
+      source = ./fish/conf.d;
+      recursive = true;
     };
   };
 
@@ -28,16 +29,38 @@
     in
       plugins [
         "autopair"
-        "plugin-git"
         "nvm"
       ];
+
+    functions = {
+      last_history_item = "echo $history[1]";
+      s = {
+        wraps = "rg --json";
+        body = "rg --json $argv | delta --tabs 1";
+      };
+      tmp = ''
+        set -l tmpdir (mktemp -d)
+        cd $tmpdir
+        fish $argv
+        set -l ret $status
+        cd $dirprev[-1]
+        return $ret
+      '';
+    };
 
     shellAbbrs = {
       "la" = "ls -a";
       "ll" = "ls -l";
       "c" = "cargo";
       "j" = "just";
-      "m" = "mise";
+      "!!" = {
+        position = "anywhere";
+        expansion = "last_history_item";
+      };
+      "\\$?" = {
+        position = "anywhere";
+        expansion = "\\$status";
+      };
     };
 
     shellAliases = {
