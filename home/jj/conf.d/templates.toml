@@ -83,6 +83,7 @@ if(signature, label("signature status " ++ signature.status(),
 "info_of(x)" = '''separate(" ",
   x.tags(),
   x.bookmarks(),
+  x.working_copies(),
   if(!mine, x.author().name()),
   format_short_cryptographic_signature(x.signature()),
 )'''
