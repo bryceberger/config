@@ -1,6 +1,10 @@
 [colors]
 "author".fg = "blue"
 "change_id".fg = "magenta"
+"ci fail" = "red"
+"ci pass" = "green"
+"ci running" = "yellow"
+"ci".italic = false
 "commit_id".fg = "blue"
 "conflict change_id".fg = "red"
 "current_working_copy change_id".reverse = true

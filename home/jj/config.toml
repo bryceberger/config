@@ -63,6 +63,9 @@ s = ["stack"]
 manage = ["util", "exec", "--", "jj-manage"]
 man = ["manage"]
 
+forge = ["util", "exec", "--", "jj-forge"]
+f = ["forge"]
+
 rdiff = ["util", "exec", "--", "@rdiff@"]
 
 [revset-aliases]

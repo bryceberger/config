@@ -85,6 +85,8 @@ if(signature, label("signature status " ++ signature.status(),
   x.bookmarks(),
   x.working_copies(),
   if(!mine, x.author().name()),
+  format_forge_change(x),
+  format_forge_check(x),
   format_short_cryptographic_signature(x.signature()),
 )'''
 

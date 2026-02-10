@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     difftastic
     git-pkgs
+    jj-forge
     jj-manage
     jujutsu
     watchman
