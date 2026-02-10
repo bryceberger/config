@@ -55,11 +55,7 @@
       "j" = "just";
       "!!" = {
         position = "anywhere";
-        expansion = "last_history_item";
-      };
-      "\\$?" = {
-        position = "anywhere";
-        expansion = "\\$status";
+        function = "last_history_item";
       };
     };
 
