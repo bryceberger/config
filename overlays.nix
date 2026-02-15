@@ -38,6 +38,7 @@ in {
     cargoHash = "sha256-22UWJ8cwnIkwa1tmvbUvEupIlXGjU81cDy2Ns7kJVqI=";
   };
 
+  fetchgit2 = final.callPackage ./overlays/fetchgit2 {};
   git-pkgs = final.callPackage ./overlays/git-pkgs.nix {};
   jj-forge = final.callPackage ./overlays/jj-forge.nix {};
   jj-manage = final.callPackage ./overlays/jj-manage.nix {};
