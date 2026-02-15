@@ -22,7 +22,27 @@
   getInput = package: inputs.${package}.packages.${system}.default;
 in {
   helix = getInput "helix";
-  jujutsu = getInput "jj";
+  jujutsu =
+    final.callPackage (final.fetchgit2 {
+      url = "https://github.com/jj-vcs/jj";
+      revs = [
+        # main
+        "4d4e52a890257efc7576412ca4b049efc97d828b"
+        # annotate --domain
+        "d49381db3f302a6325cd23546f12fad72ac68184"
+        # log width
+        "97b97b9a5ae7c9106c66ec9896645f92335fb03f"
+        # revset evaluator
+        "84a870a2d05ef528ed73ddb15c558d3a5a343171"
+        # default.nix
+        "b76a4e8b7b10976df1128563cbf165e4f7f5d856"
+        # `jj arrange`
+        "1b27d740293c4970619ae9b313fad44bf81b03bd"
+      ];
+      hash = "sha256-0eVFS/9EfyQWmeJ2zJZzfZiDUhBy0Fn6buEQ+OqUW48=";
+    }) {
+      gitRev = "0000000000000000000000000000000000000000";
+    };
 
   difftastic = overrideRust {
     pkg = "difftastic";

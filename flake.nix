@@ -18,10 +18,6 @@
     # https://github.com/helix-editor/helix/pull/12022
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
-
-    jj.url = "github:bryceberger/jj/mm";
-    jj.inputs.nixpkgs.follows = "nixpkgs";
-    jj.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = {
