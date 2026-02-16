@@ -8,6 +8,11 @@ separator = ""
 
 [icons]
 icons = "none"
+[icons.overrides]
+music_next = "\uf051"  # fa-forward-step
+music_pause = "\uf04c" # fa-pause
+music_play = "\uf04b"  # fa-play
+music_prev = "\uf048"  # fa-backward-step
 
 [[block]]
 block = "cpu"
@@ -39,6 +44,9 @@ block = "sound"
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
+[[block]]
+block = "music"
+format = " $icon {$combo.str(max_w:25,rot_interval:0.5) $prev $play $next |}"
 
 [[block]]
 block = "time"
