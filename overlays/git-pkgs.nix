@@ -10,15 +10,15 @@
 # needs go 1.25.6, but nixpkgs master only has 1.25.5
 buildGo126Module (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.13.0";
+  version = "0.14.0";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-OldlqhgTCPwgBDkcadAKhWeLmWjgPJpmYf99TKniFUY=";
+    hash = "sha256-FyeB/mT+YOutjD0rT1pzIU+mKrJYMs2IlbhJ64jC+WA=";
   };
-  vendorHash = "sha256-q6J/2OIt09OaK99Q8v3cZNgfleaJfKW0+V7Cd6ib8y8=";
+  vendorHash = "sha256-LJEZA369xQgs3XiEeabyO6XVzu9DYkZbyeql5u6h+HM=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"
@@ -40,9 +40,9 @@ buildGo126Module (finalAttrs: {
 
   postInstall = ''
     mkdir -p $out/share/man
-    $out/bin/scripts
+    $out/bin/generate-man
     mv man $out/share/man/man1
-    rm $out/bin/scripts
+    rm $out/bin/generate-man $out/bin/generate-docs
 
     installShellCompletion --cmd git-pkgs \
       --bash <($out/bin/git-pkgs completion bash) \
