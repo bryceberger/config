@@ -39,22 +39,7 @@ dk = ["diff", "--tool", "kitty"]
 ll = ["log", "-T", "builtin_log_detailed"]
 l = ["log", "-T", "builtin_log_compact"]
 
-tug = [
-  "bookmark",
-  "move",
-  "--from",
-  "streams()",
-  "--to",
-  "heads(streams()::@- ~ private())",
-]
-streams = [
-  "log",
-  "--no-graph",
-  "-r",
-  "streams()",
-  "-T",
-  "bookmarks.map(|b| b ++ ' ')",
-]
+tug = ["bookmark", "advance"]
 
 open = ["log", "-r", "open()"]
 stack = ["log", "-r", "stack()"]
@@ -67,6 +52,9 @@ forge = ["util", "exec", "--", "jj-forge"]
 f = ["forge"]
 
 rdiff = ["util", "exec", "--", "@rdiff@"]
+
+[revsets]
+bookmark-advance-to = "heads(streams()::@- ~ private()::)"
 
 [revset-aliases]
 "/" = "trunk()"
