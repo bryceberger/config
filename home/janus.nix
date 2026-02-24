@@ -48,7 +48,7 @@
     };
 
   home.packages = with pkgs; [
-    calibre
+    # calibre
     libnotify
     waypipe
     wayvr
