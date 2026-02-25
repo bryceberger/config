@@ -6,11 +6,11 @@
     extraPackages = [pkgs.mesa];
   };
 
-  boot = {
-    initrd.kernelModules = ["amdgpu"];
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.grub.configurationLimit = 20;
+  boot.initrd.kernelModules = ["amdgpu"];
+  boot.loader = {
+    systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 10;
+    efi.canTouchEfiVariables = true;
   };
 
   networking.networkmanager.enable = true;

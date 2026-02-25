@@ -3,6 +3,7 @@
 
   boot.loader = {
     systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 10;
     efi.canTouchEfiVariables = true;
   };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_17;
