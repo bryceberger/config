@@ -9,7 +9,7 @@
   boot.initrd.kernelModules = ["amdgpu"];
   boot.loader = {
     systemd-boot.enable = true;
-    systemd-boot.configurationLimit = 10;
+    systemd-boot.configurationLimit = 2;
     efi.canTouchEfiVariables = true;
   };
 
