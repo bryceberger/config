@@ -1,3 +1,4 @@
+# nix run .#pkgs.nix-update -- --flake git-pkgs
 {
   lib,
   buildGo126Module,
@@ -10,15 +11,15 @@
 # needs go 1.25.6, but nixpkgs master only has 1.25.5
 buildGo126Module (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.14.0";
+  version = "0.15.0";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-FyeB/mT+YOutjD0rT1pzIU+mKrJYMs2IlbhJ64jC+WA=";
+    hash = "sha256-ePkLzUlHgFTJjzcZ5SP1LNcSCnaUhTO2nxDpt/jjvBc=";
   };
-  vendorHash = "sha256-LJEZA369xQgs3XiEeabyO6XVzu9DYkZbyeql5u6h+HM=";
+  vendorHash = "sha256-3753+h7NBpawkk0+UL+chIvS7vfklDU+T8uKjHsD6Yc=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"

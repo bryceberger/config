@@ -10,16 +10,14 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # https://github.com/DeterminateSystems/nix-src/pull/333
-    # determinate.url = "github:DeterminateSystems/nix-src";
-    determinate.url = "github:bryceberger/detnix/bryce/push-mqwozlylozoq";
-    determinate.inputs.nixpkgs.follows = "nixpkgs";
+    determinate.url = "github:DeterminateSystems/nix-src";
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
-    jj.url = "github:bryceberger/jj/mm";
+    jj.url = "github:bryceberger/jj/log-width";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
   };
