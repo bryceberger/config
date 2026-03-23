@@ -14,7 +14,7 @@
 
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
-    helix.url = "github:helix-editor/helix";
+    helix.url = "github:bryceberger/helix/mm";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
     jj.url = "github:bryceberger/jj/log-width";

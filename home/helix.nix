@@ -105,6 +105,7 @@
       end-of-line-diagnostics = "disable";
 
       lsp.display-progress-messages = true;
+      lsp.auto-document-highlight = true;
     };
 
     keys = {
