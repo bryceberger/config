@@ -26,10 +26,10 @@ in {
 
   difftastic = overrideRust {
     pkg = "difftastic";
-    args.version = "0.68.0";
-    rev = "16fb3a078b0e893ca94dc4058686ff8eb43bea7d";
-    hash = "sha256-/pY/HiSjvxou2WRcbxDZbI/ASaZgD07ejGde0EQB7X0=";
-    cargoHash = "sha256-mEpdIeAESCRaNZ+zAuKWf/0+4npZU8l8jlQdId9tnkA=";
+    args.version = "0.69.0";
+    rev = "07832cea0f8cccc4b2e75b10a75403af3fe7225c";
+    hash = "sha256-EDxqFjpC33Ahrz+cEpq8194FrWIvGZqbV4PNbZ9qnOY=";
+    cargoHash = "sha256-zp/gS02uTmix75G73o2l6UtFmkMaRPUbXmbzjGPahMg=";
   };
   starship = overrideRust {
     pkg = "starship";

@@ -11,15 +11,15 @@
 # needs go 1.25.6, but nixpkgs master only has 1.25.5
 buildGo126Module (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.15.0";
+  version = "0.15.1";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ePkLzUlHgFTJjzcZ5SP1LNcSCnaUhTO2nxDpt/jjvBc=";
+    hash = "sha256-ZCgXpE91Rq33f0S/cEb4hnAoZ+O52eRlDb5GliI0kcg=";
   };
-  vendorHash = "sha256-3753+h7NBpawkk0+UL+chIvS7vfklDU+T8uKjHsD6Yc=";
+  vendorHash = "sha256-PBLEobe2FSN0a1J2GyYCSu8vFplN6HVidIPelOd9TEs=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"
