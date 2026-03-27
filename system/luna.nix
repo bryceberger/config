@@ -79,7 +79,6 @@
   services = {
     asusd = {
       enable = true;
-      enableUserService = true;
     };
     upower.enable = true;
   };
