@@ -17,6 +17,7 @@
     # fails to build
     "citra"
     "dolphin"
+    "fbalpha2012"
     "pcsx2"
     "thepowdertoy"
     "tic80"
