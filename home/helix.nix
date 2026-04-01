@@ -1,8 +1,4 @@
-{
-  pkgs,
-  cargo-cache,
-  ...
-}: let
+{pkgs, ...}: let
   map-languages = langs:
     builtins.map
     (name: {inherit name;} // langs.${name})
@@ -65,7 +61,7 @@
     };
     rust-analyzer.config = {
       check.command = "clippy";
-      cargo.targetDir = "${cargo-cache}/rust-analyzer";
+      cargo.targetDir = true;
     };
     svls.command = "svls";
     veryl-ls = {command = "veryl-ls";};

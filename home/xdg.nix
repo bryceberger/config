@@ -1,8 +1,4 @@
-{
-  username,
-  cargo-cache,
-  ...
-}: let
+{username, ...}: let
   # get infinite recursion when using `config.home.homeDirectory`
   home = "/home/${username}";
   cache = "${home}/.cache";
@@ -40,17 +36,11 @@ in {
   };
 
   xdg.dataFile = {
-    # I would _like_ to set the following:
-    # build-dir = "${cache}/cargo/{workspace-path-hash}"
-    #
-    # However, this causes the cargo process invoked by `rust-analyzer` to
-    # share the same directory. I'm guessing r-a passes `--target-dir`, but that
-    # doesn't affect the `build-dir`.
-    #
     # https://github.com/rust-lang/rust-analyzer/issues/20150
     "cargo/config.toml".text = ''
       [build]
-      target-dir = "${cargo-cache}"
+      build-dir = "/tmp/${username}/cargo/{workspace-path-hash}"
+      target-dir = "/tmp/${username}/cargo"
     '';
   };
 }
