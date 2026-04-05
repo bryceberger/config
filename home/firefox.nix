@@ -115,6 +115,9 @@
     };
     GenerativeAI.Enabled = false;
     SearchEngines.Remove = ["Perplexity"];
+    SecurityDevices = {
+      "PKCS#11 OpenSC" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+    };
   };
 in {
   programs.firefox = {

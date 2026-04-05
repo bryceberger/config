@@ -87,6 +87,7 @@
     ];
   };
   security.pam.services.swaylock = {};
+  services.pcscd.enable = true;
 
   services.udev.extraRules = ''
     # fomu
