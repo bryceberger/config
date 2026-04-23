@@ -25,7 +25,6 @@
       fira-code
       font-awesome
       maple-mono.NF
-      zathura
       pavucontrol
     ]
     ++ all-nerd-fonts;
@@ -43,6 +42,13 @@ in
     imports = [./kitty.nix] ++ optional is-not-mimas ./firefox.nix;
     fonts.fontconfig.enable = true;
     home.packages = packages;
+
+    programs.zathura = {
+      enable = true;
+      options = {
+        show-recent = 0;
+      };
+    };
   }
   // optionalAttrs is-not-mimas
   {
