@@ -30,5 +30,8 @@
   cores = cs: filter f (attrValues cs);
   retroarch = pkgs.retroarch.withCores cores;
 in {
-  home.packages = [retroarch];
+  home.packages = [
+    retroarch
+    pkgs.ups-apply
+  ];
 }
