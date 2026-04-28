@@ -134,7 +134,7 @@ style = "dimmed white"
 [battery]
 format = "[ $percentage $symbol]($style)"
 full_symbol = "█"
-charging_symbol = "[↑](italic bold green)"
+charging_symbol = "[↑](bold green)"
 discharging_symbol = "↓"
 unknown_symbol = "░"
 empty_symbol = "▃"

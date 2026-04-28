@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   map-languages = langs:
-    builtins.map
+    map
     (name: {inherit name;} // langs.${name})
     (builtins.attrNames langs);
 
@@ -27,7 +27,12 @@
       command = "alejandra";
       args = ["-q"];
     };
-    python.language-servers = ["pyright" "ruff"];
+    python.language-servers = [
+      "pyrefly"
+      "pyright"
+      "ruff"
+      "ty"
+    ];
     tcl = {
       file-types = ["tcl" "xdc"];
       indent = indent 4;
@@ -44,27 +49,28 @@
     };
   };
 
+  lsp = cmd: config: {
+    inherit config;
+    command = builtins.head cmd;
+    args = builtins.tail cmd;
+  };
   language-server = {
-    nixd.command = "nixd";
-    taplo = {
-      command = "taplo";
-      args = ["lsp" "stdio"];
-      config.root_dir = [".git" "*.toml"];
+    nixd = lsp ["nixd"] {};
+    pyrefly = lsp ["pyrefly" "lsp"] {
+      pyrefly.displayTypeErrors = "force-on";
     };
-    pyright = {
-      command = "basedpyright-langserver";
-      args = ["--stdio"];
-    };
-    ruff = {
-      command = "ruff";
-      args = ["server" "--preview"];
-    };
-    rust-analyzer.config = {
+    pyright = lsp ["basedpyright-langserver" "--stdio"] {};
+    ruff = lsp ["ruff" "server" "--preview"] {};
+    rust-analyzer = lsp ["rust-analyzer"] {
       check.command = "clippy";
       cargo.targetDir = true;
     };
     svls.command = "svls";
-    veryl-ls = {command = "veryl-ls";};
+    taplo = lsp ["taplo" "lsp" "stdio"] {
+      root_dir = [".git" "*.toml"];
+    };
+    ty = lsp ["ty" "server"] {};
+    veryl-ls = lsp ["veryl-ls"] {};
   };
 
   settings = {
@@ -152,7 +158,7 @@ in {
     # extra lanugage servers
     alejandra
     bash-language-server
-    nil
+    nixd
     shellcheck
     shfmt
     taplo

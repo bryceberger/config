@@ -19,6 +19,7 @@
 
     signing = {
       key = gpg-key;
+      format = "openpgp";
       signByDefault = true;
     };
 
