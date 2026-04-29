@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
     bitwarden
     firefox-color
@@ -122,6 +126,7 @@
 in {
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     inherit policies;
     profiles.nix = {
       inherit extensions search;
