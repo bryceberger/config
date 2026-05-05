@@ -17,7 +17,7 @@
     helix.url = "github:bryceberger/helix/mm";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
-    jj.url = "github:bryceberger/jj/log-width";
+    jj.url = "github:jj-vcs/jj/bryce/available-width";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
   };

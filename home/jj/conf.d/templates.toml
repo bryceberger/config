@@ -60,7 +60,7 @@ if(first_line_in_hunk,
 # longest reasonable non-description part:
 # zzzzzzzz ◼ 00000000  xx minutes ago
 # "minutes" is longest duration specifier, max 2 digits
-"description_width(commit)" = "__width - 25 - stringify(format_short_change_id_with_change_offset(commit)).len()"
+"description_width(commit)" = "available_width() - 25 - stringify(format_short_change_id_with_change_offset(commit)).len()"
 
 "log_labels_for(x)" = '''separate(' ',
   if(x.current_working_copy(), "current_working_copy"),
