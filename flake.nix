@@ -113,6 +113,11 @@
   in {
     inherit pkgs nixosConfigurations homeConfigurations;
     packages.${system}.home-manager = home-manager.packages.${system}.default;
+    devShells.${system}.default = pkgs.mkShellNoCC {
+      packages = with pkgs; [
+        just
+      ];
+    };
 
     luna = both "bryce" "luna";
     janus = both "bryce" "janus";
