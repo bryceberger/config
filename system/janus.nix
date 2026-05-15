@@ -7,6 +7,7 @@
     efi.canTouchEfiVariables = true;
   };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_0;
+  boot.kernelModules = ["ntsync"];
   boot.kernelPatches = [
     {
       name = "bits-per-pixel fix + bigscreen EDID quirk";
