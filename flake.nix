@@ -9,9 +9,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # https://github.com/DeterminateSystems/nix-src/pull/333
-    determinate.url = "github:DeterminateSystems/nix-src";
-
     # look into un-colocating jj repos when merged:
     # https://github.com/helix-editor/helix/pull/12022
     helix.url = "github:bryceberger/helix/mm";
@@ -55,11 +52,6 @@
           inherit system pkgs;
           specialArgs.hostname = hostname;
           modules = [
-            {
-              nix.package = inputs.determinate.packages.${system}.default;
-              nix.settings.lazy-trees = true;
-              nix.settings.eval-cores = 0;
-            }
             ./system/common.nix
             ./system/${hostname}.nix
           ];
