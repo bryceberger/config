@@ -66,36 +66,30 @@
       make ["luna" "janus" "encaladus"];
 
     homeConfigurations = let
-      make_home = {
-        username,
-        hostname,
-        email,
-        gpg-key,
-      }:
+      make_home = args:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs system username hostname email gpg-key;
-          };
+          extraSpecialArgs = args // {inherit inputs system;};
           modules = [
-            ./home/${hostname}.nix
+            ./home/${args.hostname}.nix
             registry
           ];
         };
       make = defaults: names:
         builtins.listToAttrs (map (n: let
-            hostname = n.hostname or n;
-            username = n.username or defaults.username;
-            home-name = n.home-name or "${username}@${hostname}";
-            email = n.email or defaults.email;
-            gpg-key = n.gpg-key or defaults.gpg-key;
+            args.name = n.name or defaults.name;
+            args.hostname = n.hostname or n;
+            args.username = n.username or defaults.username;
+            args.email = n.email or defaults.email;
+            args.gpg-key = n.gpg-key or defaults.gpg-key;
           in {
-            name = home-name;
-            value = make_home {inherit username hostname email gpg-key;};
+            name = n.home-name or "${args.username}@${args.hostname}";
+            value = make_home args;
           })
           names);
     in
       make {
+        name = "Bryce Berger";
         username = "bryce";
         email = "bryce.z.berger@gmail.com";
         gpg-key = "FDBF801F1CE5FB66EC3075C058CA4F9FEF8F4296";

@@ -1,10 +1,13 @@
 {
   pkgs,
-  gpg-key,
+  name,
   email,
+  gpg-key,
   ...
 }: {
-  imports = [./github.nix];
+  imports = [
+    ./github.nix
+  ];
   home.packages = with pkgs; [
     difftastic
     gitoxide # for gix clean
@@ -14,9 +17,6 @@
   programs.git = {
     enable = true;
 
-    # components
-    lfs.enable = true;
-
     signing = {
       key = gpg-key;
       format = "openpgp";
@@ -24,16 +24,9 @@
     };
 
     settings = {
-      user.email = email;
-      user.name = "Bryce Berger";
-
+      user = {inherit name email;};
       init.defaultBranch = "main";
-      merge.conflictstyle = "zdiff3";
-      diff.colorMoved = "default";
-      include.path = "spork";
       advice.detachedHead = false;
-
-      difftool."difft".cmd = "${pkgs.difftastic}/bin/difft --color always $LOCAL $REMOTE | ${pkgs.delta}/bin/delta";
     };
   };
 }

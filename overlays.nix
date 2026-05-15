@@ -39,7 +39,6 @@ in {
   };
 
   git-pkgs = final.callPackage ./overlays/git-pkgs.nix {};
-  jj-forge = final.callPackage ./overlays/jj-forge.nix {};
   jj-manage = final.callPackage ./overlays/jj-manage.nix {};
   ups-apply = final.callPackage ./overlays/ups-apply.nix {};
 }
