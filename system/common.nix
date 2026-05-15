@@ -23,6 +23,12 @@
     };
   };
 
+  # always end up hitting this when trying to open some other application
+  # (mostly steam? even though there's no 't' or 'e' in 'nixos manual', it shows
+  # up when searching 'stea')
+  documentation.nixos.enable = false;
+  documentation.info.enable = false;
+
   # keyboard config
   services.xserver.xkb = {
     layout = "us";
