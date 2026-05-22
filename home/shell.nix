@@ -1,18 +1,6 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./shell/fish.nix
-  ];
-
-  home.packages = with pkgs; [
-    fd
-    fend
-    fzf
-    hyperfine
-    lsd
-    ouch
-    ripgrep
-    delta # for `s`
-    usage
   ];
 
   programs.direnv = {

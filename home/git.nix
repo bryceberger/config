@@ -28,5 +28,7 @@
       init.defaultBranch = "main";
       advice.detachedHead = false;
     };
+
+    includes = [{path = "~/.config/git/local";}];
   };
 }

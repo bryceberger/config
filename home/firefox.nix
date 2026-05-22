@@ -29,7 +29,7 @@
     name = "browser.urlbar.suggest.${val}";
     value = false;
   };
-  suggest-disable = builtins.listToAttrs (builtins.map disable-suggestion [
+  suggest-disable = builtins.listToAttrs (map disable-suggestion [
     "engines"
     "fakespot"
     "mdn"

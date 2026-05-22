@@ -78,7 +78,6 @@
 
   programs.steam.enable = true;
   programs.steam.extest.enable = true;
-  hardware.xpadneo.enable = true;
   programs.nix-ld.enable = true;
 
   xdg.portal = {
@@ -92,6 +91,9 @@
   security.pam.services.swaylock = {};
   services.pcscd.enable = true;
 
+  hardware.xpadneo.enable = true;
+  hardware.saleae-logic.enable = true;
+
   services.udev.extraRules = ''
     # fomu
     SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="5bf0", MODE="0664", GROUP="plugdev"
@@ -102,6 +104,8 @@
     # steam vr camera
     # doesn't actually work but this makes me feel like I'm doing my part
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="28de", ATTRS{idProduct}=="2400", MODE="0660", TAG+="uaccess"
+    # ftdi
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE:="0666"
   '';
   services.openssh = {
     enable = true;

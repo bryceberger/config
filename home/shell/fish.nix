@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  inherit (pkgs.lib) getExe;
+in {
   imports = [
     ./fish/catppuccin.nix
   ];
@@ -22,7 +24,7 @@
     '';
 
     plugins = let
-      plugins = builtins.map (x: {
+      plugins = map (x: {
         name = x;
         src = pkgs.fishPlugins."${x}".src;
       });
@@ -35,8 +37,8 @@
     functions = {
       last_history_item = "echo $history[1]";
       s = {
-        wraps = "rg --json";
-        body = "rg --json $argv | delta --tabs 1";
+        wraps = "${getExe pkgs.ripgrep} --json";
+        body = "${getExe pkgs.ripgrep} --json $argv | ${getExe pkgs.delta} --tabs 1";
       };
       tmp = ''
         set -l tmpdir (mktemp -d)
@@ -61,7 +63,7 @@
 
     shellAliases = {
       "icat" = "kitty +kitten icat";
-      "ls" = "lsd";
+      "ls" = "${getExe pkgs.lsd}";
     };
   };
 }

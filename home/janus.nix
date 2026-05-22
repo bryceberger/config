@@ -12,7 +12,6 @@
     ./jj.nix
     ./kitty.nix
     ./retroarch.nix
-    ./scripts.nix
     ./shell.nix
     ./sway.nix
     ./utils.nix
@@ -47,18 +46,14 @@
       version = 1;
     };
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "nexusmods-app-unfree-0.21.1"
-  ];
-
   home.packages = with pkgs; [
-    # calibre
-    libnotify
-    waypipe
-    nexusmods-app-unfree
-    wayvr
     bs-manager
+    calibre
+    libnotify
     protontricks
+    saleae-logic-2
+    waypipe
+    wayvr
     (pkgs.writeShellScriptBin "set-vr" (builtins.readFile ./janus/set-vr.sh))
   ];
 }

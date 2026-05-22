@@ -55,7 +55,6 @@ in {
     ./jj.nix
     ./kitty.nix
     ./retroarch.nix
-    ./scripts.nix
     ./shell.nix
     ./sway.nix
     ./utils.nix
@@ -75,10 +74,10 @@ in {
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = [
-    nix_remote
     kbdbacklighttoggle
-    pw
+    nix_remote
     p
+    pw
   ];
 
   services.swayidle = {

@@ -34,9 +34,7 @@
     xdg-utils
   ];
 
-  packages =
-    always-packages
-    ++ optionals is-not-mimas not-mimas-pkgs;
+  packages = always-packages ++ optionals is-not-mimas not-mimas-pkgs;
 in
   {
     imports = [./kitty.nix] ++ optional is-not-mimas ./firefox.nix;
@@ -45,13 +43,10 @@ in
 
     programs.zathura = {
       enable = true;
-      options = {
-        show-recent = 0;
-      };
+      options.show-recent = 0;
     };
   }
-  // optionalAttrs is-not-mimas
-  {
+  // optionalAttrs is-not-mimas {
     xdg.mimeApps.enable = true;
     programs.mpv = {
       enable = true;
