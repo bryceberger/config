@@ -109,6 +109,26 @@
         "type": "github"
       }
     },
+    "nix-hug": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786911196,
+        "narHash": "sha256-5VwlbqoQAu1Rnw9+UlIqUX/0ia8xZ6vYWQs8dzVVvek=",
+        "owner": "eordano",
+        "repo": "nix-hug",
+        "rev": "e14a017a2c4e1e0fc8bc3be2a033d173cb9752d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eordano",
+        "repo": "nix-hug",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787525594,
@@ -151,6 +171,7 @@
         "helix": "helix",
         "home-manager": "home-manager",
         "jj": "jj",
+        "nix-hug": "nix-hug",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "rust-overlay": "rust-overlay"

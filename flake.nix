@@ -22,6 +22,9 @@
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
     jj.inputs.rust-overlay.follows = "rust-overlay";
+
+    nix-hug.url = "github:eordano/nix-hug";
+    nix-hug.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -55,7 +58,7 @@
       make_system = hostname:
         nixpkgs.lib.nixosSystem {
           inherit system pkgs;
-          specialArgs.hostname = hostname;
+          specialArgs = {inherit hostname inputs system;};
           modules = [
             ./system/common.nix
             ./system/${hostname}.nix

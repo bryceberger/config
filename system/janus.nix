@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  imports = [./hardware/janus.nix];
+  imports = [
+    ./hardware/janus.nix
+    ./janus/ai.nix
+  ];
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -19,19 +22,6 @@
   ];
 
   programs.sway.enable = true;
-
-  services.ollama = {
-    enable = false;
-    loadModels = [
-      "qwen3:0.6b"
-      "qwen3:14b"
-      "gpt-oss:20b"
-    ];
-    rocmOverrideGfx = "11.0.0";
-    environmentVariables = {
-      ROC_ENABLE_PRE_VEGA = "1";
-    };
-  };
 
   programs.fish.enable = true;
   users = {
