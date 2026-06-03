@@ -39,3 +39,18 @@ function rt
         end
     end | sort -n | cut -d"$rs" -f"2,3" | column -t -s"$rs" -R 2
 end
+
+function __fzf_jj_ref
+    set template 'format_short_change_id_with_change_offset(self) ++ " " ++ format_short_signature_oneline(self.author()) ++ " "++ self.description().first_line() ++ "\0" ++ format_short_change_id_with_change_offset(self)'
+    set refs (jj log --color=always -T $template | fzf --with-nth 1 --accept-nth 2 --delimiter '\0' \
+    --height 50% --tmux 90%,70% \
+    --layout reverse --multi --min-height 20+ \
+    --preview-window 'right,50%' \
+    --bind 'ctrl-/:change-preview-window(down,50%|hidden|)'  --ansi \
+    --no-hscroll --preview "jj show --color=always {2}")
+    if test $status -eq 0
+        commandline --insert (string join ' ' $refs)
+    end
+    commandline --function repaint
+end
+bind \cg __fzf_jj_ref
