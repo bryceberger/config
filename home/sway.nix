@@ -35,7 +35,7 @@
     janus = {
       DP-2.pos = "0 0";
       DP-2.transform = "270";
-      DP-1.pos = "1440 900";
+      DP-1.pos = "1440 345";
       HDMI-A-1.disable = "";
     };
     luna = {

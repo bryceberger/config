@@ -51,9 +51,7 @@
     calibre
     libnotify
     protontricks
-    saleae-logic-2
-    waypipe
-    wayvr
+    signal-desktop
     (pkgs.writeShellScriptBin "set-vr" (builtins.readFile ./janus/set-vr.sh))
   ];
 }
