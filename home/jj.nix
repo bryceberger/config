@@ -9,7 +9,8 @@
 
     ui = {
       default-command = ["--ignore-working-copy" "log"];
-      diff-editor = ":builtin";
+      diff-editor = "oyui";
+      diff-instructions = false;
       diff-formatter = "difft";
       show-cryptographic-signatures = true;
       pager = ":builtin";
@@ -30,6 +31,11 @@
       diff-args = ["diff-file" "--color=always" "$left" "$right"];
       diff-invocation-mode = "file-by-file";
       edit-args = [];
+    };
+
+    merge-tools.oyui = {
+      program = "oyui";
+      edit-args = ["diff" "$left" "$right"];
     };
 
     aliases = {
@@ -54,6 +60,7 @@ in {
     git-pkgs
     jj-manage
     jujutsu
+    oyui
     watchman
   ];
   xdg.configFile = {

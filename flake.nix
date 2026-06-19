@@ -3,6 +3,9 @@
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -13,10 +16,17 @@
     # https://github.com/helix-editor/helix/pull/12022
     helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
+    helix.inputs.rust-overlay.follows = "rust-overlay";
 
     jj.url = "github:jj-vcs/jj/bryce/available-width";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
+    jj.inputs.rust-overlay.follows = "rust-overlay";
+
+    oyui.url = "github:emilien-jegou/oyui";
+    oyui.inputs.nixpkgs.follows = "nixpkgs";
+    oyui.inputs.flake-utils.follows = "flake-utils";
+    oyui.inputs.rust-overlay.follows = "rust-overlay";
   };
 
   outputs = {
