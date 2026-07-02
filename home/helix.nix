@@ -74,7 +74,7 @@
   };
 
   settings = {
-    theme = "catppuccin_mocha";
+    theme = "mine";
 
     editor = {
       auto-format = false;
@@ -153,6 +153,11 @@
       insert.j.k = "normal_mode";
     };
   };
+
+  themes.mine = {
+    inherits = "catppuccin_mocha";
+    "type.builtin" = "yellow";
+  };
 in {
   home.packages = with pkgs; [
     # extra lanugage servers
@@ -167,6 +172,6 @@ in {
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    inherit settings languages;
+    inherit settings languages themes;
   };
 }
