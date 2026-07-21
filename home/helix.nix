@@ -19,6 +19,7 @@
     c.indent = indent 4;
     cpp.indent = indent 4;
     java.indent = indent 4;
+    markdown.language-servers = ["panache"];
     meson.formatter = {
       command = "meson";
       args = ["format" "-"];
@@ -56,6 +57,7 @@
   };
   language-server = {
     nixd = lsp ["nixd"] {};
+    panache = lsp ["panache" "lsp"] {};
     pyrefly = lsp ["pyrefly" "lsp"] {
       pyrefly.displayTypeErrors = "force-on";
     };
