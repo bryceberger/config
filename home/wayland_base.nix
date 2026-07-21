@@ -13,6 +13,7 @@ in {
     name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
     size = cursor-size;
+    enable = true;
     x11.enable = true;
     gtk.enable = true;
   };

@@ -18,7 +18,7 @@
     helix.inputs.nixpkgs.follows = "nixpkgs";
     helix.inputs.rust-overlay.follows = "rust-overlay";
 
-    jj.url = "github:jj-vcs/jj/bryce/available-width";
+    jj.url = "github:bryceberger/jj/bryce/available-width";
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
     jj.inputs.rust-overlay.follows = "rust-overlay";
