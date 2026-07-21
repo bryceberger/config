@@ -38,6 +38,7 @@ in {
     cargoHash = "sha256-22UWJ8cwnIkwa1tmvbUvEupIlXGjU81cDy2Ns7kJVqI=";
   };
 
+  crosshair-cursor = final.callPackage ./overlays/crosshair-cursor.nix {};
   git-pkgs = final.callPackage ./overlays/git-pkgs.nix {};
   jj-manage = final.callPackage ./overlays/jj-manage.nix {};
   ups-apply = final.callPackage ./overlays/ups-apply.nix {};

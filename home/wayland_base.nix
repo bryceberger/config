@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   cursor-size = 24;
 in {
   imports = [
@@ -7,11 +11,12 @@ in {
 
   home.sessionVariables = {
     XCURSOR_SIZE = cursor-size;
+    XCURSOR_PATH = "${config.home.homeDirectory}/.local/state/nix/profile/share/icons";
   };
 
   home.pointerCursor = {
-    name = "capitaine-cursors";
-    package = pkgs.capitaine-cursors;
+    name = "crosshair-cursor";
+    package = pkgs.crosshair-cursor;
     size = cursor-size;
     enable = true;
     x11.enable = true;
