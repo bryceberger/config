@@ -22,11 +22,6 @@
     jj.inputs.nixpkgs.follows = "nixpkgs";
     jj.inputs.flake-utils.follows = "flake-utils";
     jj.inputs.rust-overlay.follows = "rust-overlay";
-
-    oyui.url = "github:emilien-jegou/oyui";
-    oyui.inputs.nixpkgs.follows = "nixpkgs";
-    oyui.inputs.flake-utils.follows = "flake-utils";
-    oyui.inputs.rust-overlay.follows = "rust-overlay";
   };
 
   outputs = {

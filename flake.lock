@@ -145,32 +145,6 @@
         "type": "github"
       }
     },
-    "oyui": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782046389,
-        "narHash": "sha256-HIpNWF/fts1nNW6DYSch3+X/LAQn/WPYqMHujRKIEeM=",
-        "owner": "emilien-jegou",
-        "repo": "oyui",
-        "rev": "2bad9f6a4a7eab18cd47b637c88f1fb7c87a1bb8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "emilien-jegou",
-        "repo": "oyui",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -179,7 +153,6 @@
         "jj": "jj",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "oyui": "oyui",
         "rust-overlay": "rust-overlay"
       }
     },
