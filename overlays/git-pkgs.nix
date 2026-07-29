@@ -1,25 +1,24 @@
 # nix run .#pkgs.nix-update -- --flake git-pkgs
 {
   lib,
-  buildGo126Module,
+  buildGoModule,
   fetchFromGitHub,
   installShellFiles,
   git,
   maven,
   yarn,
 }:
-# needs go 1.25.6, but nixpkgs master only has 1.25.5
-buildGo126Module (finalAttrs: {
+buildGoModule (finalAttrs: {
   pname = "git-pkgs";
-  version = "0.15.1";
+  version = "0.18.2";
 
   src = fetchFromGitHub {
     owner = "git-pkgs";
     repo = "git-pkgs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ZCgXpE91Rq33f0S/cEb4hnAoZ+O52eRlDb5GliI0kcg=";
+    hash = "sha256-C4T4xkNrMIMuRLhua0fTXDpIz0qq5EaqVnSKWUc7Sm0=";
   };
-  vendorHash = "sha256-PBLEobe2FSN0a1J2GyYCSu8vFplN6HVidIPelOd9TEs=";
+  vendorHash = "sha256-d5Me/VgXXC2FyxG17rXg1FmOIi1fJqBmBU+bF5u0j/8=";
 
   ldflags = [
     "-X github.com/git-pkgs/git-pkgs/cmd.version=${finalAttrs.version}"
@@ -29,10 +28,6 @@ buildGo126Module (finalAttrs: {
     installShellFiles
   ];
 
-  checkFlags = [
-    # tries to access internet
-    "-skip TestLicenses"
-  ];
   nativeCheckInputs = [
     git
     maven
