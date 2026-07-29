@@ -33,6 +33,12 @@
       edit-args = [];
     };
 
+    merge-tools.kitty = {
+      program = "kitten";
+      diff-args = ["diff" "$left" "$right"];
+      edit-args = [];
+    };
+
     aliases = {
       please = ["--ignore-immutable"];
       sudo = ["--ignore-immutable"];
