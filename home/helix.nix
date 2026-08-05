@@ -90,7 +90,7 @@
       true-color = true;
       cursor-shape = {
         insert = "bar";
-        normal = "block";
+        normal = "underline";
         select = "underline";
       };
       statusline = {

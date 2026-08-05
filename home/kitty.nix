@@ -28,6 +28,9 @@
       font_features MapleMono-NF-SemiBold -ss01 +ss02
       font_features MapleMono-NF-SemiBoldItalic -ss01 +ss02
 
+      cursor_trail 10
+      cursor_trail_decay 0.1 0.3
+
       auto_reload_config -1
     '';
 
