@@ -17,17 +17,13 @@
 
   is-not-mimas = hostname != "mimas";
 
-  all-nerd-fonts = filter isDerivation (attrValues pkgs.nerd-fonts);
-
-  always-packages = with pkgs;
-    [
-      dejavu_fonts
-      fira-code
-      font-awesome
-      maple-mono.NF
-      pavucontrol
-    ]
-    ++ all-nerd-fonts;
+  always-packages = with pkgs; [
+    dejavu_fonts
+    fira-code
+    font-awesome
+    maple-mono.NF
+    pavucontrol
+  ];
 
   not-mimas-pkgs = with pkgs; [
     playerctl
