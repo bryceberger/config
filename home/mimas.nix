@@ -26,6 +26,7 @@
     dive
     gitlab-ci-local
     glab
+    nix
     patchelf
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
