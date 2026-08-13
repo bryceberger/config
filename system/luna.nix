@@ -28,7 +28,6 @@
       extraGroups = [
         "networkmanager"
         "wheel"
-        "docker"
         "plugdev"
         "vboxusers"
         "video"
@@ -86,13 +85,6 @@
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "powersave";
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-    };
   };
 
   nix.settings = {

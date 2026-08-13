@@ -46,7 +46,6 @@
       description = "bryce";
       extraGroups = [
         "dialout"
-        "docker"
         "input"
         "networkmanager"
         "plugdev"
@@ -123,13 +122,6 @@
     enable = true;
     defaultRuntime = false;
     highPriority = true;
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-    };
   };
 
   nix.settings = {

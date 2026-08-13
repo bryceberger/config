@@ -20,7 +20,6 @@
       description = "bryce";
       extraGroups = [
         "dialout"
-        "docker"
         "input"
         "networkmanager"
         "plugdev"
