@@ -5,8 +5,8 @@
     NINJA_STATUS = "[%r/%u/%t] %w (%W) > ";
   };
   home.packages = with pkgs; [
+    dix
     nix-output-monitor
-    nvd
     streampager
   ];
   programs.nh.enable = true;

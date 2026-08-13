@@ -120,6 +120,7 @@
     packages.${system}.home-manager = home-manager.packages.${system}.default;
     devShells.${system}.default = pkgs.mkShellNoCC {
       packages = with pkgs; [
+        dix
         just
       ];
     };
