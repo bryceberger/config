@@ -17,7 +17,10 @@
       args = ["-i" "4"];
     };
     c.indent = indent 4;
-    cpp.indent = indent 4;
+    cpp = {
+      indent = indent 4;
+      formatter.command = "";
+    };
     java.indent = indent 4;
     markdown.language-servers = ["panache"];
     meson.formatter = {
