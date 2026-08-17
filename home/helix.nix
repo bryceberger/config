@@ -62,7 +62,7 @@
       pyrefly.displayTypeErrors = "force-on";
     };
     pyright = lsp ["basedpyright-langserver" "--stdio"] {};
-    ruff = lsp ["ruff" "server" "--preview"] {};
+    ruff = lsp ["ruff" "server"] {};
     rust-analyzer = lsp ["rust-analyzer"] {
       check.command = "clippy";
       cargo.targetDir = true;
