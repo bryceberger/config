@@ -1,12 +1,13 @@
 {pkgs, ...}: {
   home.sessionVariables = {
     EDITOR = "hx";
-    PAGER = "less -FRX";
+    PAGER = "sp";
     NINJA_STATUS = "[%r/%u/%t] %w (%W) > ";
   };
   home.packages = with pkgs; [
     nix-output-monitor
     nvd
+    streampager
   ];
   programs.nh.enable = true;
   xdg.configFile = {
