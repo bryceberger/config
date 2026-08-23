@@ -6,7 +6,7 @@
     systemd-boot.configurationLimit = 10;
     efi.canTouchEfiVariables = true;
   };
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_0;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_2;
   boot.kernelModules = ["ntsync"];
   boot.kernelPatches = [
     {
