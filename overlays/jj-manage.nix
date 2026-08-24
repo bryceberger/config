@@ -9,8 +9,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "bryceberger";
     repo = "jj-manage";
-    rev = "f36eaaf428ea0629e8299840d26179c46c1386cb";
-    hash = "sha256-a0BcojtN4Vi8Fvwdv5inuFVjJL/+U7yz5kkgi9OUDW0=";
+    rev = "e4ac8585e848538a42d8b3280a6b514846c834c7";
+    hash = "sha256-mVqfzMtrfUBS9AYncQ0pxnnTuGfQ1kLZlsQFVD63E7A=";
   };
   cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
 

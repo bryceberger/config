@@ -64,6 +64,8 @@ in {
     shellAliases = {
       "icat" = "kitty +kitten icat";
       "ls" = "${getExe pkgs.lsd}";
+      "ssh" = "kitty +kitten ssh";
+      "rsync" = "rsync -a --info=progress2";
     };
   };
 }
