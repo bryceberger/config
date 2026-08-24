@@ -10,6 +10,7 @@
     ./gpg.nix
     ./helix.nix
     ./jj.nix
+    ./omp.nix
     ./shell.nix
     ./sway.nix
     ./utils.nix

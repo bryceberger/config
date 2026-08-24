@@ -23,6 +23,7 @@
 in {
   helix = getInput "helix";
   jujutsu = getInput "jj";
+  omp = getInput "omp";
 
   difftastic = overrideRust {
     pkg = "difftastic";

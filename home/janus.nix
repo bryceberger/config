@@ -11,6 +11,7 @@
     ./helix.nix
     ./jj.nix
     ./kitty.nix
+    ./omp.nix
     ./retroarch.nix
     ./shell.nix
     ./sway.nix
