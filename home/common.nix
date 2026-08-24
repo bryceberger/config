@@ -8,6 +8,7 @@
     dix
     nix-output-monitor
     streampager
+    xh
   ];
   programs.nh.enable = true;
   xdg.configFile = {
