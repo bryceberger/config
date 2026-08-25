@@ -11,7 +11,6 @@
   home.packages = with pkgs; [
     difftastic
     gitoxide # for gix clean
-    git-pkgs
   ];
 
   programs.git = {

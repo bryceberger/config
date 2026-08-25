@@ -40,7 +40,6 @@ in {
   };
 
   crosshair-cursor = final.callPackage ./overlays/crosshair-cursor.nix {};
-  git-pkgs = final.callPackage ./overlays/git-pkgs.nix {};
   jj-manage = final.callPackage ./overlays/jj-manage.nix {};
   streampager = final.callPackage ./overlays/streampager.nix {};
   ups-apply = final.callPackage ./overlays/ups-apply.nix {};
