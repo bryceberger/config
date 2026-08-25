@@ -6,8 +6,9 @@ in {
   ];
 
   home.packages = with pkgs; [
-    jj-manage
+    delta
     fzf
+    jj-manage
   ];
   xdg.configFile = {
     "fish/conf.d" = {

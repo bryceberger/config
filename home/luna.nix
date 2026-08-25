@@ -48,16 +48,9 @@
 in {
   imports = [
     ./common.nix
-    ./devel.nix
-    ./gpg.nix
-    ./helix.nix
-    ./kitty.nix
     ./omp.nix
     ./retroarch.nix
-    ./shell.nix
     ./sway.nix
-    ./utils.nix
-    ./xdg.nix
   ];
 
   home.username = "bryce";

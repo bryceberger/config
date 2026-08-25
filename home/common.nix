@@ -1,6 +1,11 @@
 {pkgs, ...}: {
   imports = [
+    ./gpg.nix
+    ./helix.nix
     ./vcs.nix
+    ./shell.nix
+    ./utils.nix
+    ./xdg.nix
   ];
 
   home.sessionVariables = {
@@ -12,7 +17,6 @@
     dix
     nix-output-monitor
     streampager
-    xh
   ];
   programs.nh.enable = true;
   xdg.configFile = {

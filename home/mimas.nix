@@ -5,14 +5,8 @@
 }: {
   imports = [
     ./common.nix
-    ./devel.nix
-    ./gpg.nix
-    ./helix.nix
     ./omp.nix
-    ./shell.nix
     ./sway.nix
-    ./utils.nix
-    ./xdg.nix
   ];
 
   home.username = "bryce.berger.local";

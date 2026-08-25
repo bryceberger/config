@@ -1,11 +1,6 @@
 {...}: {
   imports = [
     ./common.nix
-    ./gpg.nix
-    ./helix.nix
-    ./kitty.nix
-    ./shell.nix
-    ./utils.nix
   ];
 
   home.username = "bryce";

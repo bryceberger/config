@@ -20,5 +20,6 @@ in {
     mount-user
     ouch
     ripgrep
+    xh
   ];
 }
