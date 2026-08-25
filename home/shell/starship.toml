@@ -102,6 +102,7 @@ style_root = "purple bold"
 format = "[⭘]($style) [$user]($style italic) "
 disabled = false
 show_always = false
+detect_env_vars = ["!SSH_CONNECTION"]
 
 [directory]
 home_symbol = "⌂"
