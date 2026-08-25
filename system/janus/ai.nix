@@ -24,13 +24,15 @@
         port = "\${PORT}";
       });
 
-  fetchModel = repo: file: args: let
+  fetchModel = repo: file: args: (fetchModelFiles repo [file] args)."${file}";
+  fetchModelFiles = repo: files: args: let
     model = inputs.nix-hug.lib.${system}.fetchModel ({
         repoId = repo;
-        filters.files = [file];
+        filters.files = files;
       }
       // args);
-  in "${model}/${file}";
+  in
+    lib.genAttrs files (file: "${model}/${file}");
 
   qwen38 = fetchModel "unsloth/Qwen3.8-27B-GGUF" "Qwen3.8-27B-UD-Q4_K_M.gguf" {
     rev = "4ca720788d1e01f1bff70c033e0d0028fd02e502";
