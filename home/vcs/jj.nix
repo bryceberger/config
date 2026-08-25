@@ -33,6 +33,12 @@
       edit-args = [];
     };
 
+    merge-tools.difft = {
+      program = "difft";
+      diff-args = ["--sort-paths" "--color=always" "$left" "$right"];
+      edit-args = [];
+    };
+
     merge-tools.kitty = {
       program = "kitten";
       diff-args = ["diff" "$left" "$right"];
@@ -55,10 +61,8 @@
     };
   };
 in {
-  imports = [
-    ./git.nix
-    ./github.nix
-  ];
+  # jj at least needs git to be on the path
+  programs.git.enable = true;
   home.packages = with pkgs; [
     difftastic
     git-pkgs

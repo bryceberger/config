@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ./vcs.nix
+  ];
+
   home.sessionVariables = {
     EDITOR = "hx";
     PAGER = "sp";

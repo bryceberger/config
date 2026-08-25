@@ -6,10 +6,8 @@
   imports = [
     ./common.nix
     ./devel.nix
-    ./git.nix
     ./gpg.nix
     ./helix.nix
-    ./jj.nix
     ./omp.nix
     ./shell.nix
     ./sway.nix
