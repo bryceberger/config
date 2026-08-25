@@ -104,7 +104,7 @@
     );
 in {
   imports = [
-    ./wayland_base.nix
+    ./desktop_base.nix
   ];
 
   wayland.windowManager.sway = {
