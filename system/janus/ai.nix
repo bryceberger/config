@@ -69,7 +69,7 @@ in {
       };
       aliases = ["qwen3.8:27b"];
       capabilities = {
-        "in" = ["text" "image"];
+        "in" = ["text"];
         out = ["text"];
         tools = true;
         context = context;
