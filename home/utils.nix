@@ -14,8 +14,10 @@ in {
     dust
     fd
     fend
+    hexyl
     hyperfine
     jq
+    just
     killall
     mount-user
     ouch
