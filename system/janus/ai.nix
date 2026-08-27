@@ -63,6 +63,11 @@ in {
         cache-type-k = "q4_0";
         cache-type-v = "q4_0";
 
+        spec-type = "draft-mtp";
+        spec-draft-n-max = 2;
+        parallel = 1;
+        flash-attn = "on";
+
         reasoning = "on";
         reasoning-format = "deepseek";
         reasoning-preserve = true;
