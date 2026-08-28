@@ -38,6 +38,8 @@
       version = 1;
     };
 
+  home.sessionVariables.LLAMA_CPP_BASE_URL = "http://localhost:9292/v1";
+
   home.packages = with pkgs; [
     bs-manager
     calibre

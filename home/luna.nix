@@ -65,6 +65,8 @@ in {
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  home.sessionVariables.LLAMA_CPP_BASE_URL = "http://janus:9292/v1";
+
   home.packages = [
     kbdbacklighttoggle
     nix_remote

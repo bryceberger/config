@@ -18,14 +18,6 @@
 
     bashInterceptor.enabled = true;
   };
-
-  models.providers.janus = {
-    baseUrl = "http://janus:9292/v1";
-    auth = "none";
-    api = "openai-completions";
-    omitMaxOutputTokens = true;
-    discovery.type = "llama.cpp";
-  };
 in {
   home.packages = with pkgs; [
     omp
@@ -35,6 +27,5 @@ in {
   };
   xdg.configFile = {
     "omp/agent/config.yml".source = yaml.generate "omp-config.yml" omp-config;
-    "omp/agent/models.yml".source = yaml.generate "omp-models.yml" models;
   };
 }
