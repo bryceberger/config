@@ -26,7 +26,7 @@
     nix-hug.url = "github:eordano/nix-hug";
     nix-hug.inputs.nixpkgs.follows = "nixpkgs";
 
-    omp.url = "github:can1357/oh-my-pi/v18.0.4";
+    omp.url = "github:can1357/oh-my-pi/v18.0.10";
     omp.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -44,8 +44,11 @@
     };
 
     overlays = [
-      (import ./overlays.nix {inherit system inputs;})
+      (import ./overlays.nix)
+      inputs.helix.overlays.default
+      inputs.jj.overlays.default
       inputs.nur.overlays.default
+      inputs.omp.overlays.default
     ];
 
     registry = {

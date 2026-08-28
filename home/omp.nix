@@ -10,6 +10,7 @@
     display = {
       showTokenUsage = true;
       cacheMissMarker = true;
+      showTurnTime = true;
     };
 
     modelRoles.default = "qwen3.8:27b";
