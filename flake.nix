@@ -68,6 +68,12 @@
           modules = [
             ./system/common.nix
             ./system/${hostname}.nix
+            ({pkgs, ...}: {
+              nix = {
+                package = pkgs.nix;
+                settings.use-xdg-base-directories = true;
+              };
+            })
           ];
         };
       make = names:

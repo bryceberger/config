@@ -43,4 +43,7 @@ in {
       target-dir = "/tmp/${username}/cargo"
     '';
   };
+
+  # set in `flake.nix`
+  nix.assumeXdg = true;
 }
