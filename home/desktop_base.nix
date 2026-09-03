@@ -52,7 +52,11 @@ in
 
     programs.zathura = {
       enable = true;
-      options.show-recent = 0;
+      mappings = {
+        b = "page_mode equal_none";
+        n = "page_mode equal_width";
+        m = "page_mode equal_height";
+      };
     };
 
     home.sessionVariables = {
