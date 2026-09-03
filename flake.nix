@@ -26,7 +26,7 @@
     nix-hug.url = "github:eordano/nix-hug";
     nix-hug.inputs.nixpkgs.follows = "nixpkgs";
 
-    omp.url = "github:can1357/oh-my-pi/v18.0.10";
+    omp.url = "github:can1357/oh-my-pi/v18.1.6";
     omp.inputs.nixpkgs.follows = "nixpkgs";
   };
 
