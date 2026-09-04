@@ -113,6 +113,8 @@ in {
     config = {
       window.titlebar = false;
 
+      modes = {};
+
       input = {
         "*" = {
           xkb_layout = "us";
