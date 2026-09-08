@@ -21,6 +21,8 @@
     glab
     nix
     patchelf
+    sqlite-interactive
+    sqlite-rsync
     (writeShellScriptBin "cal" ''${util-linux.bin}/bin/cal "$@"'')
   ];
 
