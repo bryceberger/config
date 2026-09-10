@@ -10,7 +10,6 @@
 
   home.sessionVariables = {
     EDITOR = "hx";
-    PAGER = "sp";
     NINJA_STATUS = "[%r/%u/%t] %w (%W) > ";
   };
   home.packages = with pkgs; [
