@@ -3,20 +3,40 @@
 
   omp-config = {
     setupVersion = 2;
-    startup.quiet = true;
+    startup = {
+      quiet = true;
+      checkUpdate = false;
+    };
+    marketplace.autoUpdate = "off";
+
     theme.dark = "dark-catppuccin";
     symbolPreset = "nerd";
-    statusLine.contextLine = "percentage";
     display = {
       showTokenUsage = true;
       cacheMissMarker = true;
       showTurnTime = true;
     };
+    composer = {
+      shape = "rail";
+      tokenRate = true;
+    };
+
+    collab = {
+      relayUrl = "wss://ca0639wk27391.nren.navy.mil:7477";
+    };
 
     modelRoles.default = "qwen3.8:27b";
     inspect_image.mode = "off";
+    steeringMode = "all";
+    proseOnlyThinking = false;
+    task.maxConcurrency = 2;
 
     bashInterceptor.enabled = true;
+    browser.enabled = false;
+    web_search.enabled = false;
+    dev.autoqa = false;
+
+    lsp.diagnosticsOnEdit = true;
   };
 in {
   home.packages = with pkgs; [

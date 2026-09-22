@@ -35,7 +35,7 @@
 
     merge-tools.difft = {
       program = "difft";
-      diff-args = ["--sort-paths" "--color=always" "$left" "$right"];
+      diff-args = ["--width" "$width" "--sort-paths" "--color=always" "$left" "$right"];
       edit-args = [];
     };
 

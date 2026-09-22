@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
     flake-utils.url = "github:numtide/flake-utils";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -26,7 +26,7 @@
     nix-hug.url = "github:eordano/nix-hug";
     nix-hug.inputs.nixpkgs.follows = "nixpkgs";
 
-    omp.url = "github:can1357/oh-my-pi/v18.1.16";
+    omp.url = "github:can1357/oh-my-pi/v18.10.3";
     omp.inputs.nixpkgs.follows = "nixpkgs";
   };
 
