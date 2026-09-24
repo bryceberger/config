@@ -26,10 +26,12 @@
     };
 
     modelRoles.default = "qwen3.8:27b";
+    modelRoles.tiny = "local/lfm2.5-230m";
     inspect_image.mode = "off";
     steeringMode = "all";
     proseOnlyThinking = false;
     task.maxConcurrency = 2;
+    task.completionProbe = false;
 
     bashInterceptor.enabled = true;
     browser.enabled = false;

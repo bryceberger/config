@@ -1,0 +1,11 @@
+--when.environments = ["OMPCODE=1"]
+
+[ui]
+paginate = "never"
+diff-formatter = ":git"
+
+[revsets]
+log = "reachable(@, mutable())"
+
+[templates]
+log = "builtin_log_compact_full_description"
