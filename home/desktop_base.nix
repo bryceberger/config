@@ -12,34 +12,34 @@
 
   all-nerd-fonts = filter isDerivation (attrValues pkgs.nerd-fonts);
 
-  always-packages = with pkgs;
-    [
-      dejavu_fonts
-      fira-code
-      font-awesome
-      fuzzel
-      grim
-      maple-mono.NF
-      pavucontrol
-      slurp
-      wayland
-      wl-clipboard
+  always-packages = with pkgs; [
+    dejavu_fonts
+    fira-code
+    font-awesome
+    fuzzel
+    grim
+    maple-mono.NF
+    pavucontrol
+    slurp
+    wayland
+    wl-clipboard
 
-      (writeShellScriptBin "screenshot" ''
-        grim -g "$(slurp)" ~/downloads/screenshot.png
+    (writeShellScriptBin "screenshot" ''
+      grim -g "$(slurp)" ~/downloads/screenshot.png
+    '')
+  ];
+
+  not-mimas-pkgs = with pkgs;
+    [
+      playerctl
+      swayidle
+      xdg-utils
+
+      (writeShellScriptBin "lock" ''
+        ${pkgs.swaylock}/bin/swaylock -c 1e1e2eff
       '')
     ]
     ++ all-nerd-fonts;
-
-  not-mimas-pkgs = with pkgs; [
-    playerctl
-    swayidle
-    xdg-utils
-
-    (writeShellScriptBin "lock" ''
-      ${pkgs.swaylock}/bin/swaylock -c 1e1e2eff
-    '')
-  ];
 
   packages = always-packages ++ optionals is-not-mimas not-mimas-pkgs;
 
