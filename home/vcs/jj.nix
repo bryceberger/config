@@ -8,6 +8,7 @@
     user = {inherit name email;};
 
     ui = {
+      editor = ["hx" "$path:$line"];
       default-command = ["--ignore-working-copy" "log"];
       diff-editor = ":builtin";
       diff-instructions = false;
