@@ -44,8 +44,10 @@
     };
 
     overlays = [
-      (import ./overlays.nix)
+      # The local overlay must run after the helix one so that its `helix`
+      # override (see overlays.nix) is not clobbered.
       inputs.helix.overlays.default
+      (import ./overlays.nix)
       inputs.jj.overlays.default
       inputs.nur.overlays.default
       inputs.omp.overlays.default
