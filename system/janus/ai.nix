@@ -39,12 +39,6 @@
     fileTreeHash = "sha256-N7PVnYrXCvB05t4xsTZZF6CdSCitgJZa3QQNMDCqrcc=";
     gitRepoHash = "sha256-eY/zo6QuryVdt2S58qmtehKna92ogQvklTLr6ALXpXA=";
   };
-
-  qwen-chat-template = fetchModel "froggeric/Qwen-Fixed-Chat-Templates" "chat_template.jinja" {
-    rev = "756cfb69d742355fd310b4ba9d50815a27d9d241";
-    fileTreeHash = "sha256-KAAl+qYORR+iWMHTt9nDAGXKb8nXz4JX6K1ePVLMU+Y=";
-    gitRepoHash = "sha256-xeaffbMQM+ufS/xts6DsZD2+t4sB60ARRgWgBPV1BIM=";
-  };
 in {
   systemd.services.llama-swap = let
     port = 9292;
@@ -71,8 +65,6 @@ in {
         reasoning = "on";
         reasoning-format = "deepseek";
         reasoning-preserve = true;
-
-        chat-template-file = qwen-chat-template;
       };
       aliases = ["qwen3.8:27b"];
       capabilities = {
