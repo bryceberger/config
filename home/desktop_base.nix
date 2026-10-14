@@ -5,12 +5,9 @@
   hostname,
   ...
 }: let
-  inherit (builtins) filter attrValues;
-  inherit (lib) isDerivation optional optionals optionalAttrs;
+  inherit (lib) optional optionals optionalAttrs;
 
   is-not-mimas = hostname != "mimas";
-
-  all-nerd-fonts = filter isDerivation (attrValues pkgs.nerd-fonts);
 
   always-packages = with pkgs; [
     dejavu_fonts
@@ -29,17 +26,15 @@
     '')
   ];
 
-  not-mimas-pkgs = with pkgs;
-    [
-      playerctl
-      swayidle
-      xdg-utils
+  not-mimas-pkgs = with pkgs; [
+    playerctl
+    swayidle
+    xdg-utils
 
-      (writeShellScriptBin "lock" ''
-        ${pkgs.swaylock}/bin/swaylock -c 1e1e2eff
-      '')
-    ]
-    ++ all-nerd-fonts;
+    (writeShellScriptBin "lock" ''
+      ${pkgs.swaylock}/bin/swaylock -c 1e1e2eff
+    '')
+  ];
 
   packages = always-packages ++ optionals is-not-mimas not-mimas-pkgs;
 
