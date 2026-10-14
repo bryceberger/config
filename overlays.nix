@@ -31,13 +31,17 @@ in {
   # perl: the pinned revision ships its own bsearch() definition, which glibc
   # 2.44 headers turn into a _Generic macro expansion under C23. Removable once
   # languages.toml pins a perl revision that compiles as C23.
-  helix = prev.helix.override {
+  helix = let
+    addPatches = oldAttrs: {
+      patches = oldAttrs.patches or [] ++ [./overlays/helix/relative-worktrees.patch];
+    };
     grammarOverlays = [
       (self: super: {
-        perl = super.perl.overrideAttrs (old: {
-          FLAGS = old.FLAGS ++ ["-std=gnu17"];
+        perl = super.perl.overrideAttrs (oldAttrs: {
+          FLAGS = oldAttrs.FLAGS or [] ++ ["-std=gnu17"];
         });
       })
     ];
-  };
+  in
+    (prev.helix.overrideAttrs addPatches).override {inherit grammarOverlays;};
 }
