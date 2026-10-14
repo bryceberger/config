@@ -17,7 +17,7 @@
     media = getExe pkgs.playerctl;
     menu = getExe pkgs.fuzzel;
     pdf-viewer = getExe pkgs.zathura;
-    terminal.default = getExe pkgs.kitty;
+    terminal.default = getExe pkgs.tern;
     terminal.mimas = "~/.local/bin/kitty";
     volume = getExe' pkgs.wireplumber "wpctl";
   };

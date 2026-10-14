@@ -22,6 +22,11 @@ in {
     interactiveShellInit = ''
       set fish_greeting # disable greeting
       export GPG_TTY=$(tty)
+
+      if set -q KITTY_FISH_XDG_DATA_DIR
+        source "$KITTY_FISH_XDG_DATA_DIR/fish/vendor_conf.d/kitty-shell-integration.fish"
+        set --prepend fish_complete_path "$KITTY_FISH_XDG_DATA_DIR/fish/vendor_completions.d"
+      end
     '';
 
     plugins = let

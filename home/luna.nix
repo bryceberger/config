@@ -51,6 +51,7 @@ in {
     ./omp.nix
     ./retroarch.nix
     ./sway.nix
+    ./tern.nix
   ];
 
   home.username = "bryce";

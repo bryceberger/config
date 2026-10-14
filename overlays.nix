@@ -26,6 +26,7 @@ in {
   crosshair-cursor = final.callPackage ./overlays/crosshair-cursor.nix {};
   jj-manage = final.callPackage ./overlays/jj-manage.nix {};
   streampager = final.callPackage ./overlays/streampager.nix {};
+  tern = final.callPackage ./overlays/tern.nix {};
   ups-apply = final.callPackage ./overlays/ups-apply.nix {};
 
   # perl: the pinned revision ships its own bsearch() definition, which glibc
