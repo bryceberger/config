@@ -48,8 +48,8 @@
 in {
   imports = [
     ./common.nix
+    ./emulation.nix
     ./omp.nix
-    ./retroarch.nix
     ./sway.nix
     ./syncthing.nix
   ];
