@@ -20,6 +20,7 @@
       shape = "rail";
       tokenRate = true;
     };
+    spelling.autocomplete = "smollm";
 
     collab = {
       relayUrl = "wss://ca0639wk27391.nren.navy.mil:7477";
