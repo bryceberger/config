@@ -18,6 +18,9 @@
         then 10
         else 12;
       font_family = "Maple Mono NF";
+
+      tab_bar_style = "powerline";
+      tab_title_max_length = 30;
     };
 
     # yes "==" and "!=" ligatures

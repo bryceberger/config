@@ -16,11 +16,13 @@
       cacheMissMarker = true;
       showTurnTime = true;
     };
+    tui.completeScrollback = true;
     composer = {
       shape = "rail";
       tokenRate = true;
     };
     spelling.autocomplete = "smollm";
+    title.icons = "boring";
 
     collab = {
       relayUrl = "wss://ca0639wk27391.nren.navy.mil:7477";

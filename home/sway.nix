@@ -113,6 +113,10 @@ in {
     config = {
       window.titlebar = false;
 
+      startup = [
+        {command = "${pkgs.lib.getExe pkgs.swaynotificationcenter}";}
+      ];
+
       modes = {};
 
       input = {
@@ -153,6 +157,10 @@ in {
         };
     };
   };
+
+  home.packages = with pkgs; [
+    swaynotificationcenter
+  ];
 
   xdg.configFile."i3status-rust/config.toml".source = let
     sensors = {
