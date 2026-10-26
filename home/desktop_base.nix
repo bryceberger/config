@@ -48,9 +48,9 @@ in
     programs.zathura = {
       enable = true;
       mappings = {
-        b = "page_mode equal_none";
-        n = "page_mode equal_width";
-        m = "page_mode equal_height";
+        "8" = "page_mode equal_none";
+        "9" = "page_mode equal_width";
+        "0" = "page_mode equal_height";
       };
     };
 
