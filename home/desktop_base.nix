@@ -10,6 +10,7 @@
   is-not-mimas = hostname != "mimas";
 
   always-packages = with pkgs; [
+    dejavu_fonts
     font-awesome
     fuzzel
     grim
