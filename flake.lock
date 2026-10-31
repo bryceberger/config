@@ -201,6 +201,30 @@
         "type": "github"
       }
     },
+    "maple-font": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pyproject-build-systems": "pyproject-build-systems",
+        "pyproject-nix": "pyproject-nix",
+        "uv2nix": "uv2nix"
+      },
+      "locked": {
+        "lastModified": 1793477050,
+        "narHash": "sha256-EAL9+pf2lNFcoxLRCEz0TgALwrKeDqw2PhHvw48rUPk=",
+        "owner": "bryceberger",
+        "repo": "maple-font",
+        "rev": "416805adc817e4b5c9b5c72977764d07a9dc21a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bryceberger",
+        "ref": "main",
+        "repo": "maple-font",
+        "type": "github"
+      }
+    },
     "nix-bun": {
       "inputs": {
         "nixpkgs": [
@@ -318,12 +342,63 @@
         "type": "github"
       }
     },
+    "pyproject-build-systems": {
+      "inputs": {
+        "nixpkgs": [
+          "maple-font",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "maple-font",
+          "pyproject-nix"
+        ],
+        "uv2nix": [
+          "maple-font",
+          "uv2nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793303843,
+        "narHash": "sha256-wLiau0yOPONjWSoQNC++uirtJqx2D4hGAWSKU0TfKGc=",
+        "owner": "pyproject-nix",
+        "repo": "build-system-pkgs",
+        "rev": "6171a3484937e14cdf2316ed9a60f1c27b6cb71e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "build-system-pkgs",
+        "type": "github"
+      }
+    },
+    "pyproject-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "maple-font",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793240426,
+        "narHash": "sha256-NPWgb6H4arnWyTKvYIys5U0xqd5QY74Z+lyTJA+7XGY=",
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "rev": "bf7d4b1d6de61db02fd4e748395634f03006e5de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "helix": "helix",
         "home-manager": "home-manager",
         "jj": "jj",
+        "maple-font": "maple-font",
         "nix-hug": "nix-hug",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
@@ -458,6 +533,31 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "uv2nix": {
+      "inputs": {
+        "nixpkgs": [
+          "maple-font",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "maple-font",
+          "pyproject-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793272761,
+        "narHash": "sha256-3CE1CEwprYlHRlRVkXDkhqec0jjF9Cti7tdk8vVDsCM=",
+        "owner": "pyproject-nix",
+        "repo": "uv2nix",
+        "rev": "c361746c7d630d98b972378290547c8d35542a7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "uv2nix",
         "type": "github"
       }
     }

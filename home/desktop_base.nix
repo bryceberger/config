@@ -10,12 +10,11 @@
   is-not-mimas = hostname != "mimas";
 
   always-packages = with pkgs; [
-    dejavu_fonts
-    fira-code
     font-awesome
     fuzzel
     grim
-    maple-mono.NF
+    maple-font
+    nerd-fonts.iosevka
     pavucontrol
     slurp
     wayland

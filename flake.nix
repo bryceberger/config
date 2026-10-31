@@ -28,6 +28,9 @@
 
     omp.url = "github:can1357/oh-my-pi/v18.13.0";
     omp.inputs.nixpkgs.follows = "nixpkgs";
+
+    maple-font.url = "github:bryceberger/maple-font/main";
+    maple-font.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -51,6 +54,7 @@
       inputs.jj.overlays.default
       inputs.nur.overlays.default
       inputs.omp.overlays.default
+      (_: _: {maple-font = inputs.maple-font.packages.${system}.default;})
     ];
 
     registry = {
