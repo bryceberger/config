@@ -138,6 +138,7 @@
       packages = with pkgs; [
         dix
         just
+        rom
         nodejs
         prefetch-npm-deps
       ];
