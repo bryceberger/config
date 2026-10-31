@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  imports = [./hardware/luna.nix];
+  imports = [
+    ./common/syncthing.nix
+    ./hardware/luna.nix
+  ];
 
   hardware.graphics = {
     enable = true;

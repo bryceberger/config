@@ -8,6 +8,7 @@
     ./omp.nix
     ./retroarch.nix
     ./sway.nix
+    ./syncthing.nix
   ];
 
   home.username = "bryce";

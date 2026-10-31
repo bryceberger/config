@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./common/syncthing.nix
     ./hardware/janus.nix
     ./janus/ai.nix
   ];
