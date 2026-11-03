@@ -26,7 +26,7 @@
     nix-hug.url = "github:eordano/nix-hug";
     nix-hug.inputs.nixpkgs.follows = "nixpkgs";
 
-    omp.url = "github:can1357/oh-my-pi/v18.13.0";
+    omp.url = "github:can1357/oh-my-pi/v18.18.6";
     omp.inputs.nixpkgs.follows = "nixpkgs";
 
     maple-font.url = "github:bryceberger/maple-font/main";

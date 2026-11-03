@@ -51,6 +51,10 @@
         args = ["--indentation_spaces" "4" "-"];
       };
     };
+    vhdl.formatter = {
+      command = "vhdl_lang";
+      args = ["--format" "/dev/stdin"];
+    };
   };
 
   lsp = cmd: config: {

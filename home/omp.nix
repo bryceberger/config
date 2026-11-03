@@ -2,9 +2,10 @@
   yaml = pkgs.formats.yaml {};
 
   omp-config = {
-    setupVersion = 2;
+    setupVersion = 3;
     startup = {
       quiet = true;
+      setupWizard = false;
       checkUpdate = false;
     };
     marketplace.autoUpdate = "off";
@@ -30,7 +31,6 @@
 
     modelRoles.default = "qwen3.8:27b";
     modelRoles.tiny = "local/lfm2.5-230m";
-    inspect_image.mode = "off";
     steeringMode = "all";
     proseOnlyThinking = false;
     task.maxConcurrency = 2;

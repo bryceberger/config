@@ -12,7 +12,7 @@
 
   config.right_format = "";
   config.format = let
-    left = c ["directory" "nix_shell" "vcs"];
+    left = c ["hostname" "username" "directory" "nix_shell" "vcs"];
     right = c [
       "singularity"
       "kubernetes"
@@ -74,7 +74,7 @@
       "battery"
       "time"
     ];
-    bottom = c ["hostname" "localip" "jobs" "username" "character"];
+    bottom = c ["jobs" "character"];
   in "(${left}$fill${right})\n${bottom}";
 
   config.character = {
@@ -85,6 +85,15 @@
   config.directory = {
     truncation_length = 999;
     repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)";
+  };
+
+  config.hostname = {
+    ssh_symbol = "";
+    format = "[$hostname]($style) ";
+  };
+
+  config.username = {
+    format = "[$user]($style) ";
   };
 
   config.time = {
