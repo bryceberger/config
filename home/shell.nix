@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./shell/fish.nix
+    ./shell/starship.nix
   ];
 
   programs.direnv = {
@@ -18,6 +19,4 @@
     settings. enter_accept = false;
     flags = ["--disable-up-arrow"];
   };
-
-  xdg.configFile."starship.toml".source = ./shell/starship.toml;
 }
