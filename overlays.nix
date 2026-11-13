@@ -4,17 +4,21 @@ final: prev: {
   streampager = final.callPackage ./overlays/streampager.nix {};
   ups-apply = final.callPackage ./overlays/ups-apply.nix {};
 
-  # perl: the pinned revision ships its own bsearch() definition, which glibc
-  # 2.44 headers turn into a _Generic macro expansion under C23. Removable once
-  # languages.toml pins a perl revision that compiles as C23.
+  # https://github.com/helix-editor/helix/issues/16431#issuecomment-6543022913
   helix = let
     addPatches = oldAttrs: {
       patches = oldAttrs.patches or [] ++ [./overlays/helix/relative-worktrees.patch];
     };
     grammarOverlays = [
-      (self: super: {
-        perl = super.perl.overrideAttrs (oldAttrs: {
-          FLAGS = oldAttrs.FLAGS or [] ++ ["-std=gnu17"];
+      (_final: previous: {
+        perl = previous.perl.overrideAttrs (_old: {
+          version = "aa5600c8df1eb9ed111db72e20c741dd73ec336a";
+          src = fetchTree {
+            type = "github";
+            owner = "tree-sitter-perl";
+            repo = "tree-sitter-perl";
+            rev = "aa5600c8df1eb9ed111db72e20c741dd73ec336a";
+          };
         });
       })
     ];
