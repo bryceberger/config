@@ -49,7 +49,7 @@ in {
   imports = [
     ./common.nix
     ./emulation.nix
-    ./omp.nix
+    ./pi.nix
     ./sway.nix
     ./syncthing.nix
   ];

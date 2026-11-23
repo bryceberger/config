@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./common.nix
-    ./omp.nix
+    ./pi.nix
     ./sway.nix
   ];
 
