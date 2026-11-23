@@ -139,6 +139,8 @@
       packages = with pkgs; [
         dix
         just
+        nodejs
+        prefetch-npm-deps
       ];
     };
 

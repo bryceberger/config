@@ -1,20 +1,24 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   json = pkgs.formats.json {};
 
   extensions-source = pkgs.buildNpmPackage {
     src = ./pi/extensions;
     pname = "pi-extensions";
     version = "0.0.0";
-    npmDepsHash = "sha256-3KJGjgYPO8XwIIeDIx27PCTuzTmDZ8qHei5Gd3X/9zk=";
+    npmDepsHash = "sha256-bvbqGeYeM7B6q9uGJvjm9kjk+MdadmBgUM1lchehNW4=";
     dontNpmBuild = true;
   };
 
   settings = {
-    packages = [
-      "npm:@danielmeneses/pi-llama-swap"
-      "npm:@juicesharp/rpiv-ask-user-question"
-      "npm:billion-context"
-    ];
+    packages = let
+      deps = (lib.importJSON ./pi/extensions/package.json).dependencies;
+    in
+      map (x: "npm:${x}") (builtins.attrNames deps);
+
     quietStartup = true;
     enableInstallTelemetry = false;
 
@@ -25,8 +29,10 @@
     theme = "dark-catppuccin";
     steeringMode = "all";
     showCacheMissNotices = true;
+    terminal.showTerminalProgress = true;
   };
 in {
+  home.sessionVariables.PI_OFFLINE = "1";
   home.packages = [
     pkgs.pi-coding-agent
   ];
