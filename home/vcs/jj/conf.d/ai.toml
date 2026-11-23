@@ -1,4 +1,4 @@
---when.environments = ["OMPCODE=1"]
+--when.environments = ["OMPCODE", "PI_CODING_AGENT"]
 
 [ui]
 paginate = "never"

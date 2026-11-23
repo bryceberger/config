@@ -1,0 +1,9 @@
+{
+  "name": "pi-extensions",
+  "version": "0.0.0",
+  "dependencies": {
+    "@danielmeneses/pi-llama-swap": "^0.1.3",
+    "@juicesharp/rpiv-ask-user-question": "^2.15.0",
+    "billion-context": "^0.1.216"
+  }
+}
