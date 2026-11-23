@@ -14,7 +14,7 @@
   };
   home.packages = with pkgs; [
     dix
-    nix-output-monitor
+    rom
     streampager
   ];
   programs.nh.enable = true;

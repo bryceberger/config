@@ -4,7 +4,7 @@ alias a := activate
 alias b := build
 
 build host=`hostname`:
-    nom build .#{{ host }}
+    rom build .#{{ host }}
     dix "$XDG_STATE_HOME/nix/profiles/home-manager" result/home
     dix /nix/var/nix/profiles/system result/system
 
