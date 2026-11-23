@@ -25,6 +25,8 @@
     spelling.autocomplete = "smollm";
     title.icons = "boring";
 
+    magicKeywords.enabled = false;
+
     collab = {
       relayUrl = "wss://ca0639wk27391.nren.navy.mil:7477";
     };
@@ -43,13 +45,20 @@
 
     lsp.diagnosticsOnEdit = true;
   };
-in {
-  home.packages = with pkgs; [
-    omp
-  ];
-  home.sessionVariables = {
-    PI_CONFIG_DIR = ".config/omp";
+
+  omp-wrapped = pkgs.symlinkJoin {
+    name = "omp";
+    buildInputs = [pkgs.makeWrapper];
+    paths = [pkgs.omp];
+    postBuild = ''
+      wrapProgram $out/bin/omp \
+        --set PI_CONFIG_DIR .config/omp
+    '';
   };
+in {
+  home.packages = [
+    omp-wrapped
+  ];
   xdg.configFile = {
     "omp/agent/config.yml".source = yaml.generate "omp-config.yml" omp-config;
   };
