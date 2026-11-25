@@ -2,6 +2,7 @@
   pkgs,
   name,
   email,
+  ssh-key,
   ...
 }: let
   settings = {
@@ -18,8 +19,10 @@
     };
 
     signing = {
-      backend = "gpg";
+      backend = "ssh";
+      key = ssh-key;
       behavior = "own";
+      backends.ssh."allowed-signers" = "~/.config/git/allowed_signers";
     };
 
     fsmonitor = {

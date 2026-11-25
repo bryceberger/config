@@ -103,7 +103,7 @@
             args.hostname = n.hostname or n;
             args.username = n.username or defaults.username;
             args.email = n.email or defaults.email;
-            args.gpg-key = n.gpg-key or defaults.gpg-key;
+            args.ssh-key = n.ssh-key or defaults.ssh-key;
           in {
             name = n.home-name or "${args.username}@${args.hostname}";
             value = make_home args;
@@ -114,7 +114,7 @@
         name = "Bryce Berger";
         username = "bryce";
         email = "bryce.z.berger@gmail.com";
-        gpg-key = "FDBF801F1CE5FB66EC3075C058CA4F9FEF8F4296";
+        ssh-key = "~/.ssh/id_ed25519.pub";
       } [
         "luna"
         "janus"
@@ -123,7 +123,6 @@
           hostname = "mimas";
           username = "bryce.berger.local";
           home-name = "bryce.berger.local";
-          gpg-key = "68DF074C1EA2114F91AD98E3F0353FDEC1417AFA";
         }
       ];
 

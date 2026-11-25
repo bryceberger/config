@@ -2,7 +2,7 @@
   pkgs,
   name,
   email,
-  gpg-key,
+  ssh-key,
   ...
 }: {
   imports = [
@@ -17,13 +17,14 @@
     enable = true;
 
     signing = {
-      key = gpg-key;
-      format = "openpgp";
+      key = ssh-key;
+      format = "ssh";
       signByDefault = true;
     };
 
     settings = {
       user = {inherit name email;};
+      gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
       init.defaultBranch = "main";
       advice.detachedHead = false;
     };

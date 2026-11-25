@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   imports = [
-    ./gpg.nix
     ./helix.nix
     ./vcs.nix
     ./shell.nix

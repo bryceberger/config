@@ -21,7 +21,6 @@ in {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # disable greeting
-      export GPG_TTY=$(tty)
     '';
 
     plugins = let
