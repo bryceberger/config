@@ -18,6 +18,10 @@
         path = "/home/bryce/.config/retroarch/states";
         devices = ["luna" "janus"];
       };
+      "gba roms" = {
+        path = "/home/bryce/games/roms/gba";
+        devices = ["luna" "janus"];
+      };
     };
   };
 }
